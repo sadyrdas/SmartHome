@@ -12,6 +12,22 @@ public abstract class Resident {
         this.name = name;
     }
 
+    public Resident() {
+    }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<ResidentPermission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(Set<ResidentPermission> permissions) {
+        this.permissions = permissions;
+    }
 }

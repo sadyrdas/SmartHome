@@ -4,4 +4,8 @@ public class Human extends Resident{
     public Human(String name) {
         super(name);
     }
+
+    public Human() {
+        super();
+    }
 }

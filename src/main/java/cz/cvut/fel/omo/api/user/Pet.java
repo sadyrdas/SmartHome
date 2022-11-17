@@ -5,4 +5,8 @@ public class Pet extends Resident{
     public Pet(String name) {
         super(name);
     }
+
+    public Pet() {
+        super();
+    }
 }
