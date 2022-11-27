@@ -14,14 +14,14 @@ public class HumanBuilder {
     private static final Logger LOGGER = LogManager.getLogger(PetBuilder.class.getName());
 
     private String name;
-    private Set<ResidentPermission> permissions;
+    private ResidentPermission permissions;
 
     public HumanBuilder setName(String name) {
         this.name = name;
         return this;
     }
 
-    public HumanBuilder setPermissions(Set<ResidentPermission> permissions) {
+    public HumanBuilder setPermissions(ResidentPermission permissions) {
         this.permissions = permissions;
         return this;
     }
@@ -29,7 +29,7 @@ public class HumanBuilder {
     public Human build() {
         Human human = new Human();
 
-        if (name.isEmpty() || permissions.isEmpty()) {
+        if (name.isEmpty()) {
             LOGGER.error("Pet attributes are empty!");
         }
 

@@ -5,7 +5,12 @@ public class Human extends Resident{
         super(name);
     }
 
+    public Human(String name, ResidentPermission permission) {
+        super(name, permission);
+    }
+
     public Human() {
         super();
     }
+
 }

@@ -6,10 +6,15 @@ public abstract class Resident {
 
     private String name;
 
-    private Set<ResidentPermission> permissions;
+    private ResidentPermission permission;
 
     public Resident(String name){
         this.name = name;
+    }
+
+    public Resident (String name, ResidentPermission residentPermission) {
+        this.name = name;
+        this.permission = residentPermission;
     }
 
     public Resident() {
@@ -23,11 +28,11 @@ public abstract class Resident {
         this.name = name;
     }
 
-    public Set<ResidentPermission> getPermissions() {
-        return permissions;
+    public ResidentPermission getPermissions() {
+        return permission;
     }
 
-    public void setPermissions(Set<ResidentPermission> permissions) {
-        this.permissions = permissions;
+    public void setPermissions(ResidentPermission permission) {
+        this.permission = permission;
     }
 }
