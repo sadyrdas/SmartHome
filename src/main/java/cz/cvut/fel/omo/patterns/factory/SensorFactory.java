@@ -1,11 +1,10 @@
 package cz.cvut.fel.omo.patterns.factory;
 
-import cz.cvut.fel.omo.api.device.Device;
-import cz.cvut.fel.omo.api.device.sensor.ElectricitySensor;
-import cz.cvut.fel.omo.api.device.sensor.Sensor;
-import cz.cvut.fel.omo.api.device.sensor.SmokeSensor;
-import cz.cvut.fel.omo.api.device.sensor.TemperatureSensor;
-import cz.cvut.fel.omo.patterns.state.State;
+import cz.cvut.fel.omo.model.device.Device;
+import cz.cvut.fel.omo.model.device.sensor.ElectricitySensor;
+import cz.cvut.fel.omo.model.device.sensor.Sensor;
+import cz.cvut.fel.omo.model.device.sensor.SmokeSensor;
+import cz.cvut.fel.omo.model.device.sensor.TemperatureSensor;
 
 import java.util.logging.Logger;
 

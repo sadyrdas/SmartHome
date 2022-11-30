@@ -1,11 +1,9 @@
 package cz.cvut.fel.omo.patterns.builder;
 
-import cz.cvut.fel.omo.api.user.Human;
-import cz.cvut.fel.omo.api.user.ResidentPermission;
+import cz.cvut.fel.omo.model.user.Human;
+import cz.cvut.fel.omo.model.user.ResidentPermission;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.Set;
 
 
 // https://refactoring.guru/design-patterns/builder/java/example

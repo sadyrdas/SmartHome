@@ -1,10 +1,9 @@
 package cz.cvut.fel.omo.patterns.builder;
 
-import cz.cvut.fel.omo.api.user.Pet;
-import cz.cvut.fel.omo.api.user.PetType;
-import cz.cvut.fel.omo.api.user.ResidentPermission;
+import cz.cvut.fel.omo.model.user.Pet;
+import cz.cvut.fel.omo.model.user.PetType;
+import cz.cvut.fel.omo.model.user.ResidentPermission;
 
-import java.util.Set;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -1,18 +1,17 @@
 package cz.cvut.fel.omo;
 
-import cz.cvut.fel.omo.api.device.Device;
-import cz.cvut.fel.omo.api.device.sensor.Sensor;
-import cz.cvut.fel.omo.api.room.Room;
-import cz.cvut.fel.omo.api.user.Human;
-import cz.cvut.fel.omo.api.user.Pet;
-import cz.cvut.fel.omo.api.user.PetType;
-import cz.cvut.fel.omo.api.user.ResidentPermission;
+import cz.cvut.fel.omo.model.device.Device;
+import cz.cvut.fel.omo.model.device.sensor.Sensor;
+import cz.cvut.fel.omo.model.room.Room;
+import cz.cvut.fel.omo.model.user.Human;
+import cz.cvut.fel.omo.model.user.Pet;
+import cz.cvut.fel.omo.model.user.PetType;
+import cz.cvut.fel.omo.model.user.ResidentPermission;
 import cz.cvut.fel.omo.patterns.builder.HumanBuilder;
 import cz.cvut.fel.omo.patterns.builder.PetBuilder;
 import cz.cvut.fel.omo.patterns.factory.DeviceFactory;
 import cz.cvut.fel.omo.patterns.factory.RoomBuilder;
 import cz.cvut.fel.omo.patterns.factory.SensorFactory;
-import cz.cvut.fel.omo.patterns.state.State;
 
 import java.util.*;
 import java.util.logging.Logger;

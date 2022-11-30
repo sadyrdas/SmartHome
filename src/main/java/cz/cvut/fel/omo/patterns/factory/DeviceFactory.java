@@ -1,9 +1,8 @@
 package cz.cvut.fel.omo.patterns.factory;
 
-import cz.cvut.fel.omo.api.device.Device;
-import cz.cvut.fel.omo.api.device.Fridge;
-import cz.cvut.fel.omo.api.device.TV;
-import cz.cvut.fel.omo.api.room.Room;
+import cz.cvut.fel.omo.model.device.Device;
+import cz.cvut.fel.omo.model.device.Fridge;
+import cz.cvut.fel.omo.model.device.TV;
 
 import java.util.logging.Logger;
 

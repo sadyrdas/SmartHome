@@ -1,12 +1,11 @@
 package cz.cvut.fel.omo.patterns.factory;
 
-import cz.cvut.fel.omo.api.device.Device;
-import cz.cvut.fel.omo.api.device.Window;
-import cz.cvut.fel.omo.api.device.sensor.Sensor;
-import cz.cvut.fel.omo.api.room.Room;
-import cz.cvut.fel.omo.api.user.Human;
-import cz.cvut.fel.omo.api.user.Pet;
-import cz.cvut.fel.omo.patterns.builder.PetBuilder;
+import cz.cvut.fel.omo.model.device.Device;
+import cz.cvut.fel.omo.model.device.Window;
+import cz.cvut.fel.omo.model.device.sensor.Sensor;
+import cz.cvut.fel.omo.model.room.Room;
+import cz.cvut.fel.omo.model.user.Human;
+import cz.cvut.fel.omo.model.user.Pet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

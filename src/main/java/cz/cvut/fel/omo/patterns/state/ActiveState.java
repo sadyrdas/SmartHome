@@ -1,6 +1,6 @@
 package cz.cvut.fel.omo.patterns.state;
 
-import cz.cvut.fel.omo.api.device.Device;
+import cz.cvut.fel.omo.model.device.Device;
 
 import java.util.logging.Logger;
 
