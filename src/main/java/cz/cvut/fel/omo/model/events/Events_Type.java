@@ -6,6 +6,8 @@ public enum Events_Type {
     On_device,
     Off_device,
     Smoky,
+    OpenWindow,
+    CloseWindow
 
 
 }

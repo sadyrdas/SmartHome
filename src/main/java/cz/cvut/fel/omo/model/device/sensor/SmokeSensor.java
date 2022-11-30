@@ -9,7 +9,7 @@ public class SmokeSensor extends Sensor{
 
     @Override
     public void addSubscriber(Observer observer) {
-        
+
     }
 
     @Override
