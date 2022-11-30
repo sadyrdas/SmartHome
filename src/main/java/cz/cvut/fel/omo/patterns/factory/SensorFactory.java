@@ -12,16 +12,16 @@ import java.util.logging.Logger;
 public class SensorFactory {
     private static final Logger LOG = Logger.getLogger(Device.class.getSimpleName());
 
-    public Sensor createSensor(int id, String sensorName, int baseEnergyConsumption, State state) {
+    public Sensor createSensor(int id, String sensorName, int baseEnergyConsumption) {
         if (sensorName.isEmpty() || baseEnergyConsumption < 0 ) {
             LOG.warning("Sensor name is empty or consumptionEnergy is bellow zero!");
             return null;
         }
 
         return switch (sensorName) {
-            case "Temperature" -> new TemperatureSensor(id, sensorName, baseEnergyConsumption,state);
-            case "Electricity" -> new ElectricitySensor(id, sensorName, baseEnergyConsumption, state);
-            case "Smoke" -> new SmokeSensor(id, sensorName, baseEnergyConsumption, state);
+            case "Temperature" -> new TemperatureSensor(id, sensorName, baseEnergyConsumption);
+            case "Electricity" -> new ElectricitySensor(id, sensorName, baseEnergyConsumption);
+            case "Smoke" -> new SmokeSensor(id, sensorName, baseEnergyConsumption);
             default -> throw new IllegalArgumentException("Unknown device: " + sensorName);
         };
     }

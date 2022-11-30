@@ -13,12 +13,12 @@ public class Fridge extends Device {
     Map<String, Integer> foodInFridge = new HashMap<>();
 
 
-    public Fridge(String name, Room room, int baseEnergyConsumption) {
-        super(name, room, baseEnergyConsumption);
+    public Fridge(int id , String name, Room room, int baseEnergyConsumption) {
+        super(id, name, room, baseEnergyConsumption);
     }
 
-    public Fridge(String name, int baseEnergyConsumption) {
-        super(name, baseEnergyConsumption);
+    public Fridge(int id ,String name, int baseEnergyConsumption) {
+        super(id, name, baseEnergyConsumption);
     }
 
     public void addFoodToFridge(String food, int amount) {

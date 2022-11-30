@@ -11,13 +11,15 @@ public abstract class Device {
 
     private static final Logger LOG = Logger.getLogger(Device.class.getSimpleName());
 
+    private int id;
     private String name;
     private Room room;
     private State state;
     private Energy energy;
     private int baseEnergyConsumption;
 
-    public Device(String name, Room room, int baseEnergyConsumption) {
+    public Device(int id, String name, Room room, int baseEnergyConsumption) {
+        this.id = id;
         this.name = name;
         this.room = room;
         this.baseEnergyConsumption = baseEnergyConsumption;
@@ -25,7 +27,8 @@ public abstract class Device {
         setState(new IdleState(this));
     }
 
-    public Device(String name, int baseEnergyConsumption) {
+    public Device(int id ,String name, int baseEnergyConsumption) {
+        this.id = id;
         this.name = name;
         this.baseEnergyConsumption = baseEnergyConsumption;
         setEnergy(new Energy(baseEnergyConsumption));
@@ -70,5 +73,13 @@ public abstract class Device {
 
     public void setBaseEnergyConsumption(int baseEnergyConsumption) {
         this.baseEnergyConsumption = baseEnergyConsumption;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
