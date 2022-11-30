@@ -19,8 +19,11 @@ public class Fridge extends Device {
         super(id, name, baseEnergyConsumption);
     }
 
-    public void addFoodToFridge(String food, int amount) {
-        foodInFridge.put(food, amount);
-        LOG.info(food + " was inserted into the fridge with amout: " + amount);
+    public Map<String, Integer> getFoodInFridge() {
+        return foodInFridge;
+    }
+
+    public void setFoodInFridge(Map<String, Integer> foodInFridge) {
+        this.foodInFridge = foodInFridge;
     }
 }
