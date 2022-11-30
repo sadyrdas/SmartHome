@@ -31,6 +31,8 @@ public class HumanBuilder {
 
         if (name.isEmpty()) {
             LOGGER.error("Pet attributes are empty!");
+            // TODO can we do better than just return null?
+            return null;
         }
 
         return human;

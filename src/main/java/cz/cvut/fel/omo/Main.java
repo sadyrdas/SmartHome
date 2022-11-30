@@ -1,7 +1,6 @@
 package cz.cvut.fel.omo;
 
 import cz.cvut.fel.omo.api.device.Device;
-import cz.cvut.fel.omo.api.device.Fridge;
 import cz.cvut.fel.omo.api.room.Room;
 import cz.cvut.fel.omo.api.user.Human;
 import cz.cvut.fel.omo.api.user.Pet;
@@ -10,8 +9,7 @@ import cz.cvut.fel.omo.api.user.ResidentPermission;
 import cz.cvut.fel.omo.patterns.builder.HumanBuilder;
 import cz.cvut.fel.omo.patterns.builder.PetBuilder;
 import cz.cvut.fel.omo.patterns.factory.DeviceFactory;
-import cz.cvut.fel.omo.patterns.factory.RoomFactory;
-import cz.cvut.fel.omo.patterns.state.IdleState;
+import cz.cvut.fel.omo.patterns.factory.RoomBuilder;
 
 import java.util.*;
 import java.util.logging.Logger;
@@ -34,7 +32,7 @@ public class Main {
         HumanBuilder humanBuilder = new HumanBuilder();
         PetBuilder petBuilder = new PetBuilder();
         DeviceFactory deviceFactory = new DeviceFactory();
-        RoomFactory roomFactory = new RoomFactory();
+        RoomBuilder roomBuilder = new RoomBuilder();
 
         // Init users
         final Set<Human> users = new HashSet<>();
@@ -54,9 +52,6 @@ public class Main {
 
         // Init pets
         final Set<Pet> pets = new HashSet<>();
-        pets.add(new Pet("Duke"));
-        pets.add(new Pet("Alice"));
-        pets.add(new Pet("Bob"));
 
         pets.add(petBuilder.setName("Duke")
                 .setPermissions(ResidentPermission.PET)
@@ -74,13 +69,16 @@ public class Main {
                 .setPetType(PetType.Parrot)
                 .build());
 
-        final Set<Room> rooms = new HashSet<>();
-        rooms.add(roomFactory.createRoomWithHumansAndPets("Living room", pets, users));
-        rooms.add(roomFactory.createRoomWithHumansAndPets("Kitchen", pets, users));
-
         final Set<Device> devices = new HashSet<>();
         devices.add(deviceFactory.createDevice("Fridge", 500));
         devices.add(deviceFactory.createDevice("TV", 500));
+
+        final Set<Room> rooms = new HashSet<>();
+        rooms.add(roomBuilder.addRoomName("Kitchen")
+                .addDevicesToRoom(devices)
+                .addUsersToRoom(users)
+                .addPetsToRoom(pets)
+                .build());
 
 
     }
