@@ -21,7 +21,7 @@ public class TVApi {
         LOG.info("TV is turned off!");
     }
 
-    public void turnOnT() {
+    public void turnOnTv() {
         tv.setState(new ActiveState(this.tv));
         LOG.info("TV is turned on!");
     }
