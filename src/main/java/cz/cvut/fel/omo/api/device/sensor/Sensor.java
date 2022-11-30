@@ -1,6 +1,9 @@
 package cz.cvut.fel.omo.api.device.sensor;
 
+import cz.cvut.fel.omo.api.device.energy.Energy;
 import cz.cvut.fel.omo.patterns.builder.PetBuilder;
+import cz.cvut.fel.omo.patterns.state.IdleState;
+import cz.cvut.fel.omo.patterns.state.State;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,13 +12,23 @@ public abstract class Sensor {
 
     private int id;
     private String name;
-    private SensorState state;
+    private State state;
+    private int baseEnergyConsumption;
+    private Energy energy;
 
-    public Sensor(int id, String name, SensorState state) {
+
+    public Sensor(int id, String sensorName, int baseEnergyConsumption, State state) {
         this.id = id;
-        this.name = name;
+        this.name = sensorName;
+        this.baseEnergyConsumption = baseEnergyConsumption;
         this.state = state;
+        setEnergy(new Energy(baseEnergyConsumption));
     }
+
+    private void setEnergy(Energy energy) {
+        this.energy = energy;
+    }
+
 
     public int getId() {
         return id;
@@ -33,11 +46,19 @@ public abstract class Sensor {
         this.name = name;
     }
 
-    public SensorState getState() {
+    public State getState() {
         return state;
     }
 
-    public void setState(SensorState state) {
+    public void setState(State state) {
         this.state = state;
+    }
+
+    public int getBaseEnergyConsumption() {
+        return baseEnergyConsumption;
+    }
+
+    public void setBaseEnergyConsumption(int baseEnergyConsumption) {
+        this.baseEnergyConsumption = baseEnergyConsumption;
     }
 }

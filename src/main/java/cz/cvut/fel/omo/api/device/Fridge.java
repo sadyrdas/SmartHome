@@ -11,6 +11,8 @@ import java.util.logging.Logger;
 public class Fridge extends Device {
     private static final Logger LOG = Logger.getLogger(Fridge.class.getSimpleName());
     Map<String, Integer> foodInFridge = new HashMap<>();
+
+
     public Fridge(String name, Room room, int baseEnergyConsumption) {
         super(name, room, baseEnergyConsumption);
     }
