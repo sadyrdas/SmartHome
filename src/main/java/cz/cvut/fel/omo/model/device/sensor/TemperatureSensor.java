@@ -4,8 +4,7 @@ import cz.cvut.fel.omo.patterns.observer.Observer;
 import java.util.HashSet;
 import java.util.Set;
 
-public class TemperatureSensor extends Sensor{
-
+public class TemperatureSensor extends Sensor {
     private final Set<Observer> observers = new HashSet<>();
 
 

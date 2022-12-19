@@ -9,8 +9,6 @@ import java.util.List;
 public class Floor {
 
     private static final Logger LOGGER = LogManager.getLogger(PetBuilder.class.getName());
-
-
     private final int id;
     private final int number;
     private List<RoomBase> rooms;

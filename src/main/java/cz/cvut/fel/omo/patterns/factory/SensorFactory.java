@@ -18,9 +18,9 @@ public class SensorFactory {
         }
 
         return switch (sensorName) {
-            case "Temperature" -> new TemperatureSensor(id, sensorName, baseEnergyConsumption);
-            case "Electricity" -> new ElectricitySensor(id, sensorName, baseEnergyConsumption);
-            case "Smoke" -> new SmokeSensor(id, sensorName, baseEnergyConsumption);
+            case "TemperatureSensor" -> new TemperatureSensor(id, sensorName, baseEnergyConsumption);
+            case "ElectricitySensor" -> new ElectricitySensor(id, sensorName, baseEnergyConsumption);
+            case "SmokeSensor" -> new SmokeSensor(id, sensorName, baseEnergyConsumption);
             default -> throw new IllegalArgumentException("Unknown device: " + sensorName);
         };
     }

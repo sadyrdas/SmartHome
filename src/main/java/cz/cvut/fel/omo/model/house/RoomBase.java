@@ -14,7 +14,7 @@ public class RoomBase {
     private static final Logger LOGGER = LogManager.getLogger(PetBuilder.class.getName());
 
 
-    private int id;
+    private final int id;
     private final Set<Resident> residents;
     private final Set<Device> devices;
     private final Set<Window> windows;

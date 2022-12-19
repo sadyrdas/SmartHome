@@ -8,9 +8,6 @@ import org.apache.logging.log4j.Logger;
 
 public abstract class Sensor implements Subject {
     private static final Logger LOGGER = LogManager.getLogger(PetBuilder.class.getName());
-
-
-
     private int id;
     private String name;
     private SensorState state;

@@ -1,0 +1,42 @@
+[
+  {
+    "floor": 1,
+    "rooms": [
+      {
+        "id": 1,
+        "name": "Kitchen",
+        "windowsCount": 1
+      },
+      {
+        "id": 2,
+        "name": "Living room",
+        "windowsCount": 5
+      },
+      {
+        "id": 3,
+        "name": "WC",
+        "windowsCount": 0
+      }
+    ]
+  },
+  {
+    "floor": 2,
+    "rooms": [
+      {
+        "id": 4,
+        "name": "Double bedroom",
+        "windowsCount": 2
+      },
+      {
+        "id": 5,
+        "name": "Twin bedroom",
+        "windowsCount": 2
+      },
+      {
+        "id": 6,
+        "name": "Bathroom",
+        "windowsCount": 1
+      }
+    ]
+  }
+]

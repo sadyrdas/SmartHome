@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Person_1",
+    "permission": "ADULT"
+  },
+  {
+    "name": "Person_2",
+    "permission": "ADULT"
+  },
+  {
+    "name": "Person_3",
+    "permission": "CHILD"
+  },
+  {
+    "name": "Person_4",
+    "permission": "CHILD"
+  },
+  {
+    "name": "Person_5",
+    "permission": "CHILD"
+  },
+  {
+    "name": "Person_6",
+    "permission": "CHILD"
+  }
+]
