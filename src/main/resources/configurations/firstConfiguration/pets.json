@@ -1,14 +1,17 @@
 [
   {
-    "name": "pet_1",
-    "permission": "PET"
+    "name": "Duke",
+    "permission": "PET",
+    "petType" : "Dog"
   },
   {
-    "name": "pet_2",
-    "permission": "PET"
+    "name": "Mary",
+    "permission": "PET",
+    "petType" : "Cat"
   },
   {
-    "name": "pet_3",
-    "permission": "PET"
+    "name": "Bob",
+    "permission": "PET",
+    "petType": "Parrot"
   }
 ]

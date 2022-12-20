@@ -21,23 +21,37 @@ public class PetBuilder {
         return this;
     }
 
-    public PetBuilder setPermissions(ResidentPermission permissions) {
-        this.permissions = permissions;
+    public PetBuilder setPermissions(String permissions) {
+        this.permissions = getPermissions(permissions);
         return this;
     }
 
-    public PetBuilder setPetType(PetType petType) {
-        this.petType = petType;
+    private ResidentPermission getPermissions(String permissions){
+        return ResidentPermission.valueOf(permissions);
+    }
+
+    public PetBuilder setPetType(String petType) {
+        this.petType = getPetType(petType);
         return this;
+    }
+
+    private PetType getPetType(String type) {
+        return switch (type) {
+            case "Dog" -> PetType.Dog;
+            case "Cat" -> PetType.Cat;
+            case "Parrot" -> PetType.Parrot;
+            default -> null;
+        };
     }
 
     public Pet build() {
-        Pet pet = new Pet();
 
         if (name.isEmpty() || petType == null || permissions == null) {
             LOGGER.error("Pet attributes are empty!");
+            return null;
+        } else {
+            return new Pet(this.name, this.petType);
         }
 
-        return pet;
     }
 }

@@ -18,10 +18,5 @@
     "id" : 4,
     "name" : "CoffeeMachine",
     "baseEnergyConsumption" : 200
-  },
-  {
-    "id" : 5,
-    "name" : "Window",
-    "baseEnergyConsumption" : 50
   }
 ]

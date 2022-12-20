@@ -1,26 +1,26 @@
 [
   {
-    "name": "Person_1",
+    "name": "Tony",
     "permission": "ADULT"
   },
   {
-    "name": "Person_2",
+    "name": "Kerol",
     "permission": "ADULT"
   },
   {
-    "name": "Person_3",
+    "name": "Steve",
     "permission": "CHILD"
   },
   {
-    "name": "Person_4",
+    "name": "Thor",
     "permission": "CHILD"
   },
   {
-    "name": "Person_5",
+    "name": "Natasha",
     "permission": "CHILD"
   },
   {
-    "name": "Person_6",
+    "name": "Bruce",
     "permission": "CHILD"
   }
 ]

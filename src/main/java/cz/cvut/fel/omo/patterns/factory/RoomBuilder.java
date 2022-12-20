@@ -16,6 +16,8 @@ public class RoomBuilder {
     private static final Logger LOGGER = LogManager.getLogger(RoomBuilder.class.getName());
 
     private String roomName;
+    private int id;
+    private int windowsCount;
 
     private Set<Device> devices;
     private Set<Human> humans;
@@ -59,6 +61,6 @@ public class RoomBuilder {
             LOGGER.error("Room can not be created without name!");
         }
 
-        return new Room(roomName);
+        return new Room(this.roomName,this.windowsCount, this.id);
     }
 }

@@ -1,7 +1,9 @@
 package cz.cvut.fel.omo.simulation;
 
 import cz.cvut.fel.omo.model.device.Device;
+import cz.cvut.fel.omo.model.device.Window;
 import cz.cvut.fel.omo.model.device.sensor.Sensor;
+import cz.cvut.fel.omo.model.house.Floor;
 import cz.cvut.fel.omo.model.house.House;
 import cz.cvut.fel.omo.model.room.Room;
 import cz.cvut.fel.omo.model.user.Human;
@@ -47,7 +49,7 @@ public class Simulation {
     }
 
     public void startSimulation() throws IOException, ParseException {
-        initSystemManually();
+//        initSystemManually();
         loadFromConfigurationJson(1);
     }
 
@@ -67,11 +69,67 @@ public class Simulation {
             return;
         }
 
-        load("/firstConfiguration", "/persons.json");
+//        load("/firstConfiguration", "/persons.json");
+        loadPets("/firstConfiguration");
+        loadPerson("/firstConfiguration");
+        loadHouse("/firstConfiguration");
     }
 
-    private void loadHouse() {
+    private void loadHouse(String nameConfig) throws IOException, ParseException {
+        JSONArray array = load(nameConfig, "/house.json");
+        for (Object o: array) {
+            JSONObject homeJson = (JSONObject) o;
+            int idFloor = (int)(long)homeJson.get("floor");
+            Floor floor = new Floor(idFloor);
+            JSONArray roomArray = (JSONArray)homeJson.get("rooms");
 
+            for (Object ob: roomArray) {
+                JSONObject roomJson = (JSONObject) ob;
+                int countWindows = (int)(long)roomJson.get("windowsCount");
+                Room room = new Room((int)(long) roomJson.get("id"));
+                Window window = new Window(false);
+                house.addWindow(window);
+                floor.addRooms(room);
+            }
+            house.addFloor(floor);
+
+            LOGGER.info("Created " + roomArray.get(2) );
+        }
+    }
+
+
+    private void loadPets(String nameConfig) throws IOException, ParseException {
+        JSONArray array = load(nameConfig, "/pets.json");
+        for (Object o: array) {
+            JSONObject petJson = (JSONObject) o;
+            PetBuilder builder = new PetBuilder();
+            house.addPet(builder.setName((String)petJson.get("name"))
+                    .setPermissions((String) petJson.get("permission"))
+                    .setPetType((String) petJson.get("petType"))
+                    .build());
+
+//            System.out.println((String) petJson.get("petType"));
+        }
+        for(Pet p: house.getPets()) {
+            LOGGER.info(p.getName());
+        }
+    }
+
+
+    private void loadPerson(String nameConfig) throws IOException, ParseException {
+        JSONArray array = load(nameConfig, "/persons.json");
+        for (Object o: array) {
+            JSONObject personJson = (JSONObject) o;
+            HumanBuilder humanBuilder = new HumanBuilder();
+            house.addHuman(humanBuilder.setName((String)personJson.get("name"))
+                    .setPermissions((String) personJson.get("permission"))
+                    .build());
+
+//            System.out.println((String) petJson.get("petType"));
+        }
+        for(Human human: house.getHumans()) {
+            LOGGER.info(human.getName());
+        }
     }
 
     private JSONArray load(String nameConfig, String fileName) throws IOException, ParseException {
@@ -80,10 +138,10 @@ public class Simulation {
 
         for (Object o: a) {
             JSONObject person = (JSONObject) o;
-            System.out.println((String) person.get("name"));
         }
         return a;
     }
+
 
     private void initSystemManually() {
 
@@ -95,32 +153,32 @@ public class Simulation {
 
         // Init users
         house.addHuman(humanBuilder.setName("Walter (father)")
-                .setPermissions(ResidentPermission.ADULT)
+                .setPermissions("ADULT")
                 .build());
         house.addHuman(humanBuilder.setName("Skyler (mother)")
-                .setPermissions(ResidentPermission.ADULT)
+                .setPermissions("ADULT")
                 .build());
         house.addHuman(humanBuilder.setName("Flynn (son)")
-                .setPermissions(ResidentPermission.CHILD)
+                .setPermissions("ADULT")
                 .build());
         house.addHuman(humanBuilder.setName("Holy (daughter)")
-                .setPermissions(ResidentPermission.CHILD)
+                .setPermissions("ADULT")
                 .build());
 
         // Init pets
         house.addPet(petBuilder.setName("Duke")
-                .setPermissions(ResidentPermission.PET)
-                .setPetType(PetType.Dog)
+                .setPermissions("PET")
+                .setPetType("Dog")
                 .build());
 
         house.addPet(petBuilder.setName("Alice")
-                .setPermissions(ResidentPermission.PET)
-                .setPetType(PetType.Cat)
+                .setPermissions("PET")
+                .setPetType("Cat")
                 .build());
 
         house.addPet(petBuilder.setName("Bob")
-                .setPermissions(ResidentPermission.PET)
-                .setPetType(PetType.Parrot)
+                .setPermissions("PET")
+                .setPetType("Parrot")
                 .build());
 
         house.addDevice(deviceFactory.createDevice(1,"Fridge", 500));

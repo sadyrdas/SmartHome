@@ -11,12 +11,13 @@ import java.util.logging.Logger;
 
 public class Room {
     private static final Logger LOG = Logger.getLogger(Room.class.getSimpleName());
-    private final String roomName;
+    private String roomName;
+    private int id;
+    private int windowsCount;
 
     private Set<Device> devices;
     private Set<Human> users;
     private Set<Window> windows;
-
     private Set<Pet> pets;
 
     public Room(String roomName, Set<Device> devices, Set<Human> users, Set<Window> windows) {
@@ -26,8 +27,14 @@ public class Room {
         this.windows = windows;
     }
 
-    public Room(String roomName) {
+    public Room(String roomName, int id, int windowsCount) {
         this.roomName = roomName;
+        this.id = id;
+        this.windowsCount = windowsCount;
+    }
+
+    public Room(int id){
+        this.id= id;
     }
 
     
@@ -85,5 +92,21 @@ public class Room {
 
     public void setPets(Set<Pet> pets) {
         this.pets = pets;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getWindowsCount() {
+        return windowsCount;
+    }
+
+    public void setWindowsCount(int windowsCount) {
+        this.windowsCount = windowsCount;
     }
 }
