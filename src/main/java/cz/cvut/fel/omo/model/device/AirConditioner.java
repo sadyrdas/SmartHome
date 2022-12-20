@@ -1,7 +1,6 @@
 package cz.cvut.fel.omo.model.device;
 
-import cz.cvut.fel.omo.model.device.Device;
-import cz.cvut.fel.omo.model.events.Events_Type;
+import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.room.Room;
 import cz.cvut.fel.omo.patterns.observer.Observer;
 import cz.cvut.fel.omo.patterns.state.ActiveState;
@@ -18,7 +17,7 @@ public class AirConditioner extends Device implements Observer {
     }
 
     @Override
-    public void update(Events_Type events_type) {
+    public void update(EventsType events_type) {
         switch (events_type){
             case Hot_temperature -> this.setState(new ActiveState(this));
             case Cold_temperature -> this.setState(new StoppedState(this));

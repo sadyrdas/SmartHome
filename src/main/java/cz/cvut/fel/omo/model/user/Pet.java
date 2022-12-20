@@ -1,6 +1,6 @@
 package cz.cvut.fel.omo.model.user;
 
-import cz.cvut.fel.omo.model.events.Events_Type;
+import cz.cvut.fel.omo.model.events.EventsType;
 
 public class Pet extends Resident{
 
@@ -20,7 +20,7 @@ public class Pet extends Resident{
         return permission;
     }
     @Override
-    public void update(Events_Type events_type) {
+    public void update(EventsType events_type) {
 
     }
 

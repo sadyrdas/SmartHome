@@ -54,13 +54,22 @@ public class RoomBuilder {
         return this;
     }
 
+    public RoomBuilder setId(int id) {
+        this.id = id;
+        return this;
+    }
+
+    public RoomBuilder setWindowsCount(int windowsCount) {
+        this.windowsCount = windowsCount;
+        return this;
+    }
+
     public Room build() {
 
-        if (roomName.isEmpty()) {
-            // TODO can we do better than just return null?
+        if (roomName.isEmpty() || this.id < 1) {
             LOGGER.error("Room can not be created without name!");
         }
 
-        return new Room(this.roomName,this.windowsCount, this.id);
+        return new Room(this.roomName, this.windowsCount, this.id);
     }
 }

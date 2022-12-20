@@ -1,6 +1,6 @@
 package cz.cvut.fel.omo.model.events;
 
-public enum Events_Type {
+public enum EventsType {
     Cold_temperature,
     Hot_temperature,
     On_device,

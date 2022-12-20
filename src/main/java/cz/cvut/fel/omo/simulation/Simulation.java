@@ -1,15 +1,11 @@
 package cz.cvut.fel.omo.simulation;
 
-import cz.cvut.fel.omo.model.device.Device;
 import cz.cvut.fel.omo.model.device.Window;
-import cz.cvut.fel.omo.model.device.sensor.Sensor;
 import cz.cvut.fel.omo.model.house.Floor;
 import cz.cvut.fel.omo.model.house.House;
 import cz.cvut.fel.omo.model.room.Room;
 import cz.cvut.fel.omo.model.user.Human;
 import cz.cvut.fel.omo.model.user.Pet;
-import cz.cvut.fel.omo.model.user.PetType;
-import cz.cvut.fel.omo.model.user.ResidentPermission;
 import cz.cvut.fel.omo.patterns.builder.HumanBuilder;
 import cz.cvut.fel.omo.patterns.builder.PetBuilder;
 import cz.cvut.fel.omo.patterns.factory.DeviceFactory;
@@ -22,7 +18,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -77,6 +72,8 @@ public class Simulation {
 
     private void loadHouse(String nameConfig) throws IOException, ParseException {
         JSONArray array = load(nameConfig, "/house.json");
+        RoomBuilder roomBuilder = new RoomBuilder();
+
         for (Object o: array) {
             JSONObject homeJson = (JSONObject) o;
             int idFloor = (int)(long)homeJson.get("floor");
@@ -86,14 +83,30 @@ public class Simulation {
             for (Object ob: roomArray) {
                 JSONObject roomJson = (JSONObject) ob;
                 int countWindows = (int)(long)roomJson.get("windowsCount");
-                Room room = new Room((int)(long) roomJson.get("id"));
-                Window window = new Window(false);
-                house.addWindow(window);
-                floor.addRooms(room);
+
+                Set<Window> windows = new HashSet<>();
+                for (int i = 0; i < countWindows; i++) {
+                    windows.add(new Window(false));
+                }
+
+                Room room = roomBuilder.setId((int)(long) roomJson.get("id"))
+                        .addRoomName((String)roomJson.get("name"))
+                        .setWindowsCount(countWindows)
+                        .addWindowsToRoom(windows)
+                        .build();
+
+                floor.addRoom(room);
             }
             house.addFloor(floor);
 
             LOGGER.info("Created " + roomArray.get(2) );
+        }
+
+        for(Floor f : house.getFloors()) {
+            System.out.println(f.getId());
+            for (Room r : f.getRooms()) {
+                System.out.println(r.getRoomName());
+            }
         }
     }
 
@@ -134,12 +147,7 @@ public class Simulation {
 
     private JSONArray load(String nameConfig, String fileName) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
-        JSONArray a = (JSONArray) parser.parse(new FileReader(PATH + nameConfig + fileName));
-
-        for (Object o: a) {
-            JSONObject person = (JSONObject) o;
-        }
-        return a;
+        return (JSONArray) parser.parse(new FileReader(PATH + nameConfig + fileName));
     }
 
 

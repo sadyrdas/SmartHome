@@ -1,17 +1,21 @@
 package cz.cvut.fel.omo.model.events;
 
-public class Event {
-    private Events_Type event_type;
+import java.time.LocalDateTime;
 
-    public Event(Events_Type event_type) {
+public class Event {
+    private EventsType event_type;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+
+    public Event(EventsType event_type) {
         this.event_type = event_type;
     }
 
-    public Events_Type getEvent_type() {
+    public EventsType getEvent_type() {
         return event_type;
     }
 
-    public void setEvent_type(Events_Type event_type) {
+    public void setEvent_type(EventsType event_type) {
         this.event_type = event_type;
     }
 }

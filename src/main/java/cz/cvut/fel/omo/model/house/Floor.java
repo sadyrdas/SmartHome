@@ -40,7 +40,7 @@ public class Floor {
         this.rooms = rooms;
     }
 
-    public void addRooms(Room room) {
+    public void addRoom(Room room) {
         Objects.requireNonNull(room);
         if (rooms == null)
             rooms = new HashSet<>();

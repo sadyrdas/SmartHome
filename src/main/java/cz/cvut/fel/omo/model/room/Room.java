@@ -58,6 +58,10 @@ public class Room {
         }
     }
 
+    public void addWindow(Window window) {
+        windows.add(window);
+    }
+
     public String getRoomName() {
         return roomName;
     }
