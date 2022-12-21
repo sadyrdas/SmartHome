@@ -70,6 +70,6 @@ public class RoomBuilder {
             LOGGER.error("Room can not be created without name!");
         }
 
-        return new Room(this.roomName, this.windowsCount, this.id);
+        return new Room(this.roomName,  this.id, this.windowsCount);
     }
 }

@@ -1,13 +1,17 @@
 package cz.cvut.fel.omo.simulation;
 
+import cz.cvut.fel.omo.model.device.Device;
 import cz.cvut.fel.omo.model.device.Window;
+import cz.cvut.fel.omo.model.device.sensor.Sensor;
 import cz.cvut.fel.omo.model.house.Floor;
 import cz.cvut.fel.omo.model.house.House;
 import cz.cvut.fel.omo.model.room.Room;
+import cz.cvut.fel.omo.model.transport.Transport;
 import cz.cvut.fel.omo.model.user.Human;
 import cz.cvut.fel.omo.model.user.Pet;
 import cz.cvut.fel.omo.patterns.builder.HumanBuilder;
 import cz.cvut.fel.omo.patterns.builder.PetBuilder;
+import cz.cvut.fel.omo.patterns.builder.TransportBuilder;
 import cz.cvut.fel.omo.patterns.factory.DeviceFactory;
 import cz.cvut.fel.omo.patterns.factory.RoomBuilder;
 import cz.cvut.fel.omo.patterns.factory.SensorFactory;
@@ -32,7 +36,7 @@ public class Simulation {
             + "configurations";
 
     private LocalDateTime startDateAndTime;
-    private House house = new House();
+    private House house = House.getInstance();
 
     public Simulation(LocalDateTime startDateAndTime, House house) {
         this.startDateAndTime = startDateAndTime;
@@ -64,10 +68,13 @@ public class Simulation {
             return;
         }
 
-//        load("/firstConfiguration", "/persons.json");
+        load("/firstConfiguration", "/persons.json");
         loadPets("/firstConfiguration");
         loadPerson("/firstConfiguration");
         loadHouse("/firstConfiguration");
+        loadDevice("/firstConfiguration");
+        loadSensor("/firstConfiguration");
+        loadTransport("/firstConfiguration");
     }
 
     private void loadHouse(String nameConfig) throws IOException, ParseException {
@@ -75,10 +82,10 @@ public class Simulation {
         RoomBuilder roomBuilder = new RoomBuilder();
 
         for (Object o: array) {
-            JSONObject homeJson = (JSONObject) o;
-            int idFloor = (int)(long)homeJson.get("floor");
+            JSONObject houseJson = (JSONObject) o;
+            int idFloor = (int)(long)houseJson.get("floor");
             Floor floor = new Floor(idFloor);
-            JSONArray roomArray = (JSONArray)homeJson.get("rooms");
+            JSONArray roomArray = (JSONArray)houseJson.get("rooms");
 
             for (Object ob: roomArray) {
                 JSONObject roomJson = (JSONObject) ob;
@@ -94,18 +101,12 @@ public class Simulation {
                         .setWindowsCount(countWindows)
                         .addWindowsToRoom(windows)
                         .build();
-
                 floor.addRoom(room);
             }
             house.addFloor(floor);
 
-            LOGGER.info("Created " + roomArray.get(2) );
-        }
-
-        for(Floor f : house.getFloors()) {
-            System.out.println(f.getId());
-            for (Room r : f.getRooms()) {
-                System.out.println(r.getRoomName());
+            for (Room r : floor.getRooms()) {
+                LOGGER.info("Created rooms " + r.getRoomName());
             }
         }
     }
@@ -120,11 +121,9 @@ public class Simulation {
                     .setPermissions((String) petJson.get("permission"))
                     .setPetType((String) petJson.get("petType"))
                     .build());
-
-//            System.out.println((String) petJson.get("petType"));
         }
         for(Pet p: house.getPets()) {
-            LOGGER.info(p.getName());
+            LOGGER.info("Created pets " + p.getName());
         }
     }
 
@@ -137,11 +136,51 @@ public class Simulation {
             house.addHuman(humanBuilder.setName((String)personJson.get("name"))
                     .setPermissions((String) personJson.get("permission"))
                     .build());
-
-//            System.out.println((String) petJson.get("petType"));
         }
         for(Human human: house.getHumans()) {
-            LOGGER.info(human.getName());
+            LOGGER.info("Created humans " + human.getName());
+        }
+    }
+
+    private void loadDevice(String nameConfig) throws IOException, ParseException {
+        JSONArray array = load(nameConfig, "/devices.json");
+        for (Object o: array) {
+            JSONObject deviceJson = (JSONObject) o;
+            DeviceFactory deviceFactory = new DeviceFactory();
+            Room room = house.getRoomById((int)(long)deviceJson.get("idRoom"));
+            house.addDevice(deviceFactory.createDevice((int)(long)deviceJson.get("id"), (String)deviceJson.get("name"), (int)(long)deviceJson.get("baseEnergyConsumption"), room ));
+        }
+        for(Device device : house.getDevices()) {
+            LOGGER.info("Created devices " + device.getName());
+        }
+    }
+
+    private void loadSensor(String nameConfig) throws IOException, ParseException {
+        JSONArray array = load(nameConfig, "/sensor.json");
+        for (Object o: array) {
+            JSONObject sensorJson = (JSONObject) o;
+            SensorFactory sensorFactory = new SensorFactory();
+            Room room = house.getRoomById((int)(long)sensorJson.get("idRoom"));
+            house.addSensor(sensorFactory.createSensor((int)(long) sensorJson.get("id"), (String) sensorJson.get("name"),(int)(long)sensorJson.get("baseEnergyConsumption"), room));
+
+        }
+        for(Sensor sensor : house.getSensors()) {
+            LOGGER.info("Created sensors " + sensor.getName());
+        }
+    }
+
+    private void loadTransport(String nameConfig) throws IOException, ParseException {
+        JSONArray array = load(nameConfig, "/transport.json");
+        for (Object o: array) {
+            JSONObject transportJson = (JSONObject) o;
+            TransportBuilder builder = new TransportBuilder();
+            house.addTransport(builder.setName((String)transportJson.get("name"))
+                    .setAmount((int)(long) transportJson.get("amount"))
+                    .setCategoryTransport((String) transportJson.get("categoryTransport"))
+                    .build());
+        }
+        for(Transport t: house.getTransports()) {
+            LOGGER.info("Created transports " + t.getName());
         }
     }
 
@@ -149,6 +188,7 @@ public class Simulation {
         JSONParser parser = new JSONParser();
         return (JSONArray) parser.parse(new FileReader(PATH + nameConfig + fileName));
     }
+
 
 
     private void initSystemManually() {
@@ -189,12 +229,12 @@ public class Simulation {
                 .setPetType("Parrot")
                 .build());
 
-        house.addDevice(deviceFactory.createDevice(1,"Fridge", 500));
-        house.addDevice(deviceFactory.createDevice(2,"TV", 500));
+//        house.addDevice(deviceFactory.createDevice(1,"Fridge", 500,));
+//        house.addDevice(deviceFactory.createDevice(2,"TV", 500));
 
-        house.addSensor(sensorFactory.createSensor(1, "TemperatureSensor", 50));
-        house.addSensor(sensorFactory.createSensor(2, "ElectricitySensor", 100));
-        house.addSensor(sensorFactory.createSensor(3, "SmokeSensor", 20));
+//        house.addSensor(sensorFactory.createSensor(1, "TemperatureSensor", 50));
+//        house.addSensor(sensorFactory.createSensor(2, "ElectricitySensor", 100));
+//        house.addSensor(sensorFactory.createSensor(3, "SmokeSensor", 20));
 
 //        house.addRoom(roomBuilder.addRoomName("Kitchen")
 //                .addDevicesToRoom(devices)

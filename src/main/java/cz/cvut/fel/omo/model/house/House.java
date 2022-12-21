@@ -4,6 +4,7 @@ import cz.cvut.fel.omo.model.device.Device;
 import cz.cvut.fel.omo.model.device.Window;
 import cz.cvut.fel.omo.model.device.sensor.Sensor;
 import cz.cvut.fel.omo.model.room.Room;
+import cz.cvut.fel.omo.model.transport.Transport;
 import cz.cvut.fel.omo.model.user.Human;
 import cz.cvut.fel.omo.model.user.Pet;
 import cz.cvut.fel.omo.model.user.Resident;
@@ -16,8 +17,8 @@ import java.util.Set;
 
 public class House {
 
+    public static House instance;
     private static final Logger LOGGER = LogManager.getLogger(PetBuilder.class.getName());
-
     private final Set<Room> rooms = new HashSet<>();
     private final Set<Device> devices = new HashSet<>();
     private final Set<Human> humans = new HashSet<>();
@@ -25,9 +26,19 @@ public class House {
     private final Set<Floor> floors = new HashSet<>();
     private final Set<Sensor> sensors = new HashSet<>();
     private final Set<Window> windows = new HashSet<>();
+    private final Set<Transport> transports = new HashSet<>();
 
-    public House() {
+    private House() {
 
+    }
+
+
+    //Singleton
+    public static House getInstance(){
+        if (instance == null){
+            instance = new House();
+        }
+        return instance;
     }
 
 
@@ -41,6 +52,10 @@ public class House {
 
     public void addHuman(Human human) {
         humans.add(human);
+    }
+
+    public void addTransport(Transport transport){
+        transports.add(transport);
     }
 
     public void removeHuman(Human human) {
@@ -103,4 +118,7 @@ public class House {
         return windows;
     }
 
+    public Set<Transport> getTransports() {
+        return transports;
+    }
 }

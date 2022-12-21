@@ -2,21 +2,25 @@
   {
     "id" : 1,
     "name": "Fridge",
-    "baseEnergyConsumption" : 500
+    "baseEnergyConsumption" : 500,
+    "idRoom" : 2
   },
   {
     "id" : 2,
     "name": "TV",
-    "baseEnergyConsumption" : 500
+    "baseEnergyConsumption" : 500,
+    "idRoom" : 4
   },
   {
     "id" : 3,
     "name" : "AirConditioner",
-    "baseEnergyConsumption" : 400
+    "baseEnergyConsumption" : 400,
+    "idRoom" : 1
   },
   {
     "id" : 4,
     "name" : "CoffeeMachine",
-    "baseEnergyConsumption" : 200
+    "baseEnergyConsumption" : 200,
+    "idRoom": 5
   }
 ]

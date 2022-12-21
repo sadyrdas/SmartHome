@@ -1,6 +1,7 @@
 package cz.cvut.fel.omo.model.device.sensor;
 
 import cz.cvut.fel.omo.model.device.energy.Energy;
+import cz.cvut.fel.omo.model.room.Room;
 import cz.cvut.fel.omo.patterns.builder.PetBuilder;
 import cz.cvut.fel.omo.patterns.observer.Subject;
 import org.apache.logging.log4j.LogManager;
@@ -13,12 +14,14 @@ public abstract class Sensor implements Subject {
     private SensorState state;
     private int baseEnergyConsumption;
     private Energy energy;
+    private Room room;
 
 
-    public Sensor(int id, String sensorName, int baseEnergyConsumption) {
+    public Sensor(int id, String sensorName, int baseEnergyConsumption, Room room) {
         this.id = id;
         this.name = sensorName;
         this.baseEnergyConsumption = baseEnergyConsumption;
+        this.room = room;
         setState(new ActiveSensorState(this));
         setEnergy(new Energy(baseEnergyConsumption));
     }
@@ -61,5 +64,13 @@ public abstract class Sensor implements Subject {
 
     public void setBaseEnergyConsumption(int baseEnergyConsumption) {
         this.baseEnergyConsumption = baseEnergyConsumption;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 }
