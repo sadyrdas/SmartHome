@@ -3,10 +3,14 @@ package cz.cvut.fel.omo.simulation;
 import cz.cvut.fel.omo.model.device.Device;
 import cz.cvut.fel.omo.model.device.Window;
 import cz.cvut.fel.omo.model.device.sensor.Sensor;
+import cz.cvut.fel.omo.model.events.Event;
+import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.house.Floor;
 import cz.cvut.fel.omo.model.house.House;
 import cz.cvut.fel.omo.model.room.Room;
 import cz.cvut.fel.omo.model.transport.Transport;
+import cz.cvut.fel.omo.model.user.ActivityPet;
+import cz.cvut.fel.omo.model.user.ActivityUser;
 import cz.cvut.fel.omo.model.user.Human;
 import cz.cvut.fel.omo.model.user.Pet;
 import cz.cvut.fel.omo.patterns.builder.HumanBuilder;
@@ -25,9 +29,7 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class Simulation {
 
@@ -75,6 +77,7 @@ public class Simulation {
         loadDevice("/firstConfiguration");
         loadSensor("/firstConfiguration");
         loadTransport("/firstConfiguration");
+        createRandomEvents();
     }
 
     private void loadHouse(String nameConfig) throws IOException, ParseException {
@@ -189,7 +192,32 @@ public class Simulation {
         return (JSONArray) parser.parse(new FileReader(PATH + nameConfig + fileName));
     }
 
+    private void createRandomEvents(){
+        TimeSimulation timeSimulation = new TimeSimulation(LocalDateTime.parse("2022-01-01T00:00:00"));
+        List<Event> randomEvents = new ArrayList<>();
+//        randomEvents.add(new Event(EventsType.OpenWindow,timeSimulation.getHours(), timeSimulation.getHours()));
+//        randomEvents.add(new Event(EventsType.CloseWindow,timeSimulation.getHours(), timeSimulation.getHours()));
+//        randomEvents.add(new Event(EventsType.Cold_temperature,timeSimulation.getHours(), timeSimulation.getHours()));
+//        randomEvents.add(new Event(EventsType.Hot_temperature,timeSimulation.getHours(), timeSimulation.getHours()));
+//        randomEvents.add(new Event(EventsType.Off_device,timeSimulation.getHours(), timeSimulation.getHours()));
+//        randomEvents.add(new Event(EventsType.On_device,timeSimulation.getHours(), timeSimulation.getHours()));
+//        randomEvents.add(new Event(EventsType.Smoky,timeSimulation.getHours(), timeSimulation.getHours()));
 
+        while (!timeSimulation.getDateTime().isEqual(LocalDateTime.parse("2022-01-19T23:55:00"))){
+            LOGGER.warn(timeSimulation.getDateTime().toString());
+            timeSimulation.setDateTime(timeSimulation.getDateTime().plusMinutes(5));
+//            if (timeSimulation.getHours() == 0){
+//                for (Human human : house.getHumans()){
+//                    human.setActivityUser(ActivityUser.SLEEP);
+//                }
+//                for (Pet pet : house.getPets()){
+//                    pet.setActivityPet(ActivityPet.SLEEP);
+//                }
+//            }
+//            if ()
+
+        }
+    }
 
     private void initSystemManually() {
 

@@ -7,6 +7,19 @@ public class Pet extends Resident{
     private final ResidentPermission permission = ResidentPermission.PET;
     private PetType petType;
 
+    private ActivityPet activityPet;
+
+    public ActivityPet getActivityPet() {
+        return activityPet;
+    }
+
+    public void setActivityPet(ActivityPet activityPet) {
+        this.activityPet = activityPet;
+    }
+
+
+
+
     public Pet(String name, PetType petType) {
         super(name);
         this.petType = petType;
@@ -27,5 +40,7 @@ public class Pet extends Resident{
     public PetType getPetType() {
         return petType;
     }
+
+
 
 }

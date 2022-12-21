@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.model.room;
 
 import cz.cvut.fel.omo.model.device.Device;
 import cz.cvut.fel.omo.model.device.Window;
+import cz.cvut.fel.omo.model.device.sensor.Sensor;
 import cz.cvut.fel.omo.model.user.Human;
 import cz.cvut.fel.omo.model.user.Pet;
 
@@ -19,12 +20,14 @@ public class Room {
     private Set<Human> users;
     private Set<Window> windows;
     private Set<Pet> pets;
+    private Set<Sensor> sensors;
 
-    public Room(String roomName, Set<Device> devices, Set<Human> users, Set<Window> windows) {
+    public Room(String roomName, Set<Device> devices, Set<Human> users, Set<Window> windows, Set<Sensor> sensors) {
         this.roomName = roomName;
         this.devices = devices;
         this.users = users;
         this.windows = windows;
+        this.sensors = sensors;
     }
 
     public Room(String roomName, int id, int windowsCount) {
@@ -112,5 +115,13 @@ public class Room {
 
     public void setWindowsCount(int windowsCount) {
         this.windowsCount = windowsCount;
+    }
+
+    public Set<Sensor> getSensors() {
+        return sensors;
+    }
+
+    public void setSensors(Set<Sensor> sensors) {
+        this.sensors = sensors;
     }
 }
