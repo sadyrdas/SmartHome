@@ -20,7 +20,7 @@ public class AirConditioner extends Device implements Observer {
     public void update(EventsType events_type) {
         switch (events_type){
             case Hot_temperature -> this.setState(new ActiveState(this));
-            case Cold_temperature -> this.setState(new StoppedState(this));
+            case Cold_temperature, Smoky -> this.setState(new StoppedState(this));
         }
     }
 

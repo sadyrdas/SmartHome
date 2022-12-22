@@ -10,5 +10,11 @@ public enum ActivityUser {
     DRINK,
     WALK,
     CLOSE_WINDOW,
-    OPEN_WINDOW
+    OPEN_WINDOW,
+    RUN,
+    REPAIR,
+    DRIVE,
+    USE_DEVICE,
+    WATCH_TV
+
 }

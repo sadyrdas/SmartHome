@@ -1,13 +1,18 @@
 package cz.cvut.fel.omo.model.device;
 
 import cz.cvut.fel.omo.model.device.energy.Energy;
+import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.room.Room;
+import cz.cvut.fel.omo.patterns.observer.Observer;
+import cz.cvut.fel.omo.patterns.state.ActiveState;
 import cz.cvut.fel.omo.patterns.state.IdleState;
 import cz.cvut.fel.omo.patterns.state.State;
+import cz.cvut.fel.omo.patterns.state.StoppedState;
 
 import java.util.logging.Logger;
 
-public abstract class Device  {
+public abstract class Device implements Observer {
+
 
     private static final Logger LOG = Logger.getLogger(Device.class.getSimpleName());
 
@@ -33,6 +38,18 @@ public abstract class Device  {
         this.baseEnergyConsumption = baseEnergyConsumption;
         setEnergy(new Energy(baseEnergyConsumption));
         setState(new IdleState(this));
+    }
+
+    @Override
+    public void update(EventsType eventsType){
+        switch (eventsType) {
+            case Smoky, Turn_off_device -> {
+                setState(new StoppedState(this));
+            }
+            case Turn_on_device -> {
+                setState(new ActiveState(this));
+                LOG.info("Device was turned on");}
+        }
     }
 
     public String getName() {

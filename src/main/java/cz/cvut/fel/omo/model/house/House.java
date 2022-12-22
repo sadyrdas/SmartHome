@@ -13,6 +13,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class House {
@@ -41,6 +42,14 @@ public class House {
         return instance;
     }
 
+    public Device getOneDevice(String deviceName) {
+        for (Device d: this.getDevices()) {
+            if (Objects.equals(d.getName(), deviceName)) {
+                return d;
+            }
+        }
+        return null;
+    }
 
     public void addRoom(Room room) {
         rooms.add(room);

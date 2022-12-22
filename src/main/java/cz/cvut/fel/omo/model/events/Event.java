@@ -4,13 +4,13 @@ import java.time.LocalDateTime;
 
 public class Event {
     private EventsType event_type;
-    private final int startTime;
-    private final int endTime;
+    private final LocalDateTime startTime;
+    private final LocalDateTime endTime;
 
-    public Event(EventsType event_type, int startTime, int endTime) {
+    public Event(EventsType event_type, LocalDateTime startTime, LocalDateTime endTime) {
         this.event_type = event_type;
-        this.startTime = 0;
-        this.endTime = 24;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     public EventsType getEvent_type() {

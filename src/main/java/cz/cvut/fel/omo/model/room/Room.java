@@ -30,10 +30,11 @@ public class Room {
         this.sensors = sensors;
     }
 
-    public Room(String roomName, int id, int windowsCount) {
+    public Room(String roomName, int id, int windowsCount, Set<Window> windows) {
         this.roomName = roomName;
         this.id = id;
         this.windowsCount = windowsCount;
+        this.windows = windows;
     }
 
     public Room(int id){

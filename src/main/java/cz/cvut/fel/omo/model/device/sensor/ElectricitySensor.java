@@ -1,5 +1,6 @@
 package cz.cvut.fel.omo.model.device.sensor;
 
+import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.room.Room;
 import cz.cvut.fel.omo.patterns.observer.Observer;
 
@@ -19,7 +20,7 @@ public class ElectricitySensor extends Sensor {
     }
 
     @Override
-    public void notifySubscribers() {
+    public void notifySubscribers(EventsType eventsType) {
 
     }
 }

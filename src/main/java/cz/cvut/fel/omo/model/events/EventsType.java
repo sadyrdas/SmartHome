@@ -3,11 +3,13 @@ package cz.cvut.fel.omo.model.events;
 public enum EventsType {
     Cold_temperature,
     Hot_temperature,
-    On_device,
-    Off_device,
+    Turn_on_device,
+    Turn_off_device,
     Smoky,
     OpenWindow,
-    CloseWindow
-
-
+    CloseWindow,
+    Broken_device,
+    Empty_fridge,
+    Father_Wants_Beer,
+    Empty_CoffeeMachine
 }

@@ -15,7 +15,7 @@ public class ProxyAccess {
             return;
         }
 
-        if (person.getPermissions() != ResidentPermission.ADULT) {
+        if (person.getPermissions() != allowedResidentPermission) {
             // LOG
             return;
         }
