@@ -17,6 +17,7 @@ import cz.cvut.fel.omo.patterns.builder.TransportBuilder;
 import cz.cvut.fel.omo.patterns.factory.DeviceFactory;
 import cz.cvut.fel.omo.patterns.factory.RoomBuilder;
 import cz.cvut.fel.omo.patterns.factory.SensorFactory;
+import cz.cvut.fel.omo.patterns.proxy.ProxyAccess;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
@@ -42,6 +43,9 @@ public class Simulation {
     private FridgeAPI fridgeAPI;
     private TVApi tvApi;
     private WindowApi windowApi;
+    private MusicCenterAPI musicCenterAPI;
+    private PCApi pcApi;
+    private ProxyAccess proxyAccess;
 
     public Simulation(LocalDateTime startDateAndTime, House house) {
         this.startDateAndTime = startDateAndTime;
@@ -53,15 +57,15 @@ public class Simulation {
     }
 
     public void startSimulation() throws IOException, ParseException {
-//        initSystemManually();
         loadFromConfigurationJson(1);
         airConditionerApi = new AirConditionerApi((AirConditioner) house.getOneDevice("AirConditioner"));
         coffeeMachineApi = new CoffeeMachineApi((CoffeeMachine) house.getOneDevice("CoffeeMachine"));
         fridgeAPI = new FridgeAPI((Fridge) house.getOneDevice("Fridge"));
         tvApi = new TVApi((TV) house.getOneDevice("TV"));
         windowApi = new WindowApi(house.getRooms());
-
-
+        musicCenterAPI = new MusicCenterAPI((MusicCenter) house.getOneDevice("MusicCenter"));
+        pcApi = new PCApi((PC) house.getOneDevice("PC"));
+        proxyAccess = new ProxyAccess();
         run();
 
     }
@@ -216,14 +220,16 @@ public class Simulation {
             timeSimulation.setDateTime(timeSimulation.getDateTime().plusHours(1));
             if (tick == 3 || tick == 10 || tick == 20 || tick == 40) {
                 createRandomEvents();
-                createRandomUserEvents();
+                for (Human h : house.getHumans()) {
+                    createRandomUserEvents(h);
+                }
             }
         }
 
         // Reports. Events,
     }
 
-    private void createRandomUserEvents() {
+    private void createRandomUserEvents(Human human) {
         Random random = new Random();
         int randNum = random.nextInt(3);
         List<String> food = fridgeAPI.getAllFood().keySet().stream().toList();
@@ -254,6 +260,16 @@ public class Simulation {
             case 5 -> {
                 airConditionerApi.turnOffAirConditioner();
                 LOGGER.info("AirConditioner is turned off");
+            }
+            case 6 -> {
+                String song = musicCenterAPI.getAdultSongs().get(random.nextInt(musicCenterAPI.getAdultSongs().size()));
+                musicCenterAPI.playMusic(song, human, proxyAccess);
+                LOGGER.info("Started playing a song: " + song + " for Adults.");
+            }
+            case 7 -> {
+                String song = musicCenterAPI.getChildSongs().get(random.nextInt(musicCenterAPI.getChildSongs().size()));
+                musicCenterAPI.playMusic(song, human, proxyAccess);
+                LOGGER.info("Started playing a song: " + song + " for Childs.");
             }
 
         }

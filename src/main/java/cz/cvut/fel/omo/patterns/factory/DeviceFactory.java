@@ -20,6 +20,8 @@ public class DeviceFactory {
             case "TV" -> new TV(id, deviceName,room, baseEnergyConsumption);
             case "CoffeeMachine" -> new CoffeeMachine(id, deviceName, room, baseEnergyConsumption );
             case "AirConditioner" -> new AirConditioner(id, deviceName, room, baseEnergyConsumption);
+            case "MusicCenter" -> new MusicCenter(id, deviceName, room, baseEnergyConsumption);
+            case "PC" -> new PC(id, deviceName, room, baseEnergyConsumption);
             default -> throw new IllegalArgumentException("Unknown device: " + deviceName);
         };
     }

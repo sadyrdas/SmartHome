@@ -22,5 +22,17 @@
     "name" : "CoffeeMachine",
     "baseEnergyConsumption" : 200,
     "idRoom": 5
+  },
+  {
+    "id": 5,
+    "name": "MusicCenter",
+    "baseEnergyConsumption" : 300,
+    "idRoom": 4
+  },
+  {
+    "id": 6,
+    "name": "PC",
+    "baseEnergyConsumption" : 300,
+    "idRoom" : 2
   }
 ]
