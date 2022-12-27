@@ -47,6 +47,8 @@ public class Simulation {
     private PCApi pcApi;
     private ProxyAccess proxyAccess;
     private TransportApi transportApi;
+    private FeederForPetApi feederForPetApi;
+    private LampApi lampApi;
     public Simulation(LocalDateTime startDateAndTime, House house) {
         this.startDateAndTime = startDateAndTime;
         this.house = house;
@@ -67,6 +69,9 @@ public class Simulation {
         pcApi = new PCApi((PC) house.getOneDevice("PC"));
         proxyAccess = new ProxyAccess();
         transportApi = new TransportApi();
+        feederForPetApi = new FeederForPetApi((FeederForPet) house.getOneDevice("FeederForPet"));
+        lampApi = new LampApi((Lamp) house.getOneDevice("Lamp"));
+
         run();
 
     }
@@ -232,7 +237,7 @@ public class Simulation {
 
     private void createRandomUserEvents(Human human) {
         Random random = new Random();
-        int randNum = 8;
+        int randNum = 12;
         List<String> food = fridgeAPI.getAllFood().keySet().stream().toList();
 
         switch (randNum){
@@ -289,6 +294,14 @@ public class Simulation {
             case 11 -> {
                 LOGGER.info("Random accessing Ski Transport event was started: with human name " + human.getName());
                 transportApi.accessTransport(human, house.getRandomSkiTransport(), proxyAccess);
+            }
+            case 12 -> {
+                feederForPetApi.timeForDinner();
+                LOGGER.info("Dinner is ready");
+            }
+            case 13 -> {
+                lampApi.turnOnAirConditioner();
+                LOGGER.info("Lamp is turned on");
             }
         }
 

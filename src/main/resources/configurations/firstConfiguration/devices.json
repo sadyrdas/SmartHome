@@ -34,5 +34,17 @@
     "name": "PC",
     "baseEnergyConsumption" : 300,
     "idRoom" : 2
+  },
+  {
+    "id" : 7,
+    "name" : "FeederForPet",
+    "baseEnergyConsumption" : 150,
+    "idRoom" : 1
+  },
+  {
+    "id" : 8,
+    "name" : "Lamp",
+    "baseEnergyConsumption" : 50,
+    "idRoom" : 2
   }
 ]

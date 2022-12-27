@@ -15,6 +15,8 @@ public enum ActivityUser {
     REPAIR,
     DRIVE,
     USE_DEVICE,
-    WATCH_TV
+    WATCH_TV,
+    FILL_FRIDGE,
+    FILL_FEEDER
 
 }

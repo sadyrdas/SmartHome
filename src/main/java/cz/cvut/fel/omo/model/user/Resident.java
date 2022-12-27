@@ -38,7 +38,16 @@ public abstract class Resident implements Observer {
             }
             case Hot_temperature -> {
                 setActivityUser(ActivityUser.OPEN_WINDOW);
-                LOG.info("It is so hot- OPEN WINDOWS");}
+                LOG.info("It is so hot- OPEN WINDOWS");
+            }
+            case Empty_fridge -> {
+                setActivityUser(ActivityUser.FILL_FRIDGE);
+                LOG.info("Our fridge is empty human" + getName() + "fill the fridge");
+            }
+            case Empty_FeederForFood -> {
+                setActivityUser(ActivityUser.FILL_FEEDER);
+                LOG.info("Our feeder is empty human" + getName() + "fill the feeder");
+            }
         }
 
     }

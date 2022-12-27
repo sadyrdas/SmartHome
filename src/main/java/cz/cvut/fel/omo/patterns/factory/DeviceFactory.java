@@ -22,6 +22,8 @@ public class DeviceFactory {
             case "AirConditioner" -> new AirConditioner(id, deviceName, room, baseEnergyConsumption);
             case "MusicCenter" -> new MusicCenter(id, deviceName, room, baseEnergyConsumption);
             case "PC" -> new PC(id, deviceName, room, baseEnergyConsumption);
+            case "FeederForPet" -> new FeederForPet(id, deviceName, room, baseEnergyConsumption);
+            case "Lamp" -> new Lamp(id, deviceName, room, baseEnergyConsumption);
             default -> throw new IllegalArgumentException("Unknown device: " + deviceName);
         };
     }
