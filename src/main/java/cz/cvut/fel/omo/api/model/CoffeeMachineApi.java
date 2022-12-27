@@ -17,52 +17,56 @@ public class CoffeeMachineApi implements Subject {
     private Set<Observer> observers;
 
     public int getMlOfMilk() {
-        return mlOfMilk;
+        return coffeeMachine.getMlOfMilk();
     }
 
     public void setMlOfMilk(int mlOfMilk) {
-        this.mlOfMilk = mlOfMilk;
+        coffeeMachine.setMlOfMilk(mlOfMilk);
     }
 
     public int getMlOfWater() {
-        return mlOfWater;
+        return coffeeMachine.getMlOfWater();
     }
 
     public void setMlOfWater(int mlOfWater) {
-        this.mlOfWater = mlOfWater;
+        coffeeMachine.setMlOfWater(mlOfWater);
     }
 
     public int getAmountOfBeans() {
-        return amountOfBeans;
+        return coffeeMachine.getAmountOfBeans();
     }
 
     public void setAmountOfBeans(int amountOfBeans) {
-        this.amountOfBeans = amountOfBeans;
+        coffeeMachine.setAmountOfBeans(amountOfBeans);
     }
-
-    private int mlOfMilk = 1000;
-    private int mlOfWater = 2000;
-    private int amountOfBeans = 500;
-
-
 
     public CoffeeMachineApi(CoffeeMachine coffeeMachine) {
         this.coffeeMachine = coffeeMachine;
     }
 
     public void makeCoffee () {
-        if (mlOfMilk - 100 < 0 || mlOfWater - 150 < 0  || amountOfBeans - 1 < 0){
+        if (coffeeMachine.getMlOfMilk() - 100 < 0 ||
+                coffeeMachine.getMlOfWater() - 150 < 0  ||
+                coffeeMachine.getAmountOfBeans() - 1 < 0) {
             notifySubscribers(EventsType.Empty_CoffeeMachine);
             LOG.warning("Ingredients for coffee is below zero " + "Ask mother to full");
-        }else {
-            mlOfMilk -= 100;
-            mlOfWater -= 100;
-            amountOfBeans -=1;
-            LOG.info("Your coffee is ready! " + "MlOfMilk " + mlOfMilk + "MlOfWater " + mlOfWater + "amountBeans " + amountOfBeans);
+        } else {
+            coffeeMachine.setMlOfMilk(coffeeMachine.getMlOfMilk() - 100);
+            coffeeMachine.setMlOfWater(coffeeMachine.getMlOfWater() - 100);
+            coffeeMachine.setAmountOfBeans(coffeeMachine.getAmountOfBeans() - 1);
+            LOG.info("Your coffee is ready! Remaining amount of milk: " + coffeeMachine.getMlOfMilk() +
+                    " ml., water: " + coffeeMachine.getMlOfWater() + " ml., " +
+                    coffeeMachine.getAmountOfBeans() + " beans");
         }
     }
 
-
+    public void fillCoffeeMachine() {
+        coffeeMachine.setAmountOfBeans(100);
+        coffeeMachine.setMlOfMilk(100);
+        coffeeMachine.setMlOfWater(100);
+        LOG.info("Coffee machine was filled. Current amount of milk: " + coffeeMachine.getMlOfMilk() +
+                " ml., " + coffeeMachine.getMlOfWater() + " ml., beans: " + coffeeMachine.getAmountOfBeans() + ".");
+    }
 
     @Override
     public void addSubscriber(Observer observer) {
