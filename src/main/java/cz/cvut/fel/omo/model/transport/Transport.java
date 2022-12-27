@@ -1,20 +1,21 @@
 package cz.cvut.fel.omo.model.transport;
 
-import cz.cvut.fel.omo.api.model.TransportApi;
 import cz.cvut.fel.omo.model.user.Human;
-import cz.cvut.fel.omo.model.user.ResidentPermission;
+import cz.cvut.fel.omo.simulation.Simulation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.logging.Logger;
 
 public class Transport {
     private CategoryTransport categoryTransport;
     private String name;
     private int amount;
-    private Human currentPerson;
+    private Human currentHuman;
     private Queue<Human> queueForAccess = new LinkedList<>();
-    private static final Logger LOG = Logger.getLogger(Transport.class.getName());
+
+    private static final Logger LOG = LogManager.getLogger(Transport.class.getName());
 
     public Transport(CategoryTransport categoryTransport, String name, int amount) {
         this.categoryTransport = categoryTransport;
@@ -46,35 +47,34 @@ public class Transport {
         this.amount = amount;
     }
 
-    public void setCurrentPerson(Human currentPerson) {
-        this.currentPerson = currentPerson;
+    public void setCurrentHuman(Human currentHuman) {
+        this.currentHuman = currentHuman;
     }
 
-    public Human getCurrentPerson() {
-        return currentPerson;
+    public Human getCurrentHuman() {
+        return currentHuman;
     }
 
+    public void addHuman(Human human) {
+        if (queueForAccess.size() == 0) {
+            currentHuman = human;
+        }
+        queueForAccess.add(human);
+    }
 
-    public void accessTransport(Human person, ResidentPermission residentPermission) {
+    public void removeHuman(Human human) {
         if (queueForAccess.isEmpty()) {
-            currentPerson = person;
+            LOG.info("Queue for accessing transport: " + getName() + " is empty.");
+            return;
         }
-        if (categoryTransport == CategoryTransport.BIKE){
-            queueForAccess.add(person);
-            LOG.info("Little " + residentPermission + " is taking a bike");
+
+        if (currentHuman == human) {
+            LOG.info("Human using transport " + this.getName() + " is no longer use this transport." +
+                    this.getName() + " is free to use!");
+            currentHuman = null;
         }
-        if (categoryTransport == CategoryTransport.CAR) {
-            queueForAccess.add(person);
-            LOG.info("Person " + residentPermission + " is taking a car");
-        }
-        if (categoryTransport == CategoryTransport.SKI) {
-            queueForAccess.add(person);
-            LOG.info("Person" + residentPermission + " is taking a skies");
-        }
+
+        LOG.info("Human was removed from waiting queue for transport: " + getName());
+        queueForAccess.remove();
     }
-
-
-//    public void leaveTransport() {
-//        queueForAccess.
-//    }
 }

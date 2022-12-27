@@ -4,6 +4,7 @@ import cz.cvut.fel.omo.model.device.Device;
 import cz.cvut.fel.omo.model.device.Window;
 import cz.cvut.fel.omo.model.device.sensor.Sensor;
 import cz.cvut.fel.omo.model.room.Room;
+import cz.cvut.fel.omo.model.transport.CategoryTransport;
 import cz.cvut.fel.omo.model.transport.Transport;
 import cz.cvut.fel.omo.model.user.Human;
 import cz.cvut.fel.omo.model.user.Pet;
@@ -13,9 +14,7 @@ import cz.cvut.fel.omo.patterns.builder.PetBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class House {
 
@@ -104,7 +103,6 @@ public class House {
         return null;
     }
 
-
     public Set<Device> getDevices() {
         return devices;
     }
@@ -115,6 +113,29 @@ public class House {
             }
         }
         return null;
+    }
+
+    public Transport getRandomTransport() {
+        return transports.stream().skip(new Random().nextInt(transports.size())).findFirst().orElse(null);
+    }
+
+    public Transport getRandomCarTransport() {
+        List<Transport> cars = new ArrayList<>();
+        for (Transport t : transports) {
+            if (t.getCategoryTransport() == CategoryTransport.CAR) cars.add(t);
+        }
+
+        return cars.get(new Random().nextInt(cars.size()));
+    }
+
+    public Transport getRandomSkiTransport() {
+        List<Transport> skiis = new ArrayList<>();
+        for (Transport t : transports) {
+            if (t.getCategoryTransport() == CategoryTransport.SKI) skiis.add(t);
+        }
+
+        return skiis.get(new Random().nextInt(skiis.size()));
+
     }
 
     public Set<Human> getHumans() {

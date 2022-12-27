@@ -6,25 +6,28 @@ import cz.cvut.fel.omo.model.transport.CategoryTransport;
 import cz.cvut.fel.omo.model.transport.Transport;
 import cz.cvut.fel.omo.model.user.Human;
 import cz.cvut.fel.omo.model.user.ResidentPermission;
-
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ProxyAccess {
-    private static final Logger LOG = Logger.getLogger(CoffeeMachineApi.class.getName());
+
+    private static final Logger LOG = LogManager.getLogger(ProxyAccess.class.getName());
+
     public Boolean accessAndDriveCar(Human person, Transport transport) {
         ResidentPermission allowedResidentPermission = ResidentPermission.ADULT;
 
         if (transport.getCategoryTransport() != CategoryTransport.CAR) {
-            // LOG
+            LOG.info("Transport's category is not Car. You need to use another function!");
             return false;
         }
 
         if (person.getPermissions() != allowedResidentPermission) {
-            // LOG
+            LOG.info("Human's permission is not allowed to drive a car. Actual: " + person.getPermissions() + "" +
+                    ". Expected: Adult");
             return false;
         }
-
-        transport.setCurrentPerson(person);
+        LOG.info("Access for driving car was granted for: " + person.getName());
+        transport.setCurrentHuman(person);
         return true;
     }
 

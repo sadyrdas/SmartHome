@@ -9,7 +9,6 @@ import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.house.Floor;
 import cz.cvut.fel.omo.model.house.House;
 import cz.cvut.fel.omo.model.room.Room;
-import cz.cvut.fel.omo.model.transport.CategoryTransport;
 import cz.cvut.fel.omo.model.transport.Transport;
 import cz.cvut.fel.omo.model.user.*;
 import cz.cvut.fel.omo.patterns.builder.HumanBuilder;
@@ -67,7 +66,7 @@ public class Simulation {
         musicCenterAPI = new MusicCenterAPI((MusicCenter) house.getOneDevice("MusicCenter"));
         pcApi = new PCApi((PC) house.getOneDevice("PC"));
         proxyAccess = new ProxyAccess();
-        transportApi = new TransportApi(house.getTransports());
+        transportApi = new TransportApi();
         run();
 
     }
@@ -269,16 +268,28 @@ public class Simulation {
                 LOGGER.info("Started playing a song: " + song + " for Adults.");
             }
             case 7 -> {
+                LOGGER.info("Random User event started. Playing music in music center.");
                 String song = musicCenterAPI.getChildSongs().get(random.nextInt(musicCenterAPI.getChildSongs().size()));
                 musicCenterAPI.playMusic(song, human, proxyAccess);
                 LOGGER.info("Started playing a song: " + song + " for Childs.");
             }
 
             case 8 -> {
-                transportApi.accessTransport(house.getHumanByPermission(ResidentPermission.CHILD), ResidentPermission.CHILD, CategoryTransport.BIKE);
-
+                LOGGER.info("Random accessing Car Transport event was started: with human name " + human.getName());
+                transportApi.accessTransport(human, house.getRandomCarTransport(), proxyAccess);
             }
-
+            case 9 -> {
+                LOGGER.info("Random User Event. Ending using a Car Transport.");
+                transportApi.removeHuman(house.getRandomCarTransport(), human);
+            }
+            case 10 -> {
+                LOGGER.info("Random accessing Ski Transport event was started: with human name " + human.getName());
+                transportApi.accessTransport(human, house.getRandomCarTransport(), proxyAccess);
+            }
+            case 11 -> {
+                LOGGER.info("Random accessing Ski Transport event was started: with human name " + human.getName());
+                transportApi.accessTransport(human, house.getRandomSkiTransport(), proxyAccess);
+            }
         }
 
 

@@ -1,15 +1,18 @@
 package cz.cvut.fel.omo.api.model;
 
 import cz.cvut.fel.omo.model.device.Fridge;
+import cz.cvut.fel.omo.model.user.Human;
+import cz.cvut.fel.omo.simulation.Simulation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
-import java.util.logging.Logger;
 
 public class FridgeAPI {
-    private static final Logger LOG = Logger.getLogger(FridgeAPI.class.getSimpleName());
+
+    private static final Logger LOG = LogManager.getLogger(FridgeAPI.class.getName());
 
     private final Fridge fridge;
-
 
     public FridgeAPI(Fridge fridge) {
         this.fridge = fridge;
@@ -24,13 +27,9 @@ public class FridgeAPI {
         LOG.info(food + " was inserted into the fridge with amout: " + amount);
     }
 
-
-
-
-
     public void takeFoodFromFridge(String food) {
         if (fridge.getFoodInFridge().get(food) < 0) {
-            LOG.warning("Trying to get more food than exist in Fridge!");
+            LOG.warn("Trying to get more food than exist in Fridge!");
             // update for human shtobi vlozil jedu
         }
         fridge.getFoodInFridge().put(food, fridge.getFoodInFridge().get(food) - 1);
