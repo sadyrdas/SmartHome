@@ -9,6 +9,7 @@ import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.house.Floor;
 import cz.cvut.fel.omo.model.house.House;
 import cz.cvut.fel.omo.model.room.Room;
+import cz.cvut.fel.omo.model.transport.CategoryTransport;
 import cz.cvut.fel.omo.model.transport.Transport;
 import cz.cvut.fel.omo.model.user.*;
 import cz.cvut.fel.omo.patterns.builder.HumanBuilder;
@@ -46,7 +47,7 @@ public class Simulation {
     private MusicCenterAPI musicCenterAPI;
     private PCApi pcApi;
     private ProxyAccess proxyAccess;
-
+    private TransportApi transportApi;
     public Simulation(LocalDateTime startDateAndTime, House house) {
         this.startDateAndTime = startDateAndTime;
         this.house = house;
@@ -66,6 +67,7 @@ public class Simulation {
         musicCenterAPI = new MusicCenterAPI((MusicCenter) house.getOneDevice("MusicCenter"));
         pcApi = new PCApi((PC) house.getOneDevice("PC"));
         proxyAccess = new ProxyAccess();
+        transportApi = new TransportApi(house.getTransports());
         run();
 
     }
@@ -231,7 +233,7 @@ public class Simulation {
 
     private void createRandomUserEvents(Human human) {
         Random random = new Random();
-        int randNum = random.nextInt(3);
+        int randNum = 8;
         List<String> food = fridgeAPI.getAllFood().keySet().stream().toList();
 
         switch (randNum){
@@ -270,6 +272,11 @@ public class Simulation {
                 String song = musicCenterAPI.getChildSongs().get(random.nextInt(musicCenterAPI.getChildSongs().size()));
                 musicCenterAPI.playMusic(song, human, proxyAccess);
                 LOGGER.info("Started playing a song: " + song + " for Childs.");
+            }
+
+            case 8 -> {
+                transportApi.accessTransport(house.getHumanByPermission(ResidentPermission.CHILD), ResidentPermission.CHILD, CategoryTransport.BIKE);
+
             }
 
         }

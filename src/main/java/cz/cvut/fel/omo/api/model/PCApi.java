@@ -11,7 +11,7 @@ public class PCApi {
         this.pc = pc;
     }
 
-    public void turnOfPC() {
+    public void turnOffPC() {
         pc.setState(new StoppedState(this.pc));
     }
 

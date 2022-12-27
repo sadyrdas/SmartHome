@@ -13,5 +13,10 @@
     "name" : "Thunder",
     "amount" : 1,
     "categoryTransport": "Ski"
+  },
+  {
+    "name" : "BMX2",
+    "amount" : 1,
+    "categoryTransport": "Bike"
   }
 ]

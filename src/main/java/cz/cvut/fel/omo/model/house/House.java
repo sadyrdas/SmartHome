@@ -8,6 +8,7 @@ import cz.cvut.fel.omo.model.transport.Transport;
 import cz.cvut.fel.omo.model.user.Human;
 import cz.cvut.fel.omo.model.user.Pet;
 import cz.cvut.fel.omo.model.user.Resident;
+import cz.cvut.fel.omo.model.user.ResidentPermission;
 import cz.cvut.fel.omo.patterns.builder.PetBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -50,6 +51,7 @@ public class House {
         }
         return null;
     }
+
 
     public void addRoom(Room room) {
         rooms.add(room);
@@ -105,6 +107,14 @@ public class House {
 
     public Set<Device> getDevices() {
         return devices;
+    }
+    public Human getHumanByPermission(ResidentPermission residentPermission){
+        for (Human h : getHumans()){
+            if (h.getPermissions() == residentPermission) {
+                return h;
+            }
+        }
+        return null;
     }
 
     public Set<Human> getHumans() {

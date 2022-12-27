@@ -1,9 +1,12 @@
 package cz.cvut.fel.omo.model.transport;
 
+import cz.cvut.fel.omo.api.model.TransportApi;
 import cz.cvut.fel.omo.model.user.Human;
+import cz.cvut.fel.omo.model.user.ResidentPermission;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.logging.Logger;
 
 public class Transport {
     private CategoryTransport categoryTransport;
@@ -11,6 +14,7 @@ public class Transport {
     private int amount;
     private Human currentPerson;
     private Queue<Human> queueForAccess = new LinkedList<>();
+    private static final Logger LOG = Logger.getLogger(Transport.class.getName());
 
     public Transport(CategoryTransport categoryTransport, String name, int amount) {
         this.categoryTransport = categoryTransport;
@@ -50,12 +54,25 @@ public class Transport {
         return currentPerson;
     }
 
-    public void accessTransport(Human person) {
+
+    public void accessTransport(Human person, ResidentPermission residentPermission) {
         if (queueForAccess.isEmpty()) {
             currentPerson = person;
         }
-        queueForAccess.add(person);
+        if (categoryTransport == CategoryTransport.BIKE){
+            queueForAccess.add(person);
+            LOG.info("Little " + residentPermission + " is taking a bike");
+        }
+        if (categoryTransport == CategoryTransport.CAR) {
+            queueForAccess.add(person);
+            LOG.info("Person " + residentPermission + " is taking a car");
+        }
+        if (categoryTransport == CategoryTransport.SKI) {
+            queueForAccess.add(person);
+            LOG.info("Person" + residentPermission + " is taking a skies");
+        }
     }
+
 
 //    public void leaveTransport() {
 //        queueForAccess.
