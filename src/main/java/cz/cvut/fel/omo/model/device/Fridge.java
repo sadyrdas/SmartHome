@@ -1,27 +1,29 @@
 package cz.cvut.fel.omo.model.device;
 
 import cz.cvut.fel.omo.api.model.FridgeAPI;
+import cz.cvut.fel.omo.model.device.energy.EnergyType;
 import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.room.Room;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 public class Fridge extends Device {
-    private static final Logger LOG = Logger.getLogger(Fridge.class.getSimpleName());
+    private static final Logger LOG = LogManager.getLogger(Fridge.class.getSimpleName());
     private  FridgeAPI fridgeAPI;
     Map<String, Integer> foodInFridge = new HashMap<>();
 
 
     public Fridge(int id, String name, Room room, int baseEnergyConsumption) {
-        super(id, name, room, baseEnergyConsumption);
+        super(id, name, room, baseEnergyConsumption, EnergyType.Electricity);
         addFoodToFridge();
     }
 
     public Fridge(int id, String name, int baseEnergyConsumption) {
-        super(id, name, baseEnergyConsumption);
+        super(id, name, baseEnergyConsumption, EnergyType.Electricity);
     }
 
     public Map<String, Integer> getFoodInFridge() {

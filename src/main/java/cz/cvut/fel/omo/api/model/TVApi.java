@@ -5,10 +5,11 @@ import cz.cvut.fel.omo.model.device.TV;
 import cz.cvut.fel.omo.patterns.state.ActiveState;
 import cz.cvut.fel.omo.patterns.state.StoppedState;
 
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class TVApi {
-    private static final Logger LOGGER = Logger.getLogger(TVApi.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(TVApi.class.getName());
     private final TV tv;
 
 

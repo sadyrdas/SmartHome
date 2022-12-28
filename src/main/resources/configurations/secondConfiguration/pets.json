@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Fenrir",
+    "permission": "PET",
+    "petType" : "Dog"
+  },
+  {
+    "name": "Igni",
+    "permission": "PET",
+    "petType" : "Cat"
+  },
+  {
+    "name": "Dok",
+    "permission": "PET",
+    "petType": "Parrot"
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "id" : 1,
+    "name" : "TemperatureSensor",
+    "baseEnergyConsumption" : 50,
+    "idRoom" : 3
+  },
+  {
+    "id" : 2,
+    "name" : "ElectricitySensor",
+    "baseEnergyConsumption" : 100,
+    "idRoom" : 3
+  },
+  {
+    "id" : 3,
+    "name" : "SmokeSensor",
+    "baseEnergyConsumption" : 20,
+    "idRoom" : 3
+  },
+
+  {
+    "id" : 4,
+    "name" : "TemperatureSensor",
+    "baseEnergyConsumption" : 50,
+    "idRoom" : 1
+  },
+  {
+    "id" : 5,
+    "name" : "ElectricitySensor",
+    "baseEnergyConsumption" : 100,
+    "idRoom" : 1
+  },
+  {
+    "id" : 6,
+    "name" : "SmokeSensor",
+    "baseEnergyConsumption" : 20,
+    "idRoom" : 1
+  },
+  {
+    "id" : 7,
+    "name" : "TemperatureSensor",
+    "baseEnergyConsumption" : 50,
+    "idRoom" : 2
+  },
+  {
+    "id" : 8,
+    "name" : "ElectricitySensor",
+    "baseEnergyConsumption" : 100,
+    "idRoom" : 2
+  },
+  {
+    "id" : 9,
+    "name" : "SmokeSensor",
+    "baseEnergyConsumption" : 20,
+    "idRoom" : 2
+  },
+
+  {
+    "id" : 10,
+    "name" : "TemperatureSensor",
+    "baseEnergyConsumption" : 50,
+    "idRoom" : 4
+  },
+  {
+    "id" : 11,
+    "name" : "ElectricitySensor",
+    "baseEnergyConsumption" : 100,
+    "idRoom" : 4
+  },
+  {
+    "id" : 12,
+    "name" : "SmokeSensor",
+    "baseEnergyConsumption" : 20,
+    "idRoom" : 4
+  },
+  {
+    "id" : 13,
+    "name" : "TemperatureSensor",
+    "baseEnergyConsumption" : 50,
+    "idRoom" : 5
+  },
+  {
+    "id" : 14,
+    "name" : "ElectricitySensor",
+    "baseEnergyConsumption" : 100,
+    "idRoom" : 5
+  },
+  {
+    "id" : 15,
+    "name" : "SmokeSensor",
+    "baseEnergyConsumption" : 20,
+    "idRoom" : 5
+  },
+  {
+    "id" : 16,
+    "name" : "TemperatureSensor",
+    "baseEnergyConsumption" : 50,
+    "idRoom" : 6
+  },
+  {
+    "id" : 17,
+    "name" : "ElectricitySensor",
+    "baseEnergyConsumption" : 100,
+    "idRoom" : 6
+  },
+  {
+    "id" : 18,
+    "name" : "SmokeSensor",
+    "baseEnergyConsumption" : 20,
+    "idRoom" : 6
+  }
+]

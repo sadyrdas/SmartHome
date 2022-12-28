@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Peter",
+    "permission": "ADULT"
+  },
+  {
+    "name": "MJ",
+    "permission": "ADULT"
+  },
+  {
+    "name": "Harry",
+    "permission": "CHILD"
+  },
+  {
+    "name": "Osborn",
+    "permission": "CHILD"
+  },
+  {
+    "name": "Felicia",
+    "permission": "CHILD"
+  }
+]

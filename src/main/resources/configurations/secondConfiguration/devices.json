@@ -1,0 +1,56 @@
+[
+  {
+    "id" : 1,
+    "name": "TV",
+    "baseEnergyConsumption" : 300,
+    "idRoom" : 5
+  },
+  {
+    "id" : 2,
+    "name": "AirConditioner",
+    "baseEnergyConsumption" : 400,
+    "idRoom" : 4
+  },
+  {
+    "id" : 3,
+    "name" : "Fridge",
+    "baseEnergyConsumption" : 300,
+    "idRoom" : 2
+  },
+  {
+    "id" : 4,
+    "name" : "PC",
+    "baseEnergyConsumption" : 250,
+    "idRoom": 4
+  },
+  {
+    "id": 5,
+    "name": "CoffeeMachine",
+    "baseEnergyConsumption" : 150,
+    "idRoom": 1
+  },
+  {
+    "id": 6,
+    "name": "MusicCenter",
+    "baseEnergyConsumption" : 100,
+    "idRoom" : 1
+  },
+  {
+    "id" : 7,
+    "name" : "Shower",
+    "baseEnergyConsumption" : 150,
+    "idRoom" : 3
+  },
+  {
+    "id" : 8,
+    "name" : "FeederForPet",
+    "baseEnergyConsumption" : 50,
+    "idRoom" : 2
+  },
+  {
+    "id" : 9,
+    "name" : "Lamp",
+    "baseEnergyConsumption" : 100,
+    "idRoom" : 4
+  }
+]

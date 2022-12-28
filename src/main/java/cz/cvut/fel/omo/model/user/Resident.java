@@ -5,11 +5,12 @@ import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.patterns.observer.Observer;
 import cz.cvut.fel.omo.patterns.state.StoppedState;
 
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public abstract class Resident implements Observer {
 
-    private static final Logger LOG = Logger.getLogger(Device.class.getSimpleName());
+    private static final Logger LOG = LogManager.getLogger(Device.class.getSimpleName());
 
     private String name;
 

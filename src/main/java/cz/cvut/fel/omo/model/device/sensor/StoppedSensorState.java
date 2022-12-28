@@ -2,10 +2,11 @@ package cz.cvut.fel.omo.model.device.sensor;
 
 import cz.cvut.fel.omo.model.device.Device;
 
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class StoppedSensorState implements SensorState {
-    private static final Logger LOG = Logger.getLogger(Device.class.getSimpleName());
+    private static final Logger LOG = LogManager.getLogger(Device.class.getSimpleName());
 
     private final Sensor sensor;
 

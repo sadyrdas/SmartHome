@@ -6,10 +6,11 @@ import cz.cvut.fel.omo.patterns.observer.Observer;
 import cz.cvut.fel.omo.patterns.observer.Subject;
 
 import java.util.Set;
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class FeederForPetApi implements Subject {
-    private static final Logger LOG = Logger.getLogger(CoffeeMachineApi.class.getName());
+    private static final Logger LOG = LogManager.getLogger(FeederForPetApi.class.getName());
     private final FeederForPet feederForPet;
     private Set<Observer> observers;
 
@@ -28,7 +29,7 @@ public class FeederForPetApi implements Subject {
     public void timeForDinner(){
         if (getFood() - 75 < 0){
 //           notifySubscribers(EventsType.Empty_FeederForFood);
-            LOG.warning("Food in feeder is below zero");
+            LOG.warn("Food in feeder is below zero");
         }else {
             feederForPet.setCountOfFood(feederForPet.getCountOfFood() - 75);
             feederForPet.setCountOfFood(feederForPet.getCountOfFood() - 50);

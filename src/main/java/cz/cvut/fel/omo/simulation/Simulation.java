@@ -49,6 +49,7 @@ public class Simulation {
     private TransportApi transportApi;
     private FeederForPetApi feederForPetApi;
     private LampApi lampApi;
+    private ShowerApi showerApi;
     public Simulation(LocalDateTime startDateAndTime, House house) {
         this.startDateAndTime = startDateAndTime;
         this.house = house;
@@ -71,6 +72,7 @@ public class Simulation {
         transportApi = new TransportApi();
         feederForPetApi = new FeederForPetApi((FeederForPet) house.getOneDevice("FeederForPet"));
         lampApi = new LampApi((Lamp) house.getOneDevice("Lamp"));
+        showerApi = new ShowerApi((Shower) house.getOneDevice("Shower"));
 
         run();
 

@@ -8,10 +8,11 @@ import cz.cvut.fel.omo.model.user.Pet;
 
 import java.util.Objects;
 import java.util.Set;
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Room {
-    private static final Logger LOG = Logger.getLogger(Room.class.getSimpleName());
+    private static final Logger LOG = LogManager.getLogger(Room.class.getSimpleName());
     private String roomName;
     private int id;
     private int windowsCount;
@@ -46,7 +47,7 @@ public class Room {
         Objects.requireNonNull(user, "Cannot add user to room. User is null!");
 
         if (users.contains(user)) {
-            LOG.warning(user.getName() + " is already in room");
+            LOG.warn(user.getName() + " is already in room");
         } else {
             users.add(user);
         }
@@ -56,7 +57,7 @@ public class Room {
         Objects.requireNonNull(device, "Cannot add user to room. User is null!");
 
         if (devices.contains(device)) {
-            LOG.warning(device.getName() + " is already in room");
+            LOG.warn(device.getName() + " is already in room");
         } else {
             devices.add(device);
         }

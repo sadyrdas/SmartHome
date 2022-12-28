@@ -1,9 +1,10 @@
 package cz.cvut.fel.omo.model.device.sensor;
 
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ActiveSensorState implements SensorState {
-    private static final Logger LOG = Logger.getLogger(Sensor.class.getSimpleName());
+    private static final Logger LOG = LogManager.getLogger(Sensor.class.getSimpleName());
 
     private final Sensor sensor;
 

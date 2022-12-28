@@ -1,6 +1,7 @@
 package cz.cvut.fel.omo.model.device.sensor;
 
 import cz.cvut.fel.omo.model.device.energy.Energy;
+import cz.cvut.fel.omo.model.device.energy.EnergyType;
 import cz.cvut.fel.omo.model.room.Room;
 import cz.cvut.fel.omo.patterns.builder.PetBuilder;
 import cz.cvut.fel.omo.patterns.observer.Subject;
@@ -17,13 +18,13 @@ public abstract class Sensor implements Subject {
     private Room room;
 
 
-    public Sensor(int id, String sensorName, int baseEnergyConsumption, Room room) {
+    public Sensor(int id, String sensorName, int baseEnergyConsumption, Room room, EnergyType energyType) {
         this.id = id;
         this.name = sensorName;
         this.baseEnergyConsumption = baseEnergyConsumption;
         this.room = room;
         setState(new ActiveSensorState(this));
-        setEnergy(new Energy(baseEnergyConsumption));
+        setEnergy(new Energy(baseEnergyConsumption, energyType));
     }
 
     private void setEnergy(Energy energy) {

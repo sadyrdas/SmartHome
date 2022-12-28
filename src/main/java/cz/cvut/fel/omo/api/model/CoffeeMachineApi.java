@@ -9,10 +9,11 @@ import cz.cvut.fel.omo.patterns.observer.Subject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class CoffeeMachineApi implements Subject {
-    private static final Logger LOG = Logger.getLogger(CoffeeMachineApi.class.getName());
+    private static final Logger LOG = LogManager.getLogger(CoffeeMachineApi.class.getName());
     private final CoffeeMachine coffeeMachine;
     private Set<Observer> observers;
 
@@ -49,7 +50,7 @@ public class CoffeeMachineApi implements Subject {
                 coffeeMachine.getMlOfWater() - 150 < 0  ||
                 coffeeMachine.getAmountOfBeans() - 1 < 0) {
             notifySubscribers(EventsType.Empty_CoffeeMachine);
-            LOG.warning("Ingredients for coffee is below zero " + "Ask mother to full");
+            LOG.warn("Ingredients for coffee is below zero " + "Ask mother to full");
         } else {
             coffeeMachine.setMlOfMilk(coffeeMachine.getMlOfMilk() - 100);
             coffeeMachine.setMlOfWater(coffeeMachine.getMlOfWater() - 100);

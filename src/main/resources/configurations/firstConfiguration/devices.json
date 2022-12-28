@@ -46,5 +46,11 @@
     "name" : "Lamp",
     "baseEnergyConsumption" : 50,
     "idRoom" : 2
+  },
+  {
+    "id" : 9,
+    "name" : "Shower",
+    "baseEnergyConsumption" : 100,
+    "idRoom" : 6
   }
 ]

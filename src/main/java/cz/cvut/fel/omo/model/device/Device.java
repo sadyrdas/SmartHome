@@ -1,6 +1,7 @@
 package cz.cvut.fel.omo.model.device;
 
 import cz.cvut.fel.omo.model.device.energy.Energy;
+import cz.cvut.fel.omo.model.device.energy.EnergyType;
 import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.room.Room;
 import cz.cvut.fel.omo.patterns.observer.Observer;
@@ -9,12 +10,13 @@ import cz.cvut.fel.omo.patterns.state.IdleState;
 import cz.cvut.fel.omo.patterns.state.State;
 import cz.cvut.fel.omo.patterns.state.StoppedState;
 
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public abstract class Device implements Observer {
 
 
-    private static final Logger LOG = Logger.getLogger(Device.class.getSimpleName());
+    private static final Logger LOG = LogManager.getLogger(Device.class.getSimpleName());
 
     private int id;
     private String name;
@@ -23,20 +25,20 @@ public abstract class Device implements Observer {
     private Energy energy;
     private int baseEnergyConsumption;
 
-    public Device(int id, String name, Room room, int baseEnergyConsumption) {
+    public Device(int id, String name, Room room, int baseEnergyConsumption, EnergyType energyType) {
         this.id = id;
         this.name = name;
         this.room = room;
         this.baseEnergyConsumption = baseEnergyConsumption;
-        setEnergy(new Energy(baseEnergyConsumption));
+        setEnergy(new Energy(baseEnergyConsumption, energyType));
         setState(new IdleState(this));
     }
 
-    public Device(int id ,String name, int baseEnergyConsumption) {
+    public Device(int id ,String name, int baseEnergyConsumption, EnergyType energyType) {
         this.id = id;
         this.name = name;
         this.baseEnergyConsumption = baseEnergyConsumption;
-        setEnergy(new Energy(baseEnergyConsumption));
+        setEnergy(new Energy(baseEnergyConsumption, energyType));
         setState(new IdleState(this));
     }
 

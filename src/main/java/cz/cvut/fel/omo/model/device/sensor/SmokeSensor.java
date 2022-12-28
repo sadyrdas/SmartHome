@@ -1,5 +1,6 @@
 package cz.cvut.fel.omo.model.device.sensor;
 
+import cz.cvut.fel.omo.model.device.energy.EnergyType;
 import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.room.Room;
 import cz.cvut.fel.omo.patterns.observer.Observer;
@@ -17,7 +18,7 @@ public class SmokeSensor extends Sensor {
     private final Set<Observer> observers = new HashSet<>();
 
     public SmokeSensor(int id, String sensorName, int baseEnergyConsumption, Room room) {
-        super(id, sensorName, baseEnergyConsumption, room);
+        super(id, sensorName, baseEnergyConsumption, room, EnergyType.Electricity);
     }
 
     @Override
