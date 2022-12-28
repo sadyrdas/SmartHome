@@ -13,5 +13,7 @@ public enum EventsType {
     Father_Wants_Beer,
     Empty_CoffeeMachine,
     Empty_FeederForFood,
-    Repair_device
+    Repair_device,
+    Day,
+    Night
 }
