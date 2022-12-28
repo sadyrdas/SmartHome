@@ -226,16 +226,15 @@ public class Simulation {
             LOGGER.info("=====================================");
             LOGGER.info("= Current time is: " + timeSimulation.getDateTime().toString() + " =");
             LOGGER.info("=====================================");
-
             tick += 1;
-            // Every device should know current time
-            timeSimulation.setDateTime(timeSimulation.getDateTime().plusHours(1));
+
             if (tick == 3 || tick == 10 || tick == 20 || tick == 40) {
                 createRandomEvents();
             }
             for (Human h : house.getHumans()) {
                 createRandomUserEvents(h);
             }
+            timeSimulation.tick();
         }
     }
 
@@ -243,7 +242,7 @@ public class Simulation {
 
     private void createRandomUserEvents(Human human) {
         Random random = new Random();
-        int randNum = random.nextInt(13);
+        int randNum = random.nextInt(15);
         List<String> food = fridgeAPI.getAllFood().keySet().stream().toList();
 
         switch (randNum) {
@@ -306,8 +305,28 @@ public class Simulation {
                 LOGGER.info("Dinner is ready");
             }
             case 13 -> {
-                lampApi.turnOnAirConditioner();
+                lampApi.turnOnLamp();
                 LOGGER.info("Lamp is turned on");
+            }
+            case 14 -> {
+                showerApi.turnOnShower();
+                LOGGER.info(human.getName() + " turned on shower!");
+            }
+            case 15 -> {
+                showerApi.turnOffShower();
+                LOGGER.info(human.getName() + " turned on shower!");
+            }
+            case 16 -> {
+                pcApi.turnOnPC();
+                LOGGER.info(human.getName() + " playing PC!");
+            }
+            case 17 -> {
+                pcApi.turnOffPC();
+                LOGGER.info(human.getName() + " turned off PC!");
+            }
+            case 18 -> {
+                lampApi.turnOnLamp();
+//                LOGGER.info(human.getName() + " turned on Lamp. In room: " + );
             }
         }
     }

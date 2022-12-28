@@ -1,6 +1,5 @@
 package cz.cvut.fel.omo.model.device;
 
-import cz.cvut.fel.omo.api.model.FridgeAPI;
 import cz.cvut.fel.omo.model.device.energy.EnergyType;
 import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.room.Room;
@@ -20,7 +19,6 @@ import org.apache.logging.log4j.Logger;
 public class Fridge extends Device implements Subject {
 
     private static final Logger LOG = LogManager.getLogger(Fridge.class.getSimpleName());
-    private  FridgeAPI fridgeAPI;
     Map<String, Integer> foodInFridge = new HashMap<>();
     private final Set<Observer> observers = new HashSet<>();
 

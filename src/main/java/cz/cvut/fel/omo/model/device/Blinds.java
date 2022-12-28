@@ -1,10 +1,12 @@
 package cz.cvut.fel.omo.model.device;
 
+import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.room.Room;
+import cz.cvut.fel.omo.patterns.observer.Observer;
 
 import java.util.logging.Logger;
 
-public class Blinds {
+public class Blinds implements Observer {
 
     private final Logger LOG = Logger.getLogger(this.getClass().getSimpleName());
     private final Room room;
@@ -22,5 +24,13 @@ public class Blinds {
 
     public void openBlinds() {
         this.isOpen = true;
+    }
+
+    @Override
+    public void update(EventsType events_type) {
+        switch (events_type) {
+            case Day -> closeBlinds();
+            case Night -> openBlinds();
+        }
     }
 }

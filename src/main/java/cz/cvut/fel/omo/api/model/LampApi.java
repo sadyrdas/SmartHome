@@ -14,11 +14,11 @@ public class LampApi {
         this.lamp = lamp;
     }
 
-    public void turnOffAirConditioner() {
+    public void turnOffLamp() {
         lamp.setState(new StoppedState(lamp));
     }
 
-    public void turnOnAirConditioner() {
+    public void turnOnLamp() {
         lamp.setState(new ActiveState(lamp));
     }
 }

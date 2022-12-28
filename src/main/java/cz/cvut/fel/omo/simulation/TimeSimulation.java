@@ -14,7 +14,8 @@ public class TimeSimulation {
         this.dateTime = dateTime;
     }
     public void tick(){
-        LOGGER.info(":3-TickTack-:3");
+
+        dateTime = dateTime.plusHours(1);
     }
 
     public LocalDateTime getDateTime() {
