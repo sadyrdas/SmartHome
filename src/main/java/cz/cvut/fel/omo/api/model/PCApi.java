@@ -4,22 +4,40 @@ import cz.cvut.fel.omo.model.device.PC;
 import cz.cvut.fel.omo.patterns.state.ActiveState;
 import cz.cvut.fel.omo.patterns.state.StoppedState;
 
+import java.util.Objects;
+import java.util.Set;
+
 public class PCApi {
-    private final PC pc;
+    private final Set<PC> pcs;
 
-    public PCApi(PC pc) {
-        this.pc = pc;
+    public PCApi(Set<PC> pcs) {
+        this.pcs = pcs;
     }
 
-    public void turnOffPC() {
-        pc.setState(new StoppedState(this.pc));
+    public void turnOffPCById(Integer id) {
+        PC pc = getPcById(id);
+        Objects.requireNonNull(pc);
+
+        pc.setState(new StoppedState(pc));
     }
 
-    public void turnOnPC() {
-        pc.setState(new ActiveState(this.pc));
+    public void turnOnPCById(Integer id) {
+        PC pc = getPcById(id);
+        Objects.requireNonNull(pc);
+
+        pc.setState(new ActiveState(pc));
     }
 
-    public PC getPc() {
-        return pc;
+    private PC getPcById(Integer id) {
+        for (PC pc : pcs) {
+            if (pc.getId() == id) {
+                return pc;
+            }
+        }
+        return null;
+    }
+
+    public Set<PC> getPcs() {
+        return pcs;
     }
 }

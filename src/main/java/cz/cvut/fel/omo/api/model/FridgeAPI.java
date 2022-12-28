@@ -30,6 +30,6 @@ public class FridgeAPI {
             fridge.notifySubscribers(EventsType.Empty_fridge, simulationFacade);
         }
         fridge.getFoodInFridge().put(food, fridge.getFoodInFridge().get(food) - 1);
-
+        LOG.info("1 " + food + " was taken from fridge. " + food + " left: " + fridge.getFoodInFridge().get(food));
     }
 }

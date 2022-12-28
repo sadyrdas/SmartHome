@@ -7,6 +7,9 @@ import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Objects;
+import java.util.Set;
+
 public class CoffeeMachineApi {
     private static final Logger LOG = LogManager.getLogger(CoffeeMachineApi.class.getName());
     private final CoffeeMachine coffeeMachine;
