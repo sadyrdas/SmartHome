@@ -64,51 +64,51 @@ public class SimulationFacade {
             }
         }
 
-        for(Device coffeeMachine : house.getListOfSpecificDevicesByName("CoffeeMachine")) {
+        for(Device coffeeMachine : house.getSetOfSpecificDevicesByName("CoffeeMachine")) {
             for (Human h : house.getAllAdults()) {
                 ((CoffeeMachine) coffeeMachine).addSubscriber(h);
             }
         }
 
-        for(Device fridge : house.getListOfSpecificDevicesByName("Fridge")) {
+        for(Device fridge : house.getSetOfSpecificDevicesByName("Fridge")) {
             for (Human h : house.getAllAdults()) {
                 ((Fridge) fridge).addSubscriber(h);
             }
         }
 
-        for(Device feederForPet : house.getListOfSpecificDevicesByName("FeederForPet")) {
+        for(Device feederForPet : house.getSetOfSpecificDevicesByName("FeederForPet")) {
             for (Human h : house.getAllAdults()) {
                 ((FeederForPet) feederForPet).addSubscriber(h);
             }
         }
 
-        for(Device lamp : house.getListOfSpecificDevicesByName("Lamp")) {
+        for(Device lamp : house.getSetOfSpecificDevicesByName("Lamp")) {
             for (Human h : house.getAllAdults()) {
                 ((Lamp) lamp).addSubscriber(h);
             }
         }
 
-        for(Device shower : house.getListOfSpecificDevicesByName("Shower")) {
+        for(Device shower : house.getSetOfSpecificDevicesByName("Shower")) {
             for (Human h : house.getAllAdults()) {
                 ((Shower) shower).addSubscriber(h);
             }
         }
-        for (Device airConditioner : house.getListOfSpecificDevicesByName("AirConditioner")){
+        for (Device airConditioner : house.getSetOfSpecificDevicesByName("AirConditioner")){
             for (Human h: house.getAllAdults()) {
                 ((AirConditioner) airConditioner).addSubscriber(h);
             }
         }
-        for (Device PC : house.getListOfSpecificDevicesByName("PC")){
+        for (Device PC : house.getSetOfSpecificDevicesByName("PC")){
             for (Human h : house.getAllAdults()) {
                 ((PC) PC).addSubscriber(h);
             }
         }
-        for (Device musicCenter : house.getListOfSpecificDevicesByName("MusicCenter")) {
+        for (Device musicCenter : house.getSetOfSpecificDevicesByName("MusicCenter")) {
             for (Human h : house.getAllAdults()){
                 ((MusicCenter) musicCenter).addSubscriber(h);
             }
         }
-        for (Device TV : house.getListOfSpecificDevicesByName("TV")) {
+        for (Device TV : house.getSetOfSpecificDevicesByName("TV")) {
             for (Human h : house.getAllAdults()){
                 ((TV) TV).addSubscriber(h);
             }

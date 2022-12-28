@@ -42,6 +42,7 @@ public class Simulation {
     private LampApi lampApi;
     private ShowerApi showerApi;
     private SimulationFacade simulationFacade;
+
     public Simulation(LocalDateTime startDateAndTime, House house) {
         this.startDateAndTime = startDateAndTime;
         this.house = house;
@@ -54,17 +55,17 @@ public class Simulation {
     public void startSimulation() throws IOException, ParseException {
         simulationFacade = new SimulationFacade(house);
         loadFromConfigurationJson(1);
-        airConditionerApi = new AirConditionerApi((AirConditioner) house.getOneDevice("AirConditioner"));
+        airConditionerApi = new AirConditionerApi(house.getAllAirConditioners());
         coffeeMachineApi = new CoffeeMachineApi((CoffeeMachine) house.getOneDevice("CoffeeMachine"), simulationFacade);
         fridgeAPI = new FridgeAPI((Fridge) house.getOneDevice("Fridge"), simulationFacade);
-        tvApi = new TVApi((TV) house.getOneDevice("TV"));
+        tvApi = new TVApi(house.getAllTVs());
         windowApi = new WindowApi(house.getRooms());
-        musicCenterAPI = new MusicCenterAPI((MusicCenter) house.getOneDevice("MusicCenter"));
-        pcApi = new PCApi((PC) house.getOneDevice("PC"));
+        musicCenterAPI = new MusicCenterAPI(house.getAllMusicCenters());
+        pcApi = new PCApi(house.getAllPCs());
         proxyAccess = new ProxyAccess();
         transportApi = new TransportApi();
         feederForPetApi = new FeederForPetApi((FeederForPet) house.getOneDevice("FeederForPet"), simulationFacade);
-        lampApi = new LampApi((Lamp) house.getOneDevice("Lamp"));
+        lampApi = new LampApi(house.getAllLamps());
         showerApi = new ShowerApi((Shower) house.getOneDevice("Shower"));
         run();
 
@@ -139,7 +140,7 @@ public class Simulation {
             for (Human h : house.getHumans()) {
                 createRandomUserEvents(h);
             }
-            for (Pet p : house.getPets()){
+            for (Pet p : house.getPets()) {
                 createRandomPetEvents(p);
             }
             timeSimulation.tick();
@@ -147,7 +148,7 @@ public class Simulation {
     }
 
     // Reports. Events,
-    private void createRandomPetEvents(Pet pet){
+    private void createRandomPetEvents(Pet pet) {
         Random random = new Random();
         int randnum = random.nextInt(4);
         switch (randnum) {
@@ -165,7 +166,7 @@ public class Simulation {
             }
             case 2 -> {
                 pet.setActivityPet(ActivityPet.SLEEP);
-                LOGGER.info("Pet " + pet.getName() + " is sleeping" );
+                LOGGER.info("Pet " + pet.getName() + " is sleeping");
             }
             case 3 -> {
                 Human human = house.getHumanByPermission(ResidentPermission.CHILD);
@@ -174,44 +175,48 @@ public class Simulation {
                 LOGGER.info("Human " + human.getName() + " is playing with " + pet.getName());
             }
         }
-
     }
+
     private void createRandomUserEvents(Human human) {
         Random random = new Random();
-        int randNum = 0;
+        int randNum = random.nextInt(15);
         List<String> food = fridgeAPI.getAllFood().keySet().stream().toList();
-
         switch (randNum) {
             case 0 -> {
                 String oneFood = food.get(random.nextInt(food.size()));
                 fridgeAPI.takeFoodFromFridge(oneFood);
-                LOGGER.info("Took food from Fridge! Food: " + oneFood + ". Amount: 1");
-
             }
             case 1 -> {
-                tvApi.turnOnTv();
-                LOGGER.info("TV is turned on!");
+                tvApi.turnOnTvById(Objects.requireNonNull(tvApi.getTvs().stream()
+                                .skip(new Random().nextInt(tvApi.getTvs().size()))
+                                .findFirst().orElse(null))
+                        .getId());
             }
             case 2 -> {
-                airConditionerApi.turnOnAirConditioner();
-                LOGGER.info("AirConditioner is turned on");
+                airConditionerApi.turnOnAirConditionerById(Objects
+                        .requireNonNull(airConditionerApi.getAirConditioners().stream()
+                                .skip(new Random().nextInt(airConditionerApi.getAirConditioners().size()))
+                                .findFirst().orElse(null)).getId());
             }
             case 3 -> {
                 coffeeMachineApi.makeCoffee();
-                LOGGER.info("Your coffee is ready! " + "MlOfMilk " + coffeeMachineApi.getMlOfMilk() + "MlOfWater " + coffeeMachineApi.getMlOfWater() + "amountBeans " + coffeeMachineApi.getAmountOfBeans());
             }
             case 4 -> {
-                tvApi.turnOfTv();
-                LOGGER.info("TV is turned off!");
+                tvApi.turnOffTvById(Objects.requireNonNull(tvApi.getTvs().stream()
+                                .skip(new Random().nextInt(tvApi.getTvs().size()))
+                                .findFirst().orElse(null))
+                        .getId());
             }
             case 5 -> {
-                airConditionerApi.turnOffAirConditioner();
-                LOGGER.info("AirConditioner is turned off");
+                airConditionerApi.turnOffAirConditionerById(
+                        Objects.requireNonNull(airConditionerApi.getAirConditioners().stream()
+                                        .skip(new Random().nextInt(airConditionerApi.getAirConditioners().size()))
+                                        .findFirst().orElse(null))
+                                .getId());
             }
             case 6 -> {
                 String song = musicCenterAPI.getAdultSongs().get(random.nextInt(musicCenterAPI.getAdultSongs().size()));
                 musicCenterAPI.playMusic(song, human, proxyAccess);
-                LOGGER.info("Started playing a song: " + song + " for Adults.");
             }
             case 7 -> {
                 LOGGER.info("Random User event started. Playing music in music center.");
@@ -241,7 +246,7 @@ public class Simulation {
                 LOGGER.info("Dinner is ready");
             }
             case 13 -> {
-                lampApi.turnOnLamp();
+//                lampApi.turnOnLamp();
                 LOGGER.info("Lamp is turned on");
             }
             case 14 -> {
@@ -253,27 +258,28 @@ public class Simulation {
                 LOGGER.info(human.getName() + " turned on shower!");
             }
             case 16 -> {
-                pcApi.turnOnPC();
+                pcApi.turnOnPCById(house.getAllPCs().stream()
+                        .skip(new Random().nextInt(pcApi.getPcs().size()))
+                        .findFirst().orElse(null).getId());
                 LOGGER.info(human.getName() + " playing PC!");
             }
             case 17 -> {
-                pcApi.turnOffPC();
+                pcApi.turnOffPCById(house.getAllPCs().stream()
+                        .skip(new Random().nextInt(pcApi.getPcs().size()))
+                        .findFirst().orElse(null).getId());
                 LOGGER.info(human.getName() + " turned off PC!");
             }
             case 18 -> {
-                lampApi.turnOnLamp();
+//                lampApi.turnOnLamp();
 //                LOGGER.info(human.getName() + " turned on Lamp. In room: " + );
             }
         }
     }
 
-    private void createRandomPetsEvent() {
-
-    }
 
     private void createRandomEvents() {
         Random random = new Random();
-        int randNum = random.nextInt(5);
+        int randNum = random.nextInt(3);
 
         switch (randNum) {
             case 0 -> createFireEvent();
@@ -291,12 +297,13 @@ public class Simulation {
 
 
         SmokeSensor smokeSensor = (SmokeSensor) smokeSensors.get(random.nextInt(smokeSensors.size()));
-        smokeSensor.notifySubscribers(EventsType.Smoky,simulationFacade );
+        smokeSensor.notifySubscribers(EventsType.Smoky, simulationFacade);
         LOGGER.info("FIRE, turn off-devices");
     }
 
     private void createColdTemperatureEvent() {
         LOGGER.info("So cold - close the windows");
+        windowApi.closeWindow();
         Random random = new Random();
         List<Sensor> temperatureSensors = house.getSensors().stream()
                 .filter(TemperatureSensor.class::isInstance).toList();
@@ -308,6 +315,7 @@ public class Simulation {
 
     private void createHotTemperatureEvent() {
         LOGGER.info("So hot- open windows");
+        windowApi.openWindow();
         Random random = new Random();
         List<Sensor> temperatureSensors = house.getSensors().stream()
                 .filter(TemperatureSensor.class::isInstance).toList();

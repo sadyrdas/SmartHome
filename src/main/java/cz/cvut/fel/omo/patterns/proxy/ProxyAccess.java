@@ -32,6 +32,8 @@ public class ProxyAccess {
     }
 
     public Boolean playSong(String song, Human human, MusicCenterAPI musicCenterAPI) {
+        LOG.info("Human " + human.getName() + "with permissions" + human.getPermissions() +
+                " is trying to listen to music " + song + ".");
         if (human.getPermissions() == ResidentPermission.ADULT) {
             return musicCenterAPI.getAdultSongs().contains(song);
         } else if (human.getPermissions() == ResidentPermission.CHILD) {

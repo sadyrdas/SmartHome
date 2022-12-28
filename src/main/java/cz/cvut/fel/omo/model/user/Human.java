@@ -34,7 +34,6 @@ public class Human extends Resident {
             case Empty_FeederForFood ->{
                 ((FeederForPet) simulationFacade.getHouse().getOneDevice("FeederForPet")).fillFeeder();
                 LOG.info("Human "+ getName() + " filled feeder");
-
             }
         }
 
