@@ -1,21 +1,18 @@
 package cz.cvut.fel.omo.model.house;
 
-import cz.cvut.fel.omo.model.device.CoffeeMachine;
-import cz.cvut.fel.omo.model.device.Device;
-import cz.cvut.fel.omo.model.device.Fridge;
-import cz.cvut.fel.omo.model.device.Window;
+import cz.cvut.fel.omo.model.device.*;
 import cz.cvut.fel.omo.model.device.sensor.Sensor;
 import cz.cvut.fel.omo.model.room.Room;
 import cz.cvut.fel.omo.model.transport.CategoryTransport;
 import cz.cvut.fel.omo.model.transport.Transport;
 import cz.cvut.fel.omo.model.user.Human;
 import cz.cvut.fel.omo.model.user.Pet;
-import cz.cvut.fel.omo.model.user.Resident;
 import cz.cvut.fel.omo.model.user.ResidentPermission;
 import cz.cvut.fel.omo.patterns.builder.PetBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.print.DocFlavor;
 import java.util.*;
 
 public class House {
@@ -143,8 +140,58 @@ public class House {
         return getHumans().stream().filter(h -> Objects.equals(h.getPermissions(), ResidentPermission.ADULT)).toList();
     }
 
-    public List<Device> getListOfSpecificDevicesByName(String deviceName) {
-        return getDevices().stream().filter(d -> Objects.equals(d.getName(), deviceName)).toList();
+    public Set<Lamp> getAllLamps() {
+        Set<Lamp> lamps = new HashSet<>();
+        for (Device d : devices) {
+            if (Objects.equals(d.getName(), "Lamp")) {
+                lamps.add((Lamp) d);
+            }
+        }
+        return lamps;
+    }
+
+    public Set<AirConditioner> getAllAirConditioners() {
+        Set<AirConditioner> airConditioners = new HashSet<>();
+        for (Device d : devices) {
+            if (Objects.equals(d.getName(), "AirConditioner")) {
+                airConditioners.add((AirConditioner) d);
+            }
+        }
+        return airConditioners;
+    }
+
+    public Set<TV> getAllTVs() {
+        Set<TV> tvs = new HashSet<>();
+        for (Device d : devices) {
+            if (Objects.equals(d.getName(), "TV")) {
+                tvs.add((TV) d);
+            }
+        }
+        return tvs;
+    }
+
+    public Set<MusicCenter> getAllMusicCenters() {
+        Set<MusicCenter> tvs = new HashSet<>();
+        for (Device d : devices) {
+            if (Objects.equals(d.getName(), "MusicCenter")) {
+                tvs.add((MusicCenter) d);
+            }
+        }
+        return tvs;
+    }
+
+    public Set<PC> getAllPCs() {
+        Set<PC> pcs = new HashSet<>();
+        for (Device d : devices) {
+            if (Objects.equals(d.getName(), "PC")) {
+                pcs.add((PC) d);
+            }
+        }
+        return pcs;
+    }
+
+    public Set<Device> getSetOfSpecificDevicesByName(String deviceName) {
+        return new HashSet<>(getDevices().stream().filter(d -> Objects.equals(d.getName(), deviceName)).toList());
     }
     public Set<Human> getHumans() {
         return humans;
