@@ -14,6 +14,7 @@ import cz.cvut.fel.omo.model.user.*;
 import cz.cvut.fel.omo.patterns.builder.HumanBuilder;
 import cz.cvut.fel.omo.patterns.builder.PetBuilder;
 import cz.cvut.fel.omo.patterns.builder.TransportBuilder;
+import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import cz.cvut.fel.omo.patterns.factory.DeviceFactory;
 import cz.cvut.fel.omo.patterns.factory.RoomBuilder;
 import cz.cvut.fel.omo.patterns.factory.SensorFactory;
@@ -50,6 +51,7 @@ public class Simulation {
     private FeederForPetApi feederForPetApi;
     private LampApi lampApi;
     private ShowerApi showerApi;
+    private SimulationFacade simulationFacade;
     public Simulation(LocalDateTime startDateAndTime, House house) {
         this.startDateAndTime = startDateAndTime;
         this.house = house;
@@ -60,7 +62,8 @@ public class Simulation {
     }
 
     public void startSimulation() throws IOException, ParseException {
-        loadFromConfigurationJson(1);
+        simulationFacade = new SimulationFacade();
+        loadFromConfigurationJson(2);
         airConditionerApi = new AirConditionerApi((AirConditioner) house.getOneDevice("AirConditioner"));
         coffeeMachineApi = new CoffeeMachineApi((CoffeeMachine) house.getOneDevice("CoffeeMachine"));
         fridgeAPI = new FridgeAPI((Fridge) house.getOneDevice("Fridge"));
@@ -73,7 +76,6 @@ public class Simulation {
         feederForPetApi = new FeederForPetApi((FeederForPet) house.getOneDevice("FeederForPet"));
         lampApi = new LampApi((Lamp) house.getOneDevice("Lamp"));
         showerApi = new ShowerApi((Shower) house.getOneDevice("Shower"));
-
         run();
 
     }
@@ -82,9 +84,9 @@ public class Simulation {
         String configurationName = null;
 
         if (numberConfig == 1) {
-            configurationName = "firstConfiguration";
+            configurationName = "/firstConfiguration";
         } else if (numberConfig == 2) {
-            configurationName = "secondConfiguration";
+            configurationName = "/secondConfiguration";
         } else {
             LOGGER.warn("Configuration with this number " + numberConfig + " doesn't exist!");
         }
@@ -94,13 +96,12 @@ public class Simulation {
             return;
         }
 
-        load("/firstConfiguration", "/persons.json");
-        loadPets("/firstConfiguration");
-        loadPerson("/firstConfiguration");
-        loadHouse("/firstConfiguration");
-        loadDevice("/firstConfiguration");
-        loadSensor("/firstConfiguration");
-        loadTransport("/firstConfiguration");
+        loadPets(configurationName);
+        loadPerson(configurationName);
+        loadHouse(configurationName);
+        loadDevice(configurationName);
+        loadSensor(configurationName);
+        loadTransport(configurationName);
         addAllSubscribers();
     }
 
@@ -221,35 +222,38 @@ public class Simulation {
         TimeSimulation timeSimulation = new TimeSimulation(LocalDateTime.parse("2022-01-01T00:00:00"));
         timeSimulation.tick();
         createFireEvent();
-        while (!timeSimulation.getDateTime().isEqual(LocalDateTime.parse("2022-01-01T23:00:00"))) {
-            LOGGER.info("Current time is: " + timeSimulation.getDateTime().toString());
+        while (!timeSimulation.getDateTime().isEqual(LocalDateTime.parse("2022-03-01T23:00:00"))) {
+            LOGGER.info("=====================================");
+            LOGGER.info("= Current time is: " + timeSimulation.getDateTime().toString() + " =");
+            LOGGER.info("=====================================");
+
             tick += 1;
             // Every device should know current time
             timeSimulation.setDateTime(timeSimulation.getDateTime().plusHours(1));
             if (tick == 3 || tick == 10 || tick == 20 || tick == 40) {
                 createRandomEvents();
-                for (Human h : house.getHumans()) {
-                    createRandomUserEvents(h);
-                }
+            }
+            for (Human h : house.getHumans()) {
+                createRandomUserEvents(h);
             }
         }
-
-        // Reports. Events,
     }
+
+    // Reports. Events,
 
     private void createRandomUserEvents(Human human) {
         Random random = new Random();
-        int randNum = 12;
+        int randNum = random.nextInt(13);
         List<String> food = fridgeAPI.getAllFood().keySet().stream().toList();
 
-        switch (randNum){
-            case 0 ->{
+        switch (randNum) {
+            case 0 -> {
                 String oneFood = food.get(random.nextInt(food.size()));
                 fridgeAPI.takeFoodFromFridge(oneFood);
                 LOGGER.info("Took food from Fridge! Food: " + oneFood + ". Amount: 1");
 
             }
-            case 1 ->{
+            case 1 -> {
                 tvApi.turnOnTv();
                 LOGGER.info("TV is turned on!");
             }
@@ -306,7 +310,9 @@ public class Simulation {
                 LOGGER.info("Lamp is turned on");
             }
         }
+    }
 
+    private void createRandomPetsEvent() {
 
     }
 
@@ -356,26 +362,8 @@ public class Simulation {
     }
 
 
-
     private void addAllSubscribers() {
         LOGGER.info("Adding all subscriber to Sensors!");
-        for (Sensor sensor : house.getSensors()) {
-            for (Device device : house.getDevices()) {
-                sensor.addSubscriber(device);
-            }
-            for (Human human : house.getHumans()) {
-                sensor.addSubscriber(human);
-            }
-            for (Pet pet : house.getPets()) {
-                sensor.addSubscriber(pet);
-            }
-            for (Floor f : house.getFloors()){
-                for (Room r : f.getRooms() ){
-                    for (Window w : r.getWindows()){
-                        sensor.addSubscriber(w);
-                }
-            }
-            }
-        }
+        simulationFacade.addAllSubscribers(house);
     }
 }

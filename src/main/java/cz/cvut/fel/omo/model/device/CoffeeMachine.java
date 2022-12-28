@@ -3,14 +3,21 @@ package cz.cvut.fel.omo.model.device;
 import cz.cvut.fel.omo.model.device.energy.EnergyType;
 import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.room.Room;
+import cz.cvut.fel.omo.patterns.observer.Observer;
+import cz.cvut.fel.omo.patterns.observer.Subject;
 import cz.cvut.fel.omo.patterns.state.ActiveState;
 import cz.cvut.fel.omo.patterns.state.StoppedState;
 
-public class CoffeeMachine extends Device {
+import java.util.HashSet;
+import java.util.Set;
+
+public class CoffeeMachine extends Device implements Subject {
 
     private int mlOfMilk = 1000;
     private int mlOfWater = 2000;
     private int amountOfBeans = 500;
+
+    private final Set<Observer> observers = new HashSet<>();
 
     public CoffeeMachine(int id, String name, Room room, int baseEnergyConsumption) {
         super(id, name, room, baseEnergyConsumption, EnergyType.Electricity);
@@ -50,5 +57,17 @@ public class CoffeeMachine extends Device {
 
     public void setAmountOfBeans(int amountOfBeans) {
         this.amountOfBeans = amountOfBeans;
+    }
+
+    @Override
+    public void addSubscriber(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void notifySubscribers(EventsType eventsType) {
+        for (Observer observer : observers) {
+            observer.update(eventsType);
+        }
     }
 }

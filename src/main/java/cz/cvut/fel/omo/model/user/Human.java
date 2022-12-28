@@ -24,6 +24,7 @@ public class Human extends Resident {
         switch (events_type) {
             case Smoky -> setActivityUser(ActivityUser.NOT_AT_HOME);
             case Cold_temperature -> setActivityUser(ActivityUser.OPEN_WINDOW);
+            case Repair_device -> setActivityUser(ActivityUser.REPAIR);
         }
 
     }

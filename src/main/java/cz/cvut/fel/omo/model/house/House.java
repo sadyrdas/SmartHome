@@ -1,6 +1,8 @@
 package cz.cvut.fel.omo.model.house;
 
+import cz.cvut.fel.omo.model.device.CoffeeMachine;
 import cz.cvut.fel.omo.model.device.Device;
+import cz.cvut.fel.omo.model.device.Fridge;
 import cz.cvut.fel.omo.model.device.Window;
 import cz.cvut.fel.omo.model.device.sensor.Sensor;
 import cz.cvut.fel.omo.model.room.Room;
@@ -135,9 +137,15 @@ public class House {
         }
 
         return skiis.get(new Random().nextInt(skiis.size()));
-
     }
 
+    public List<Human> getAllAdults() {
+        return getHumans().stream().filter(h -> Objects.equals(h.getPermissions(), ResidentPermission.ADULT)).toList();
+    }
+
+    public List<Device> getListOfSpecificDevicesByName(String deviceName) {
+        return getDevices().stream().filter(d -> Objects.equals(d.getName(), deviceName)).toList();
+    }
     public Set<Human> getHumans() {
         return humans;
     }

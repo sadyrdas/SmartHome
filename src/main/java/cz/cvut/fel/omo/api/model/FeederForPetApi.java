@@ -9,10 +9,9 @@ import java.util.Set;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class FeederForPetApi implements Subject {
+public class FeederForPetApi {
     private static final Logger LOG = LogManager.getLogger(FeederForPetApi.class.getName());
     private final FeederForPet feederForPet;
-    private Set<Observer> observers;
 
     public FeederForPetApi(FeederForPet feederForPet){
         this.feederForPet = feederForPet;
@@ -42,16 +41,4 @@ public class FeederForPetApi implements Subject {
         feederForPet.setCountOfFood(435);
     }
 
-
-    @Override
-    public void addSubscriber(Observer observer) {
-        observers.add(observer);
-    }
-
-    @Override
-    public void notifySubscribers(EventsType eventsType) {
-        for (Observer observer : observers){
-            observer.update(eventsType);
-        }
-    }
 }

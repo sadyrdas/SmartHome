@@ -12,10 +12,9 @@ import java.util.Set;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class CoffeeMachineApi implements Subject {
+public class CoffeeMachineApi {
     private static final Logger LOG = LogManager.getLogger(CoffeeMachineApi.class.getName());
     private final CoffeeMachine coffeeMachine;
-    private Set<Observer> observers;
 
     public int getMlOfMilk() {
         return coffeeMachine.getMlOfMilk();
@@ -49,7 +48,7 @@ public class CoffeeMachineApi implements Subject {
         if (coffeeMachine.getMlOfMilk() - 100 < 0 ||
                 coffeeMachine.getMlOfWater() - 150 < 0  ||
                 coffeeMachine.getAmountOfBeans() - 1 < 0) {
-            notifySubscribers(EventsType.Empty_CoffeeMachine);
+            coffeeMachine.notifySubscribers(EventsType.Empty_CoffeeMachine);
             LOG.warn("Ingredients for coffee is below zero " + "Ask mother to full");
         } else {
             coffeeMachine.setMlOfMilk(coffeeMachine.getMlOfMilk() - 100);
@@ -69,15 +68,4 @@ public class CoffeeMachineApi implements Subject {
                 " ml., " + coffeeMachine.getMlOfWater() + " ml., beans: " + coffeeMachine.getAmountOfBeans() + ".");
     }
 
-    @Override
-    public void addSubscriber(Observer observer) {
-        observers.add(observer);
-    }
-
-    @Override
-    public void notifySubscribers(EventsType eventsType) {
-        for (Observer observer : observers){
-            observer.update(eventsType);
-        }
-    }
 }
