@@ -63,7 +63,7 @@ public class Simulation {
 
     public void startSimulation() throws IOException, ParseException {
         simulationFacade = new SimulationFacade();
-        loadFromConfigurationJson(2);
+        loadFromConfigurationJson(1);
         airConditionerApi = new AirConditionerApi((AirConditioner) house.getOneDevice("AirConditioner"));
         coffeeMachineApi = new CoffeeMachineApi((CoffeeMachine) house.getOneDevice("CoffeeMachine"));
         fridgeAPI = new FridgeAPI((Fridge) house.getOneDevice("Fridge"));
@@ -106,116 +106,31 @@ public class Simulation {
     }
 
     private void loadHouse(String nameConfig) throws IOException, ParseException {
-        JSONArray array = load(nameConfig, "/house.json");
-        RoomBuilder roomBuilder = new RoomBuilder();
-
-        for (Object o : array) {
-            JSONObject houseJson = (JSONObject) o;
-            int idFloor = (int) (long) houseJson.get("floor");
-            Floor floor = new Floor(idFloor);
-            JSONArray roomArray = (JSONArray) houseJson.get("rooms");
-
-            for (Object ob : roomArray) {
-                JSONObject roomJson = (JSONObject) ob;
-                int countWindows = (int) (long) roomJson.get("windowsCount");
-
-                Set<Window> windows = new HashSet<>();
-                for (int i = 0; i < countWindows; i++) {
-                    windows.add(new Window(false));
-                }
-
-                Room room = roomBuilder.setId((int) (long) roomJson.get("id"))
-                        .addRoomName((String) roomJson.get("name"))
-                        .setWindowsCount(countWindows)
-                        .addWindowsToRoom(windows)
-                        .build();
-                floor.addRoom(room);
-            }
-            house.addFloor(floor);
-
-            for (Room r : floor.getRooms()) {
-                LOGGER.info("Created rooms " + r.getRoomName());
-            }
-        }
+        simulationFacade.loadHouse(nameConfig, house);
     }
 
 
     private void loadPets(String nameConfig) throws IOException, ParseException {
-        JSONArray array = load(nameConfig, "/pets.json");
-        for (Object o : array) {
-            JSONObject petJson = (JSONObject) o;
-            PetBuilder builder = new PetBuilder();
-            house.addPet(builder.setName((String) petJson.get("name"))
-                    .setPermissions((String) petJson.get("permission"))
-                    .setPetType((String) petJson.get("petType"))
-                    .build());
-        }
-        for (Pet p : house.getPets()) {
-            LOGGER.info("Created pets " + p.getName());
-        }
+        simulationFacade.loadPets(nameConfig, house);
     }
 
 
     private void loadPerson(String nameConfig) throws IOException, ParseException {
-        JSONArray array = load(nameConfig, "/persons.json");
-        for (Object o : array) {
-            JSONObject personJson = (JSONObject) o;
-            HumanBuilder humanBuilder = new HumanBuilder();
-            house.addHuman(humanBuilder.setName((String) personJson.get("name"))
-                    .setPermissions((String) personJson.get("permission"))
-                    .build());
-        }
-        for (Human human : house.getHumans()) {
-            LOGGER.info("Created humans " + human.getName());
-        }
+        simulationFacade.loadPerson(nameConfig, house);
     }
 
     private void loadDevice(String nameConfig) throws IOException, ParseException {
-        JSONArray array = load(nameConfig, "/devices.json");
-        for (Object o : array) {
-            JSONObject deviceJson = (JSONObject) o;
-            DeviceFactory deviceFactory = new DeviceFactory();
-            Room room = house.getRoomById((int) (long) deviceJson.get("idRoom"));
-            house.addDevice(deviceFactory.createDevice((int) (long) deviceJson.get("id"), (String) deviceJson.get("name"), (int) (long) deviceJson.get("baseEnergyConsumption"), room));
-        }
-        for (Device device : house.getDevices()) {
-            LOGGER.info("Created devices " + device.getName());
-        }
+        simulationFacade.loadDevice(nameConfig, house);
     }
 
     private void loadSensor(String nameConfig) throws IOException, ParseException {
-        JSONArray array = load(nameConfig, "/sensor.json");
-        for (Object o : array) {
-            JSONObject sensorJson = (JSONObject) o;
-            SensorFactory sensorFactory = new SensorFactory();
-            Room room = house.getRoomById((int) (long) sensorJson.get("idRoom"));
-            house.addSensor(sensorFactory.createSensor((int) (long) sensorJson.get("id"), (String) sensorJson.get("name"), (int) (long) sensorJson.get("baseEnergyConsumption"), room));
-
-        }
-        for (Sensor sensor : house.getSensors()) {
-            LOGGER.info("Created sensors " + sensor.getName());
-        }
+        simulationFacade.loadSensor(nameConfig, house);
     }
 
     private void loadTransport(String nameConfig) throws IOException, ParseException {
-        JSONArray array = load(nameConfig, "/transport.json");
-        for (Object o : array) {
-            JSONObject transportJson = (JSONObject) o;
-            TransportBuilder builder = new TransportBuilder();
-            house.addTransport(builder.setName((String) transportJson.get("name"))
-                    .setAmount((int) (long) transportJson.get("amount"))
-                    .setCategoryTransport((String) transportJson.get("categoryTransport"))
-                    .build());
-        }
-        for (Transport t : house.getTransports()) {
-            LOGGER.info("Created transports " + t.getName());
-        }
+        simulationFacade.loadTransport(nameConfig, house);
     }
 
-    private JSONArray load(String nameConfig, String fileName) throws IOException, ParseException {
-        JSONParser parser = new JSONParser();
-        return (JSONArray) parser.parse(new FileReader(PATH + nameConfig + fileName));
-    }
 
     private void run() {
         int tick = 0;
