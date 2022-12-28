@@ -2,8 +2,8 @@ package cz.cvut.fel.omo.model.user;
 
 import cz.cvut.fel.omo.model.device.Device;
 import cz.cvut.fel.omo.model.events.EventsType;
+import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import cz.cvut.fel.omo.patterns.observer.Observer;
-import cz.cvut.fel.omo.patterns.state.StoppedState;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,7 +27,7 @@ public abstract class Resident implements Observer {
     }
 
     @Override
-    public void update(EventsType eventsType){
+    public void update(EventsType eventsType, SimulationFacade simulationFacade){
         switch (eventsType) {
             case Smoky -> {
                 setActivityUser(ActivityUser.RUN);

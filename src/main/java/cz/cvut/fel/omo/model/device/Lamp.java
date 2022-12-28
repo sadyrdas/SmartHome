@@ -3,6 +3,7 @@ package cz.cvut.fel.omo.model.device;
 import cz.cvut.fel.omo.model.device.energy.EnergyType;
 import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.room.Room;
+import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import cz.cvut.fel.omo.patterns.observer.Observer;
 import cz.cvut.fel.omo.patterns.observer.Subject;
 import cz.cvut.fel.omo.patterns.state.StoppedState;
@@ -22,7 +23,7 @@ public class Lamp extends Device implements Subject {
     }
 
     @Override
-    public void update(EventsType events_type) {
+    public void update(EventsType events_type, SimulationFacade simulationFacade) {
         switch (events_type) {
             case Smoky, Repair_device -> setState(new StoppedState(this));
         }
@@ -34,9 +35,9 @@ public class Lamp extends Device implements Subject {
     }
 
     @Override
-    public void notifySubscribers(EventsType eventsType) {
+    public void notifySubscribers(EventsType eventsType, SimulationFacade simulationFacade) {
         for (Observer observer : observers) {
-            observer.update(eventsType);
+            observer.update(eventsType, simulationFacade);
         }
     }
 }

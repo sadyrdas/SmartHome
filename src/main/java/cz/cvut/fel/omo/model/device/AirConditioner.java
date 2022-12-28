@@ -3,6 +3,7 @@ package cz.cvut.fel.omo.model.device;
 import cz.cvut.fel.omo.model.device.energy.EnergyType;
 import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.room.Room;
+import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import cz.cvut.fel.omo.patterns.observer.Observer;
 import cz.cvut.fel.omo.patterns.observer.Subject;
 import cz.cvut.fel.omo.patterns.state.ActiveState;
@@ -24,7 +25,7 @@ public class AirConditioner extends Device implements Observer, Subject {
     }
 
     @Override
-    public void update(EventsType events_type) {
+    public void update(EventsType events_type, SimulationFacade simulationFacade) {
         switch (events_type) {
             case Hot_temperature, Turn_on_device-> this.setState(new ActiveState(this));
             case Cold_temperature, Smoky, Turn_off_device  -> this.setState(new StoppedState(this));
@@ -37,7 +38,7 @@ public class AirConditioner extends Device implements Observer, Subject {
     }
 
     @Override
-    public void notifySubscribers(EventsType eventsType) {
-        for (Observer observer : observers) observer.update(eventsType);
+    public void notifySubscribers(EventsType eventsType, SimulationFacade simulationFacade) {
+        for (Observer observer : observers) observer.update(eventsType, simulationFacade);
     }
 }

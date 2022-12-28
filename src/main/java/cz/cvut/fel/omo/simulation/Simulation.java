@@ -6,30 +6,20 @@ import cz.cvut.fel.omo.model.device.sensor.Sensor;
 import cz.cvut.fel.omo.model.device.sensor.SmokeSensor;
 import cz.cvut.fel.omo.model.device.sensor.TemperatureSensor;
 import cz.cvut.fel.omo.model.events.EventsType;
-import cz.cvut.fel.omo.model.house.Floor;
 import cz.cvut.fel.omo.model.house.House;
-import cz.cvut.fel.omo.model.room.Room;
-import cz.cvut.fel.omo.model.transport.Transport;
 import cz.cvut.fel.omo.model.user.*;
-import cz.cvut.fel.omo.patterns.builder.HumanBuilder;
-import cz.cvut.fel.omo.patterns.builder.PetBuilder;
-import cz.cvut.fel.omo.patterns.builder.TransportBuilder;
 import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
-import cz.cvut.fel.omo.patterns.factory.DeviceFactory;
-import cz.cvut.fel.omo.patterns.factory.RoomBuilder;
-import cz.cvut.fel.omo.patterns.factory.SensorFactory;
 import cz.cvut.fel.omo.patterns.proxy.ProxyAccess;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+
 import org.json.simple.parser.ParseException;
 
-import java.io.FileReader;
+import java.awt.event.HierarchyBoundsAdapter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
+
 
 public class Simulation {
 
@@ -62,18 +52,18 @@ public class Simulation {
     }
 
     public void startSimulation() throws IOException, ParseException {
-        simulationFacade = new SimulationFacade();
+        simulationFacade = new SimulationFacade(house);
         loadFromConfigurationJson(1);
         airConditionerApi = new AirConditionerApi((AirConditioner) house.getOneDevice("AirConditioner"));
-        coffeeMachineApi = new CoffeeMachineApi((CoffeeMachine) house.getOneDevice("CoffeeMachine"));
-        fridgeAPI = new FridgeAPI((Fridge) house.getOneDevice("Fridge"));
+        coffeeMachineApi = new CoffeeMachineApi((CoffeeMachine) house.getOneDevice("CoffeeMachine"), simulationFacade);
+        fridgeAPI = new FridgeAPI((Fridge) house.getOneDevice("Fridge"), simulationFacade);
         tvApi = new TVApi((TV) house.getOneDevice("TV"));
         windowApi = new WindowApi(house.getRooms());
         musicCenterAPI = new MusicCenterAPI((MusicCenter) house.getOneDevice("MusicCenter"));
         pcApi = new PCApi((PC) house.getOneDevice("PC"));
         proxyAccess = new ProxyAccess();
         transportApi = new TransportApi();
-        feederForPetApi = new FeederForPetApi((FeederForPet) house.getOneDevice("FeederForPet"));
+        feederForPetApi = new FeederForPetApi((FeederForPet) house.getOneDevice("FeederForPet"), simulationFacade);
         lampApi = new LampApi((Lamp) house.getOneDevice("Lamp"));
         showerApi = new ShowerApi((Shower) house.getOneDevice("Shower"));
         run();
@@ -137,7 +127,7 @@ public class Simulation {
         TimeSimulation timeSimulation = new TimeSimulation(LocalDateTime.parse("2022-01-01T00:00:00"));
         timeSimulation.tick();
         createFireEvent();
-        while (!timeSimulation.getDateTime().isEqual(LocalDateTime.parse("2022-03-01T23:00:00"))) {
+        while (!timeSimulation.getDateTime().isEqual(LocalDateTime.parse("2022-01-01T23:00:00"))) {
             LOGGER.info("=====================================");
             LOGGER.info("= Current time is: " + timeSimulation.getDateTime().toString() + " =");
             LOGGER.info("=====================================");
@@ -149,15 +139,46 @@ public class Simulation {
             for (Human h : house.getHumans()) {
                 createRandomUserEvents(h);
             }
+            for (Pet p : house.getPets()){
+                createRandomPetEvents(p);
+            }
             timeSimulation.tick();
         }
     }
 
     // Reports. Events,
+    private void createRandomPetEvents(Pet pet){
+        Random random = new Random();
+        int randnum = random.nextInt(4);
+        switch (randnum) {
+            case 0 -> {
+                Human human = house.getHumanByPermission(ResidentPermission.ADULT);
+                human.setActivityUser(ActivityUser.NOT_AT_HOME);
+                human.setActivityUser(ActivityUser.WALK_WITH_PET);
+                pet.setActivityPet(ActivityPet.WALK);
+                LOGGER.info("Pet " + pet.getName() + " is on the walk with " + human.getName());
+            }
+            case 1 -> {
+                feederForPetApi.timeForDinner();
+                pet.setActivityPet(ActivityPet.EAT);
+                LOGGER.info("Pet " + pet.getName() + " is going to dinner");
+            }
+            case 2 -> {
+                pet.setActivityPet(ActivityPet.SLEEP);
+                LOGGER.info("Pet " + pet.getName() + " is sleeping" );
+            }
+            case 3 -> {
+                Human human = house.getHumanByPermission(ResidentPermission.CHILD);
+                human.setActivityUser(ActivityUser.PLAY_WITH_PET);
+                pet.setActivityPet(ActivityPet.PLAY);
+                LOGGER.info("Human " + human.getName() + " is playing with " + pet.getName());
+            }
+        }
 
+    }
     private void createRandomUserEvents(Human human) {
         Random random = new Random();
-        int randNum = random.nextInt(15);
+        int randNum = 0;
         List<String> food = fridgeAPI.getAllFood().keySet().stream().toList();
 
         switch (randNum) {
@@ -270,7 +291,7 @@ public class Simulation {
 
 
         SmokeSensor smokeSensor = (SmokeSensor) smokeSensors.get(random.nextInt(smokeSensors.size()));
-        smokeSensor.notifySubscribers(EventsType.Smoky);
+        smokeSensor.notifySubscribers(EventsType.Smoky,simulationFacade );
         LOGGER.info("FIRE, turn off-devices");
     }
 
@@ -281,7 +302,7 @@ public class Simulation {
                 .filter(TemperatureSensor.class::isInstance).toList();
 
         TemperatureSensor temperatureSensor = (TemperatureSensor) temperatureSensors.get(random.nextInt(temperatureSensors.size()));
-        temperatureSensor.notifySubscribers(EventsType.Cold_temperature);
+        temperatureSensor.notifySubscribers(EventsType.Cold_temperature, simulationFacade);
 
     }
 
@@ -292,7 +313,7 @@ public class Simulation {
                 .filter(TemperatureSensor.class::isInstance).toList();
 
         TemperatureSensor temperatureSensor = (TemperatureSensor) temperatureSensors.get(random.nextInt(temperatureSensors.size()));
-        temperatureSensor.notifySubscribers(EventsType.Hot_temperature);
+        temperatureSensor.notifySubscribers(EventsType.Hot_temperature, simulationFacade);
     }
 
 

@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.model.device;
 
 import cz.cvut.fel.omo.model.device.sensor.TemperatureSensor;
 import cz.cvut.fel.omo.model.events.EventsType;
+import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import cz.cvut.fel.omo.patterns.observer.Observer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,7 +29,7 @@ public class Window implements Observer {
     }
 
     @Override
-    public void update(EventsType events_type) {
+    public void update(EventsType events_type, SimulationFacade simulationFacade) {
         switch (events_type) {
             case Hot_temperature -> {
                 if (!isOpen) {

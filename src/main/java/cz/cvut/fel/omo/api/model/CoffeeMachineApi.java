@@ -2,19 +2,15 @@ package cz.cvut.fel.omo.api.model;
 
 import cz.cvut.fel.omo.model.device.CoffeeMachine;
 import cz.cvut.fel.omo.model.events.EventsType;
-import cz.cvut.fel.omo.model.user.ResidentPermission;
-import cz.cvut.fel.omo.patterns.observer.Observer;
-import cz.cvut.fel.omo.patterns.observer.Subject;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class CoffeeMachineApi {
     private static final Logger LOG = LogManager.getLogger(CoffeeMachineApi.class.getName());
     private final CoffeeMachine coffeeMachine;
+    private final SimulationFacade simulationFacade;
 
     public int getMlOfMilk() {
         return coffeeMachine.getMlOfMilk();
@@ -40,15 +36,16 @@ public class CoffeeMachineApi {
         coffeeMachine.setAmountOfBeans(amountOfBeans);
     }
 
-    public CoffeeMachineApi(CoffeeMachine coffeeMachine) {
+    public CoffeeMachineApi(CoffeeMachine coffeeMachine, SimulationFacade simulationFacade) {
         this.coffeeMachine = coffeeMachine;
+        this.simulationFacade = simulationFacade;
     }
 
     public void makeCoffee () {
         if (coffeeMachine.getMlOfMilk() - 100 < 0 ||
                 coffeeMachine.getMlOfWater() - 150 < 0  ||
                 coffeeMachine.getAmountOfBeans() - 1 < 0) {
-            coffeeMachine.notifySubscribers(EventsType.Empty_CoffeeMachine);
+            coffeeMachine.notifySubscribers(EventsType.Empty_CoffeeMachine, simulationFacade);
             LOG.warn("Ingredients for coffee is below zero " + "Ask mother to full");
         } else {
             coffeeMachine.setMlOfMilk(coffeeMachine.getMlOfMilk() - 100);

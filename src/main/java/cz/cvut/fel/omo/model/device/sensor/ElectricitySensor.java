@@ -3,6 +3,7 @@ package cz.cvut.fel.omo.model.device.sensor;
 import cz.cvut.fel.omo.model.device.energy.EnergyType;
 import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.room.Room;
+import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import cz.cvut.fel.omo.patterns.observer.Observer;
 
 import java.util.HashSet;
@@ -21,7 +22,7 @@ public class ElectricitySensor extends Sensor {
     }
 
     @Override
-    public void notifySubscribers(EventsType eventsType) {
+    public void notifySubscribers(EventsType eventsType, SimulationFacade simulationFacade) {
 
     }
 }

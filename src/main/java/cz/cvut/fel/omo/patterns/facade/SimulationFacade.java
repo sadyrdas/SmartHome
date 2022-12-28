@@ -34,6 +34,16 @@ public class SimulationFacade {
     private static final String PATH = Objects.requireNonNull(Simulation.class.getResource("/")).getPath()
             + "configurations";
 
+    private House house;
+
+    public SimulationFacade(House house) {
+        this.house = house;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
     public void addAllSubscribers(House house) {
         for (Sensor sensor : house.getSensors()) {
             for (Device device : house.getDevices()) {
@@ -216,5 +226,7 @@ public class SimulationFacade {
             LOGGER.info("Created transports " + t.getName());
         }
     }
+
+
 
 }

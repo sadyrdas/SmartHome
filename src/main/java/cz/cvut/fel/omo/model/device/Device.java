@@ -4,6 +4,7 @@ import cz.cvut.fel.omo.model.device.energy.Energy;
 import cz.cvut.fel.omo.model.device.energy.EnergyType;
 import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.room.Room;
+import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import cz.cvut.fel.omo.patterns.observer.Observer;
 import cz.cvut.fel.omo.patterns.state.ActiveState;
 import cz.cvut.fel.omo.patterns.state.IdleState;
@@ -43,7 +44,7 @@ public abstract class Device implements Observer {
     }
 
     @Override
-    public void update(EventsType eventsType){
+    public void update(EventsType eventsType, SimulationFacade simulationFacade){
         switch (eventsType) {
             case Smoky, Turn_off_device -> {
                 setState(new StoppedState(this));

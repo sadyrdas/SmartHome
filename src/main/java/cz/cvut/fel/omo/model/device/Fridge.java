@@ -3,6 +3,7 @@ package cz.cvut.fel.omo.model.device;
 import cz.cvut.fel.omo.model.device.energy.EnergyType;
 import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.room.Room;
+import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import cz.cvut.fel.omo.patterns.observer.Observer;
 import cz.cvut.fel.omo.patterns.observer.Subject;
 
@@ -39,7 +40,6 @@ public class Fridge extends Device implements Subject {
         this.foodInFridge = foodInFridge;
     }
 
-
     public void addFoodToFridge(){
         foodInFridge.put("Meat", 3);
         foodInFridge.put("Bread", 1);
@@ -47,12 +47,12 @@ public class Fridge extends Device implements Subject {
         foodInFridge.put("Fish",2);
         foodInFridge.put("Cheese", 3);
         foodInFridge.put("Beer", 3);
+        LOG.info("Food was added" + foodInFridge);
     }
 
     @Override
-    public void update(EventsType events_type) {
+    public void update(EventsType events_type, SimulationFacade simulationFacade) {
         switch (events_type){
-            case Empty_fridge -> addFoodToFridge();
             case Smoky -> setState(new StoppedState(this));
         }
     }
@@ -63,9 +63,9 @@ public class Fridge extends Device implements Subject {
     }
 
     @Override
-    public void notifySubscribers(EventsType eventsType) {
+    public void notifySubscribers(EventsType eventsType, SimulationFacade simulationFacade) {
         for (Observer observer : observers) {
-            observer.update(eventsType);
+            observer.update(eventsType, simulationFacade);
         }
     }
 }

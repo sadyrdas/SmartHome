@@ -3,8 +3,8 @@ package cz.cvut.fel.omo.model.device.sensor;
 import cz.cvut.fel.omo.model.device.energy.EnergyType;
 import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.room.Room;
+import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import cz.cvut.fel.omo.patterns.observer.Observer;
-import cz.cvut.fel.omo.simulation.Simulation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,11 +29,11 @@ public class TemperatureSensor extends Sensor {
     }
 
     @Override
-    public void notifySubscribers(EventsType eventsType) {
+    public void notifySubscribers(EventsType eventsType, SimulationFacade simulationFacade) {
         LOGGER.info("Notifying all subscribers");
         LOGGER.info(observers.size());
         for(Observer observer : observers) {
-            observer.update(eventsType);
+            observer.update(eventsType,simulationFacade );
 //            LOGGER.debug();
         }
 

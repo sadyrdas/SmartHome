@@ -17,6 +17,8 @@ public enum ActivityUser {
     USE_DEVICE,
     WATCH_TV,
     FILL_FRIDGE,
-    FILL_FEEDER
+    FILL_FEEDER,
+    WALK_WITH_PET,
+    PLAY_WITH_PET
 
 }
