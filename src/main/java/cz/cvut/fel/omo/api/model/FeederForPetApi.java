@@ -49,6 +49,7 @@ public class FeederForPetApi {
             simulationFacade.addActivityPetEventToEventsHub(pet, ActivityPet.EAT);
             simulationFacade.addDeviceEventsTypeToEventsHub(feederForPet, EventsType.Turn_on_device);
             feederForPet.setState(new ActiveState(feederForPet));
+            pet.countDeviceUsage(feederForPet);
         }
     }
 

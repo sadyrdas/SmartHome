@@ -28,7 +28,7 @@ public class MusicCenterAPI {
         this.simulationFacade = simulationFacade;
     }
 
-    public Boolean playMusic(MusicCenter musicCenter, String song, Human human,  ProxyAccess proxyAccess) {
+    public void playMusic(MusicCenter musicCenter, String song, Human human,  ProxyAccess proxyAccess) {
 
         Boolean ret = proxyAccess.playSong(song, human, this);
         if (ret) {
@@ -36,13 +36,13 @@ public class MusicCenterAPI {
             human.setActivityUser(ActivityUser.LISTEN_TO_MUSIC);
             simulationFacade.addHumanEventToEventsHub(human, ActivityUser.LISTEN_TO_MUSIC);
             turnOnMusicCenterById(musicCenter.getId());
+            human.countDeviceUsage(musicCenter);
         } else {
             LOG.info("Forbidden access for " + human.getName());
 
             simulationFacade.addDeviceEventsTypeToEventsHub(musicCenter, EventsType.Turn_off_device);
             turnOffMusicCenterById(musicCenter.getId());
         }
-        return ret;
     }
 
     public void turnOffMusicCenterById(Integer id) {

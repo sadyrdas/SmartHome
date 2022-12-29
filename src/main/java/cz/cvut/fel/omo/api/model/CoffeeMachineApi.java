@@ -66,6 +66,7 @@ public class CoffeeMachineApi {
                     coffeeMachine.getAmountOfBeans() + " beans");
             simulationFacade.addHumanEventToEventsHub(human, ActivityUser.DRINK_COFFEE);
             coffeeMachine.setState(new StoppedState(coffeeMachine));
+            human.countDeviceUsage(coffeeMachine);
 
         }
     }

@@ -43,12 +43,39 @@ public class SimulationFacade {
     private List<Map<Device, EventsType>> deviceEventsTypeMap = new ArrayList<>();
     private List<Map<Sensor, EventsType>> sensorEventsTypeMap = new ArrayList<>();
 
+    private Map<Device, Integer> devicesPowerConsumptions = new HashMap<>();
+    private Map<Shower, Integer> showerWaterConsumptions = new HashMap<>();
+
     public SimulationFacade(House house) {
         this.house = house;
     }
 
     public House getHouse() {
         return house;
+    }
+
+    public void updatePowerConsumption(Set<Device> devices) {
+        if (devicesPowerConsumptions.isEmpty()) {
+            for (Device device : this.house.getDevices()) {
+                devicesPowerConsumptions.put(device, 0);
+            }
+        }
+
+        for (Device d : devices) {
+            devicesPowerConsumptions.put(d, devicesPowerConsumptions.get(d) + d.getEnergy().getPower());
+        }
+    }
+
+    public void updateWaterConsumption(Set<Shower> showers) {
+        if (showerWaterConsumptions.isEmpty()) {
+            for (Shower shower : showers) {
+                showerWaterConsumptions.put(shower, 0);
+            }
+        }
+
+        for (Shower sh : showers) {
+            showerWaterConsumptions.put(sh, showerWaterConsumptions.get(sh) + sh.getEnergy().getPower());
+        }
     }
 
     public void addHumanEventToEventsHub(Human human, EventsType eventsType) {
@@ -87,52 +114,52 @@ public class SimulationFacade {
             }
         }
 
-        for(Device coffeeMachine : house.getSetOfSpecificDevicesByName("CoffeeMachine")) {
+        for (Device coffeeMachine : house.getSetOfSpecificDevicesByName("CoffeeMachine")) {
             for (Human h : house.getAllAdults()) {
                 ((CoffeeMachine) coffeeMachine).addSubscriber(h);
             }
         }
 
-        for(Device fridge : house.getSetOfSpecificDevicesByName("Fridge")) {
+        for (Device fridge : house.getSetOfSpecificDevicesByName("Fridge")) {
             for (Human h : house.getAllAdults()) {
                 ((Fridge) fridge).addSubscriber(h);
             }
         }
 
-        for(Device feederForPet : house.getSetOfSpecificDevicesByName("FeederForPet")) {
+        for (Device feederForPet : house.getSetOfSpecificDevicesByName("FeederForPet")) {
             for (Human h : house.getAllAdults()) {
                 ((FeederForPet) feederForPet).addSubscriber(h);
             }
         }
 
-        for(Device lamp : house.getSetOfSpecificDevicesByName("Lamp")) {
+        for (Device lamp : house.getSetOfSpecificDevicesByName("Lamp")) {
             for (Human h : house.getAllAdults()) {
                 ((Lamp) lamp).addSubscriber(h);
             }
         }
 
-        for(Device shower : house.getSetOfSpecificDevicesByName("Shower")) {
+        for (Device shower : house.getSetOfSpecificDevicesByName("Shower")) {
             for (Human h : house.getAllAdults()) {
                 ((Shower) shower).addSubscriber(h);
             }
         }
-        for (Device airConditioner : house.getSetOfSpecificDevicesByName("AirConditioner")){
-            for (Human h: house.getAllAdults()) {
+        for (Device airConditioner : house.getSetOfSpecificDevicesByName("AirConditioner")) {
+            for (Human h : house.getAllAdults()) {
                 ((AirConditioner) airConditioner).addSubscriber(h);
             }
         }
-        for (Device PC : house.getSetOfSpecificDevicesByName("PC")){
+        for (Device PC : house.getSetOfSpecificDevicesByName("PC")) {
             for (Human h : house.getAllAdults()) {
                 ((PC) PC).addSubscriber(h);
             }
         }
         for (Device musicCenter : house.getSetOfSpecificDevicesByName("MusicCenter")) {
-            for (Human h : house.getAllAdults()){
+            for (Human h : house.getAllAdults()) {
                 ((MusicCenter) musicCenter).addSubscriber(h);
             }
         }
         for (Device TV : house.getSetOfSpecificDevicesByName("TV")) {
-            for (Human h : house.getAllAdults()){
+            for (Human h : house.getAllAdults()) {
                 ((TV) TV).addSubscriber(h);
             }
         }
@@ -287,5 +314,13 @@ public class SimulationFacade {
 
     public List<Map<Sensor, EventsType>> getSensorEventsTypeMap() {
         return sensorEventsTypeMap;
+    }
+
+    public Map<Device, Integer> getDevicesPowerConsumptions() {
+        return devicesPowerConsumptions;
+    }
+
+    public Map<Shower, Integer> getShowerWaterConsumptions() {
+        return showerWaterConsumptions;
     }
 }

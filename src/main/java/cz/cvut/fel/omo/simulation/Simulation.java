@@ -10,6 +10,8 @@ import cz.cvut.fel.omo.model.house.House;
 import cz.cvut.fel.omo.model.user.*;
 import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import cz.cvut.fel.omo.patterns.proxy.ProxyAccess;
+import cz.cvut.fel.omo.reports.ActivityAndUsageReport;
+import cz.cvut.fel.omo.reports.ConsumptionReport;
 import cz.cvut.fel.omo.reports.EventReport;
 import cz.cvut.fel.omo.reports.HouseConfigurationReport;
 import org.apache.logging.log4j.LogManager;
@@ -74,8 +76,12 @@ public class Simulation {
                 new HouseConfigurationReport(house, numberOfConfig);
 
         EventReport eventReport = new EventReport(house, numberOfConfig, simulationFacade);
+        ConsumptionReport consumptionReport = new ConsumptionReport(house, numberOfConfig, simulationFacade);
+        ActivityAndUsageReport activityAndUsageReport = new ActivityAndUsageReport(house, numberOfConfig, simulationFacade);
         houseConfigurationReport.generateReport();
         eventReport.generateReport();
+        consumptionReport.generateReport();
+        activityAndUsageReport.generateReport();
     }
 
     public void loadFromConfigurationJson(int numberConfig) throws IOException, ParseException {
@@ -156,6 +162,8 @@ public class Simulation {
             for (Pet p : house.getPets()) {
                 createRandomPetEvents(p);
             }
+            simulationFacade.updatePowerConsumption(house.getDevices());
+            simulationFacade.updateWaterConsumption(house.getAllShowers());
             timeSimulation.tick();
         }
     }
@@ -206,7 +214,7 @@ public class Simulation {
                         .getId());
             }
             case 2 -> {
-                airConditionerApi.turnOnAirConditionerById(Objects
+                airConditionerApi.turnOnAirConditionerById(human,Objects
                         .requireNonNull(airConditionerApi.getAirConditioners().stream()
                                 .skip(new Random().nextInt(airConditionerApi.getAirConditioners().size()))
                                 .findFirst().orElse(null)).getId());
@@ -215,13 +223,13 @@ public class Simulation {
                 coffeeMachineApi.makeCoffee(human);
             }
             case 4 -> {
-                tvApi.turnOffTvById(Objects.requireNonNull(tvApi.getTvs().stream()
+                tvApi.turnOffTvById(human, Objects.requireNonNull(tvApi.getTvs().stream()
                                 .skip(new Random().nextInt(tvApi.getTvs().size()))
                                 .findFirst().orElse(null))
                         .getId());
             }
             case 5 -> {
-                airConditionerApi.turnOffAirConditionerById(
+                airConditionerApi.turnOffAirConditionerById(human,
                         Objects.requireNonNull(airConditionerApi.getAirConditioners().stream()
                                         .skip(new Random().nextInt(airConditionerApi.getAirConditioners().size()))
                                         .findFirst().orElse(null))
@@ -258,18 +266,18 @@ public class Simulation {
                 transportApi.accessTransport(human, house.getRandomSkiTransport(), proxyAccess);
             }
             case 12 -> {
-                lampApi.turnOnLamp(Objects.requireNonNull(lampApi.getLamps().stream()
+                lampApi.turnOnLamp(human, Objects.requireNonNull(lampApi.getLamps().stream()
                                 .skip(new Random().nextInt(lampApi.getLamps().size()))
                                 .findFirst().orElse(null))
                         .getId());
                 LOGGER.info(human.getName() + " turned on Lamp " );
             }
             case 13 -> {
-                showerApi.turnOnShower();
+                showerApi.turnOnShower(human);
                 LOGGER.info(human.getName() + " turned on shower!");
             }
             case 14 -> {
-                showerApi.turnOffShower();
+                showerApi.turnOffShower(human);
                 LOGGER.info(human.getName() + " turned on shower!");
             }
             case 15 -> {
@@ -279,13 +287,13 @@ public class Simulation {
                 LOGGER.info(human.getName() + " playing PC!");
             }
             case 16 -> {
-                pcApi.turnOffPCById(Objects.requireNonNull(house.getAllPCs().stream()
+                pcApi.turnOffPCById(human, Objects.requireNonNull(house.getAllPCs().stream()
                         .skip(new Random().nextInt(pcApi.getPcs().size()))
                         .findFirst().orElse(null)).getId());
                 LOGGER.info(human.getName() + " turned off PC!");
             }
             case 17 -> {
-                lampApi.turnOffLamp(Objects.requireNonNull(lampApi.getLamps().stream()
+                lampApi.turnOffLamp(human, Objects.requireNonNull(lampApi.getLamps().stream()
                                 .skip(new Random().nextInt(lampApi.getLamps().size()))
                                 .findFirst().orElse(null))
                         .getId());

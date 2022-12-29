@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.api.model;
 
 import cz.cvut.fel.omo.model.device.AirConditioner;
 import cz.cvut.fel.omo.model.events.EventsType;
+import cz.cvut.fel.omo.model.user.Human;
 import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import cz.cvut.fel.omo.patterns.state.ActiveState;
 import cz.cvut.fel.omo.patterns.state.StoppedState;
@@ -25,7 +26,7 @@ public class AirConditionerApi {
         return airConditioners;
     }
 
-    public void turnOffAirConditionerById(Integer id) {
+    public void turnOffAirConditionerById(Human human, Integer id) {
         AirConditioner airConditioner = null;
         for (AirConditioner ac : airConditioners) {
             if (ac.getId() == id) {
@@ -36,10 +37,11 @@ public class AirConditionerApi {
         if (airConditioner != null) {
             LOG.info("AirConditioner with id: " + id + " was turned off!");
             simulationFacade.addDeviceEventsTypeToEventsHub(airConditioner, EventsType.Turn_off_device);
+            human.countDeviceUsage(airConditioner);
         }
     }
 
-    public void turnOnAirConditionerById(Integer id) {
+    public void turnOnAirConditionerById(Human human, Integer id) {
         AirConditioner airConditioner = null;
 
         for (AirConditioner ac : airConditioners) {
@@ -51,7 +53,7 @@ public class AirConditionerApi {
         if (airConditioner != null) {
             LOG.info("AirConditioner with id: " + id + " was turned on!");
             simulationFacade.addDeviceEventsTypeToEventsHub(airConditioner, EventsType.Turn_on_device);
-
+            human.countDeviceUsage(airConditioner);
         }
     }
 }

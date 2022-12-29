@@ -23,6 +23,8 @@ public class ElectricitySensor extends Sensor {
 
     @Override
     public void notifySubscribers(EventsType eventsType, SimulationFacade simulationFacade) {
-
+        for(Observer observer: observers) {
+            observer.update(eventsType, simulationFacade);
+        }
     }
 }

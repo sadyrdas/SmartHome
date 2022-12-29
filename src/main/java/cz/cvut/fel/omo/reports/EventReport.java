@@ -32,7 +32,7 @@ public class EventReport implements Reportable {
         try {
             writer = new FileWriter("textReports/" + numberOfConfig + "/eventsReport.txt");
             writer.write(numberOfConfig == 1 ? "First configuration:\n" : "Second configuration:\n");
-            System.out.println();
+
             writer.write("\t Users events:\n");
             for (Map<Human, ActivityUser> map : simulationFacade.getHumanActivityUserMap()) {
                 for (Map.Entry<Human, ActivityUser> entry : map.entrySet()) {

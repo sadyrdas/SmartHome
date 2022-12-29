@@ -21,12 +21,13 @@ public class PCApi {
         this.simulationFacade = simulationFacade;
     }
 
-    public void turnOffPCById( Integer id) {
+    public void turnOffPCById(Human human, Integer id) {
         PC pc = getPcById(id);
         Objects.requireNonNull(pc);
 
         pc.setState(new StoppedState(pc));
         simulationFacade.addDeviceEventsTypeToEventsHub(pc, EventsType.Turn_off_device);
+        human.countDeviceUsage(pc);
     }
 
     public void turnOnPCById(Human human, Integer id) {
@@ -36,6 +37,7 @@ public class PCApi {
         pc.setState(new ActiveState(pc));
         simulationFacade.addDeviceEventsTypeToEventsHub(pc, EventsType.Turn_on_device);
         simulationFacade.addHumanEventToEventsHub(human, ActivityUser.PLAYING_PC);
+        human.countDeviceUsage(pc);
     }
 
     private PC getPcById(Integer id) {

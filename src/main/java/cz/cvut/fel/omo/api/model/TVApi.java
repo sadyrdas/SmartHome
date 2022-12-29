@@ -25,13 +25,14 @@ public class TVApi {
         this.simulationFacade = simulationFacade;
     }
 
-    public void turnOffTvById( Integer id) {
+    public void turnOffTvById(Human human, Integer id) {
         TV tv = getTvById(id);
         Objects.requireNonNull(tv);
 
         tv.setState(new StoppedState(tv));
         LOG.info("TV with id: " + id + " was turned off!");
         simulationFacade.addDeviceEventsTypeToEventsHub(tv, EventsType.Turn_off_device);
+        human.countDeviceUsage(tv);
     }
 
     public void turnOnTvById(Human human, Integer id) {
@@ -42,6 +43,7 @@ public class TVApi {
         LOG.info("TV with id: " + id + " was turned on!");
         simulationFacade.addDeviceEventsTypeToEventsHub(tv, EventsType.Turn_on_device);
         simulationFacade.addHumanEventToEventsHub(human, ActivityUser.WATCH_TV);
+        human.countDeviceUsage(tv);
     }
 
     private TV getTvById(Integer id) {

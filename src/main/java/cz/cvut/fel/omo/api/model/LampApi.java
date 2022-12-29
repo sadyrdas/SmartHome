@@ -26,7 +26,7 @@ public class LampApi {
         this.lamps = lamps;
     }
 
-    public void turnOffLamp(Integer id) {
+    public void turnOffLamp(Human human, Integer id) {
         Lamp lamp = getLampById(id);
         if (lamp == null) {
             LOG.error("Lamp is null. Cannot turn off lamp.");
@@ -35,10 +35,11 @@ public class LampApi {
             LOG.info("Lamp was turned off");
             lamp.setState(new StoppedState(lamp));
             simulationFacade.addDeviceEventsTypeToEventsHub(lamp, EventsType.Turn_off_device);
+            human.countDeviceUsage(lamp);
         }
     }
 
-    public void turnOnLamp(Integer id) {
+    public void turnOnLamp(Human human, Integer id) {
         Lamp lamp = getLampById(id);
 
         if (lamp == null) {
@@ -48,6 +49,7 @@ public class LampApi {
             LOG.info("Lamp was turned on");
             lamp.setState(new ActiveState(lamp));
             simulationFacade.addDeviceEventsTypeToEventsHub(lamp, EventsType.Turn_on_device);
+            human.countDeviceUsage(lamp);
         }
     }
 

@@ -244,5 +244,15 @@ public class House {
         return manuals;
     }
 
+    public Set<Shower> getAllShowers() {
+        Set<Shower> showers = new HashSet<>();
+        for (Device d : devices) {
+            if (Objects.equals(d.getName(), "Shower")) {
+                showers.add((Shower) d);
+            }
+        }
+        return showers;
+    }
+
 
 }
