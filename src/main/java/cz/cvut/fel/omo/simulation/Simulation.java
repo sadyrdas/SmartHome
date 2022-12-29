@@ -10,12 +10,12 @@ import cz.cvut.fel.omo.model.house.House;
 import cz.cvut.fel.omo.model.user.*;
 import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import cz.cvut.fel.omo.patterns.proxy.ProxyAccess;
+import cz.cvut.fel.omo.reports.HouseConfigurationReport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import org.json.simple.parser.ParseException;
 
-import java.awt.event.HierarchyBoundsAdapter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -54,7 +54,7 @@ public class Simulation {
 
     public void startSimulation() throws IOException, ParseException {
         simulationFacade = new SimulationFacade(house);
-        loadFromConfigurationJson(1);
+        loadFromConfigurationJson(2);
         airConditionerApi = new AirConditionerApi(house.getAllAirConditioners());
         coffeeMachineApi = new CoffeeMachineApi((CoffeeMachine) house.getOneDevice("CoffeeMachine"), simulationFacade);
         fridgeAPI = new FridgeAPI((Fridge) house.getOneDevice("Fridge"), simulationFacade);
@@ -94,6 +94,10 @@ public class Simulation {
         loadSensor(configurationName);
         loadTransport(configurationName);
         addAllSubscribers();
+        HouseConfigurationReport houseConfigurationReport =
+                new HouseConfigurationReport(house, numberConfig);
+
+        houseConfigurationReport.generateReport();
     }
 
     private void loadHouse(String nameConfig) throws IOException, ParseException {
