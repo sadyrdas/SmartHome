@@ -10,7 +10,7 @@ import cz.cvut.fel.omo.model.house.House;
 import cz.cvut.fel.omo.model.user.*;
 import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import cz.cvut.fel.omo.patterns.proxy.ProxyAccess;
-import cz.cvut.fel.omo.reports.ConsumptionReport;
+import cz.cvut.fel.omo.reports.EventReport;
 import cz.cvut.fel.omo.reports.HouseConfigurationReport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -53,23 +53,29 @@ public class Simulation {
 
     }
 
-    public void startSimulation(int numberofConfig) throws IOException, ParseException {
+    public void startSimulation(int numberOfConfig) throws IOException, ParseException {
         simulationFacade = new SimulationFacade(house);
-        loadFromConfigurationJson(numberofConfig);
-        airConditionerApi = new AirConditionerApi(house.getAllAirConditioners());
+        loadFromConfigurationJson(numberOfConfig);
+        airConditionerApi = new AirConditionerApi(house.getAllAirConditioners(), simulationFacade);
         coffeeMachineApi = new CoffeeMachineApi((CoffeeMachine) house.getOneDevice("CoffeeMachine"), simulationFacade);
         fridgeAPI = new FridgeAPI((Fridge) house.getOneDevice("Fridge"), simulationFacade);
-        tvApi = new TVApi(house.getAllTVs());
+        tvApi = new TVApi(house.getAllTVs(), simulationFacade);
         windowApi = new WindowApi(house.getRooms());
-        musicCenterAPI = new MusicCenterAPI(house.getAllMusicCenters());
-        pcApi = new PCApi(house.getAllPCs());
+        musicCenterAPI = new MusicCenterAPI(house.getAllMusicCenters(), simulationFacade);
+        pcApi = new PCApi(house.getAllPCs(), simulationFacade);
         proxyAccess = new ProxyAccess();
-        transportApi = new TransportApi();
+        transportApi = new TransportApi(simulationFacade);
         feederForPetApi = new FeederForPetApi((FeederForPet) house.getOneDevice("FeederForPet"), simulationFacade);
-        lampApi = new LampApi(house.getAllLamps());
+        lampApi = new LampApi(simulationFacade, house.getAllLamps());
         showerApi = new ShowerApi((Shower) house.getOneDevice("Shower"));
         run();
 
+        HouseConfigurationReport houseConfigurationReport =
+                new HouseConfigurationReport(house, numberOfConfig);
+
+        EventReport eventReport = new EventReport(house, numberOfConfig, simulationFacade);
+        houseConfigurationReport.generateReport();
+        eventReport.generateReport();
     }
 
     public void loadFromConfigurationJson(int numberConfig) throws IOException, ParseException {
@@ -95,13 +101,7 @@ public class Simulation {
         loadSensor(configurationName);
         loadTransport(configurationName);
         addAllSubscribers();
-        HouseConfigurationReport houseConfigurationReport =
-                new HouseConfigurationReport(house, numberConfig);
 
-        houseConfigurationReport.generateReport();
-
-        ConsumptionReport consumptionReport = new ConsumptionReport(numberConfig,house );
-        consumptionReport.generateReport();
     }
 
     private void loadHouse(String nameConfig) throws IOException, ParseException {
@@ -168,7 +168,7 @@ public class Simulation {
                 LOGGER.info("Pet " + pet.getName() + " is on the walk with " + human.getName());
             }
             case 1 -> {
-                feederForPetApi.timeForDinner();
+                feederForPetApi.timeForDinner(pet);
                 pet.setActivityPet(ActivityPet.EAT);
                 LOGGER.info("Pet " + pet.getName() + " is going to dinner");
             }
@@ -187,15 +187,15 @@ public class Simulation {
 
     private void createRandomUserEvents(Human human) {
         Random random = new Random();
-        int randNum = random.nextInt(18);
+        int randNum = random.nextInt(17);
         List<String> food = fridgeAPI.getAllFood().keySet().stream().toList();
         switch (randNum) {
             case 0 -> {
                 String oneFood = food.get(random.nextInt(food.size()));
-                fridgeAPI.takeFoodFromFridge(oneFood);
+                fridgeAPI.takeFoodFromFridge(human, oneFood);
             }
             case 1 -> {
-                tvApi.turnOnTvById(Objects.requireNonNull(tvApi.getTvs().stream()
+                tvApi.turnOnTvById(human, Objects.requireNonNull(tvApi.getTvs().stream()
                                 .skip(new Random().nextInt(tvApi.getTvs().size()))
                                 .findFirst().orElse(null))
                         .getId());
@@ -207,7 +207,7 @@ public class Simulation {
                                 .findFirst().orElse(null)).getId());
             }
             case 3 -> {
-                coffeeMachineApi.makeCoffee();
+                coffeeMachineApi.makeCoffee(human);
             }
             case 4 -> {
                 tvApi.turnOffTvById(Objects.requireNonNull(tvApi.getTvs().stream()
@@ -224,15 +224,18 @@ public class Simulation {
             }
             case 6 -> {
                 String song = musicCenterAPI.getAdultSongs().get(random.nextInt(musicCenterAPI.getAdultSongs().size()));
-                musicCenterAPI.playMusic(song, human, proxyAccess);
+                musicCenterAPI.playMusic(musicCenterAPI.getMusicCenters().stream()
+                        .skip(new Random().nextInt(musicCenterAPI.getMusicCenters().size()))
+                                .findFirst().orElse(null), song, human, proxyAccess);
             }
             case 7 -> {
                 LOGGER.info("Random User event started. Playing music in music center.");
                 String song = musicCenterAPI.getChildSongs().get(random.nextInt(musicCenterAPI.getChildSongs().size()));
-                musicCenterAPI.playMusic(song, human, proxyAccess);
+                musicCenterAPI.playMusic(musicCenterAPI.getMusicCenters().stream()
+                        .skip(new Random().nextInt(musicCenterAPI.getMusicCenters().size())).findFirst().orElse(null),
+                        song, human, proxyAccess);
                 LOGGER.info("Started playing a song: " + song + " for Childs.");
             }
-
             case 8 -> {
                 LOGGER.info("Random accessing Car Transport event was started: with human name " + human.getName());
                 transportApi.accessTransport(human, house.getRandomCarTransport(), proxyAccess);
@@ -242,45 +245,41 @@ public class Simulation {
                 transportApi.removeHuman(house.getRandomCarTransport(), human);
             }
             case 10 -> {
-                LOGGER.info("Random accessing Ski Transport event was started: with human name " + human.getName());
-                transportApi.accessTransport(human, house.getRandomCarTransport(), proxyAccess);
+                LOGGER.info("Random accessing Bike Transport event was started: with human name " + human.getName());
+                transportApi.accessTransport(human, house.getRandomBikeTransport(), proxyAccess);
             }
             case 11 -> {
                 LOGGER.info("Random accessing Ski Transport event was started: with human name " + human.getName());
                 transportApi.accessTransport(human, house.getRandomSkiTransport(), proxyAccess);
             }
             case 12 -> {
-                feederForPetApi.timeForDinner();
-                LOGGER.info("Dinner is ready");
-            }
-            case 13 -> {
-                lampApi.turnOnLamp( Objects.requireNonNull(lampApi.getLamps().stream()
+                lampApi.turnOnLamp(Objects.requireNonNull(lampApi.getLamps().stream()
                                 .skip(new Random().nextInt(lampApi.getLamps().size()))
                                 .findFirst().orElse(null))
                         .getId());
                 LOGGER.info(human.getName() + " turned on Lamp " );
             }
-            case 14 -> {
+            case 13 -> {
                 showerApi.turnOnShower();
                 LOGGER.info(human.getName() + " turned on shower!");
             }
-            case 15 -> {
+            case 14 -> {
                 showerApi.turnOffShower();
                 LOGGER.info(human.getName() + " turned on shower!");
             }
-            case 16 -> {
-                pcApi.turnOnPCById(Objects.requireNonNull(house.getAllPCs().stream()
+            case 15 -> {
+                pcApi.turnOnPCById(human, Objects.requireNonNull(house.getAllPCs().stream()
                         .skip(new Random().nextInt(pcApi.getPcs().size()))
                         .findFirst().orElse(null)).getId());
                 LOGGER.info(human.getName() + " playing PC!");
             }
-            case 17 -> {
+            case 16 -> {
                 pcApi.turnOffPCById(Objects.requireNonNull(house.getAllPCs().stream()
                         .skip(new Random().nextInt(pcApi.getPcs().size()))
                         .findFirst().orElse(null)).getId());
                 LOGGER.info(human.getName() + " turned off PC!");
             }
-            case 18 -> {
+            case 17 -> {
                 lampApi.turnOffLamp(Objects.requireNonNull(lampApi.getLamps().stream()
                                 .skip(new Random().nextInt(lampApi.getLamps().size()))
                                 .findFirst().orElse(null))

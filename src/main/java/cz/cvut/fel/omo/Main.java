@@ -1,7 +1,5 @@
 package cz.cvut.fel.omo;
 
-import cz.cvut.fel.omo.model.device.Device;
-import cz.cvut.fel.omo.parsingJson.JsonHandling;
 import cz.cvut.fel.omo.simulation.Simulation;
 import org.json.simple.parser.ParseException;
 

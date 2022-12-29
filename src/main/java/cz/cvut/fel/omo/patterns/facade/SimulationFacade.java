@@ -2,10 +2,13 @@ package cz.cvut.fel.omo.patterns.facade;
 
 import cz.cvut.fel.omo.model.device.*;
 import cz.cvut.fel.omo.model.device.sensor.Sensor;
+import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.house.Floor;
 import cz.cvut.fel.omo.model.house.House;
 import cz.cvut.fel.omo.model.room.Room;
 import cz.cvut.fel.omo.model.transport.Transport;
+import cz.cvut.fel.omo.model.user.ActivityPet;
+import cz.cvut.fel.omo.model.user.ActivityUser;
 import cz.cvut.fel.omo.model.user.Human;
 import cz.cvut.fel.omo.model.user.Pet;
 import cz.cvut.fel.omo.patterns.builder.HumanBuilder;
@@ -24,9 +27,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class SimulationFacade {
 
@@ -36,12 +37,34 @@ public class SimulationFacade {
 
     private House house;
 
+    private List<Map<Human, EventsType>> humanEventsTypeMap = new ArrayList<>();
+    private List<Map<Human, ActivityUser>> humanActivityUserMap = new ArrayList<>();
+    private List<Map<Pet, ActivityPet>> petActivityPetMap = new ArrayList<>();
+    private List<Map<Device, EventsType>> deviceEventsTypeMap = new ArrayList<>();
+    private List<Map<Sensor, EventsType>> sensorEventsTypeMap = new ArrayList<>();
+
     public SimulationFacade(House house) {
         this.house = house;
     }
 
     public House getHouse() {
         return house;
+    }
+
+    public void addHumanEventToEventsHub(Human human, EventsType eventsType) {
+        humanEventsTypeMap.add(Map.of(human, eventsType));
+    }
+
+    public void addHumanEventToEventsHub(Human human, ActivityUser activityUser) {
+        humanActivityUserMap.add(Map.of(human, activityUser));
+    }
+
+    public void addDeviceEventsTypeToEventsHub(Device device, EventsType eventsType) {
+        deviceEventsTypeMap.add(Map.of(device, eventsType));
+    }
+
+    public void addActivityPetEventToEventsHub(Pet pet, ActivityPet activityPet) {
+        petActivityPetMap.add(Map.of(pet, activityPet));
     }
 
     public void addAllSubscribers(House house) {
@@ -228,5 +251,23 @@ public class SimulationFacade {
     }
 
 
+    public List<Map<Human, EventsType>> getHumanEventsTypeMap() {
+        return humanEventsTypeMap;
+    }
 
+    public List<Map<Human, ActivityUser>> getHumanActivityUserMap() {
+        return humanActivityUserMap;
+    }
+
+    public List<Map<Pet, ActivityPet>> getPetActivityPetMap() {
+        return petActivityPetMap;
+    }
+
+    public List<Map<Device, EventsType>> getDeviceEventsTypeMap() {
+        return deviceEventsTypeMap;
+    }
+
+    public List<Map<Sensor, EventsType>> getSensorEventsTypeMap() {
+        return sensorEventsTypeMap;
+    }
 }

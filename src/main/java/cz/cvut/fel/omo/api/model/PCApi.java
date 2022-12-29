@@ -1,6 +1,11 @@
 package cz.cvut.fel.omo.api.model;
 
 import cz.cvut.fel.omo.model.device.PC;
+import cz.cvut.fel.omo.model.events.EventsType;
+import cz.cvut.fel.omo.model.user.ActivityPet;
+import cz.cvut.fel.omo.model.user.ActivityUser;
+import cz.cvut.fel.omo.model.user.Human;
+import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import cz.cvut.fel.omo.patterns.state.ActiveState;
 import cz.cvut.fel.omo.patterns.state.StoppedState;
 
@@ -9,23 +14,28 @@ import java.util.Set;
 
 public class PCApi {
     private final Set<PC> pcs;
+    private final SimulationFacade simulationFacade;
 
-    public PCApi(Set<PC> pcs) {
+    public PCApi(Set<PC> pcs, SimulationFacade simulationFacade) {
         this.pcs = pcs;
+        this.simulationFacade = simulationFacade;
     }
 
-    public void turnOffPCById(Integer id) {
+    public void turnOffPCById( Integer id) {
         PC pc = getPcById(id);
         Objects.requireNonNull(pc);
 
         pc.setState(new StoppedState(pc));
+        simulationFacade.addDeviceEventsTypeToEventsHub(pc, EventsType.Turn_off_device);
     }
 
-    public void turnOnPCById(Integer id) {
+    public void turnOnPCById(Human human, Integer id) {
         PC pc = getPcById(id);
         Objects.requireNonNull(pc);
 
         pc.setState(new ActiveState(pc));
+        simulationFacade.addDeviceEventsTypeToEventsHub(pc, EventsType.Turn_on_device);
+        simulationFacade.addHumanEventToEventsHub(human, ActivityUser.PLAYING_PC);
     }
 
     private PC getPcById(Integer id) {

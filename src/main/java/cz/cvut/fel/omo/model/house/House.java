@@ -127,6 +127,15 @@ public class House {
         return cars.get(new Random().nextInt(cars.size()));
     }
 
+    public Transport getRandomBikeTransport() {
+        List<Transport> bikes = new ArrayList<>();
+        for (Transport t : transports) {
+            if (t.getCategoryTransport() == CategoryTransport.CAR) bikes.add(t);
+        }
+
+        return bikes.get(new Random().nextInt(bikes.size()));
+    }
+
     public Transport getRandomSkiTransport() {
         List<Transport> skiis = new ArrayList<>();
         for (Transport t : transports) {
