@@ -53,9 +53,9 @@ public class Simulation {
 
     }
 
-    public void startSimulation() throws IOException, ParseException {
+    public void startSimulation(int numberofConfig) throws IOException, ParseException {
         simulationFacade = new SimulationFacade(house);
-        loadFromConfigurationJson(2);
+        loadFromConfigurationJson(numberofConfig);
         airConditionerApi = new AirConditionerApi(house.getAllAirConditioners());
         coffeeMachineApi = new CoffeeMachineApi((CoffeeMachine) house.getOneDevice("CoffeeMachine"), simulationFacade);
         fridgeAPI = new FridgeAPI((Fridge) house.getOneDevice("Fridge"), simulationFacade);
@@ -72,7 +72,7 @@ public class Simulation {
 
     }
 
-    private void loadFromConfigurationJson(int numberConfig) throws IOException, ParseException {
+    public void loadFromConfigurationJson(int numberConfig) throws IOException, ParseException {
         String configurationName = null;
 
         if (numberConfig == 1) {
