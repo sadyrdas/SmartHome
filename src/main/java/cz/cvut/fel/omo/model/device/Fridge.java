@@ -28,9 +28,7 @@ public class Fridge extends Device implements Subject {
         addFoodToFridge();
     }
 
-    public Fridge(int id, String name, int baseEnergyConsumption) {
-        super(id, name, baseEnergyConsumption, EnergyType.Electricity);
-    }
+
 
     public Map<String, Integer> getFoodInFridge() {
         return foodInFridge;

@@ -26,5 +26,6 @@ public enum ActivityUser {
     LISTEN_TO_MUSIC,
     USE_TRANSPORT,
     OFF_TRANSPORT,
-    PLAYING_PC
+    PLAYING_PC,
+    READ_MANUAL
 }

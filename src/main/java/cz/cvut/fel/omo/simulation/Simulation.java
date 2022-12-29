@@ -100,6 +100,7 @@ public class Simulation {
         loadDevice(configurationName);
         loadSensor(configurationName);
         loadTransport(configurationName);
+        loadManuals(configurationName);
         addAllSubscribers();
 
     }
@@ -128,6 +129,10 @@ public class Simulation {
 
     private void loadTransport(String nameConfig) throws IOException, ParseException {
         simulationFacade.loadTransport(nameConfig, house);
+    }
+
+    private void loadManuals(String nameConfig) throws IOException, ParseException{
+        simulationFacade.loadManuals(nameConfig, house);
     }
 
 
@@ -187,7 +192,7 @@ public class Simulation {
 
     private void createRandomUserEvents(Human human) {
         Random random = new Random();
-        int randNum = random.nextInt(17);
+        int randNum = 18;
         List<String> food = fridgeAPI.getAllFood().keySet().stream().toList();
         switch (randNum) {
             case 0 -> {
@@ -286,7 +291,13 @@ public class Simulation {
                         .getId());
                 LOGGER.info(human.getName() + " turned off Lamp " );
             }
+            case 18 -> {
+                for (Device device : house.getDevices()){
+                LOGGER.info("Our device " + device.getName() + " is broken");
+                LOGGER.info("Human " + house.getHumanByPermission(ResidentPermission.ADULT).getName() + " read a Manual " + house.getManualByDevice(device));
+            }
         }
+    }
     }
 
 

@@ -28,6 +28,10 @@ public class House {
     private final Set<Window> windows = new HashSet<>();
     private final Set<Transport> transports = new HashSet<>();
 
+
+
+    private final Set<Manual> manuals = new HashSet<>();
+
     private House() {
 
     }
@@ -50,11 +54,21 @@ public class House {
         return null;
     }
 
+    public String getManualByDevice(Device device) {
+        for (Manual manual : getManuals()){
+            if (device.getId() == manual.getDeviceId()){
+                return manual.getContent();
+            }
+        }
+        return null;
+    }
 
     public void addRoom(Room room) {
         rooms.add(room);
     }
-
+    public void addManuals(Manual manual) {
+        manuals.add(manual);
+    }
     public void addDevice(Device device) {
         devices.add(device);
     }
@@ -105,6 +119,7 @@ public class House {
     public Set<Device> getDevices() {
         return devices;
     }
+
     public Human getHumanByPermission(ResidentPermission residentPermission){
         for (Human h : getHumans()){
             if (h.getPermissions() == residentPermission) {
@@ -225,4 +240,9 @@ public class House {
     public Set<Transport> getTransports() {
         return transports;
     }
+    public Set<Manual> getManuals() {
+        return manuals;
+    }
+
+
 }

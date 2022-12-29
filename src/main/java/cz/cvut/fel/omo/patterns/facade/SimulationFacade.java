@@ -136,6 +136,13 @@ public class SimulationFacade {
                 ((TV) TV).addSubscriber(h);
             }
         }
+        for (Manual manual: house.getManuals()) {
+            for (Human h : house.getAllAdults()){
+                manual.addSubscriber(h);
+            }
+        }
+
+
     }
 
     public JSONArray load(String nameConfig, String fileName) throws IOException, ParseException {
@@ -247,6 +254,17 @@ public class SimulationFacade {
         }
         for (Transport t : house.getTransports()) {
             LOGGER.info("Created transports " + t.getName());
+        }
+    }
+    public void loadManuals(String nameConfig, House house) throws IOException, ParseException{
+        JSONArray array = load(nameConfig, "/manuals.json");
+        for (Object o : array){
+            JSONObject manualsJson = (JSONObject) o;
+            house.addManuals(new Manual((String) manualsJson.get("content"), (int)(long) manualsJson.get("deviceId") ));
+
+        }
+        for (Manual manual: house.getManuals()){
+            LOGGER.info("Created manuals " + manual.getContent());
         }
     }
 

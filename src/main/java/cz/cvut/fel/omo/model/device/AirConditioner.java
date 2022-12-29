@@ -20,9 +20,7 @@ public class AirConditioner extends Device implements Observer, Subject {
         super(id, name, room, baseEnergyConsumption, EnergyType.Electricity);
     }
 
-    public AirConditioner(int id, String name, int baseEnergyConsumption) {
-        super(id, name, baseEnergyConsumption, EnergyType.Electricity);
-    }
+
 
     @Override
     public void update(EventsType events_type, SimulationFacade simulationFacade) {

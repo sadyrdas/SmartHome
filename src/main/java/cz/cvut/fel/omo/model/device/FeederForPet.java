@@ -9,8 +9,6 @@ import cz.cvut.fel.omo.patterns.observer.Observer;
 import cz.cvut.fel.omo.patterns.observer.Subject;
 import cz.cvut.fel.omo.patterns.state.ActiveState;
 import cz.cvut.fel.omo.patterns.state.StoppedState;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,9 +19,6 @@ public class FeederForPet extends Device implements Subject {
 
     private final Set<Observer> observers = new HashSet<>();
 
-    public FeederForPet(int id, String name, int baseEnergyConsumption) {
-        super(id, name, baseEnergyConsumption, EnergyType.Electricity);
-    }
 
     public FeederForPet(int id, String name, Room room, int baseEnergyConsumption) {
         super(id, name, room, baseEnergyConsumption, EnergyType.Electricity);

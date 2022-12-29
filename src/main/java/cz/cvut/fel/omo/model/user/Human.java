@@ -35,6 +35,7 @@ public class Human extends Resident {
                 ((FeederForPet) simulationFacade.getHouse().getOneDevice("FeederForPet")).fillFeeder();
                 LOG.info("Human "+ getName() + " filled feeder");
             }
+            case Broken_device -> setActivityUser(ActivityUser.READ_MANUAL);
         }
 
     }

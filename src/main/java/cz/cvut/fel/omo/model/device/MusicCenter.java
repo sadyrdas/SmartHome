@@ -19,9 +19,7 @@ public class MusicCenter extends Device implements Subject{
         super(id, name, room, baseEnergyConsumption, EnergyType.Electricity);
     }
 
-    public MusicCenter(int id, String name, int baseEnergyConsumption) {
-        super(id, name, baseEnergyConsumption, EnergyType.Electricity);
-    }
+
 
     @Override
     public void update(EventsType events_type, SimulationFacade simulationFacade) {

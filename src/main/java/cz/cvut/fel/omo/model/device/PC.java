@@ -22,9 +22,7 @@ public class PC extends Device implements Subject {
         super(id, name, room, baseEnergyConsumption, EnergyType.Electricity);
     }
 
-    public PC(int id, String name, int baseEnergyConsumption) {
-        super(id, name, baseEnergyConsumption, EnergyType.Electricity);
-    }
+
 
     @Override
     public void addSubscriber(Observer observer) {

@@ -35,13 +35,6 @@ public abstract class Device implements Observer {
         setState(new IdleState(this));
     }
 
-    public Device(int id ,String name, int baseEnergyConsumption, EnergyType energyType) {
-        this.id = id;
-        this.name = name;
-        this.baseEnergyConsumption = baseEnergyConsumption;
-        setEnergy(new Energy(baseEnergyConsumption, energyType));
-        setState(new IdleState(this));
-    }
 
     @Override
     public void update(EventsType eventsType, SimulationFacade simulationFacade){
@@ -102,4 +95,6 @@ public abstract class Device implements Observer {
     public void setId(int id) {
         this.id = id;
     }
+
+
 }
