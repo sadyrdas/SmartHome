@@ -10,6 +10,7 @@ import cz.cvut.fel.omo.model.house.House;
 import cz.cvut.fel.omo.model.user.*;
 import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import cz.cvut.fel.omo.patterns.proxy.ProxyAccess;
+import cz.cvut.fel.omo.reports.ConsumptionReport;
 import cz.cvut.fel.omo.reports.HouseConfigurationReport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -98,6 +99,9 @@ public class Simulation {
                 new HouseConfigurationReport(house, numberConfig);
 
         houseConfigurationReport.generateReport();
+
+        ConsumptionReport consumptionReport = new ConsumptionReport(numberConfig,house );
+        consumptionReport.generateReport();
     }
 
     private void loadHouse(String nameConfig) throws IOException, ParseException {
@@ -183,7 +187,7 @@ public class Simulation {
 
     private void createRandomUserEvents(Human human) {
         Random random = new Random();
-        int randNum = random.nextInt(15);
+        int randNum = random.nextInt(18);
         List<String> food = fridgeAPI.getAllFood().keySet().stream().toList();
         switch (randNum) {
             case 0 -> {
@@ -250,8 +254,11 @@ public class Simulation {
                 LOGGER.info("Dinner is ready");
             }
             case 13 -> {
-//                lampApi.turnOnLamp();
-                LOGGER.info("Lamp is turned on");
+                lampApi.turnOnLamp( Objects.requireNonNull(lampApi.getLamps().stream()
+                                .skip(new Random().nextInt(lampApi.getLamps().size()))
+                                .findFirst().orElse(null))
+                        .getId());
+                LOGGER.info(human.getName() + " turned on Lamp " );
             }
             case 14 -> {
                 showerApi.turnOnShower();
@@ -262,20 +269,23 @@ public class Simulation {
                 LOGGER.info(human.getName() + " turned on shower!");
             }
             case 16 -> {
-                pcApi.turnOnPCById(house.getAllPCs().stream()
+                pcApi.turnOnPCById(Objects.requireNonNull(house.getAllPCs().stream()
                         .skip(new Random().nextInt(pcApi.getPcs().size()))
-                        .findFirst().orElse(null).getId());
+                        .findFirst().orElse(null)).getId());
                 LOGGER.info(human.getName() + " playing PC!");
             }
             case 17 -> {
-                pcApi.turnOffPCById(house.getAllPCs().stream()
+                pcApi.turnOffPCById(Objects.requireNonNull(house.getAllPCs().stream()
                         .skip(new Random().nextInt(pcApi.getPcs().size()))
-                        .findFirst().orElse(null).getId());
+                        .findFirst().orElse(null)).getId());
                 LOGGER.info(human.getName() + " turned off PC!");
             }
             case 18 -> {
-//                lampApi.turnOnLamp();
-//                LOGGER.info(human.getName() + " turned on Lamp. In room: " + );
+                lampApi.turnOffLamp(Objects.requireNonNull(lampApi.getLamps().stream()
+                                .skip(new Random().nextInt(lampApi.getLamps().size()))
+                                .findFirst().orElse(null))
+                        .getId());
+                LOGGER.info(human.getName() + " turned off Lamp " );
             }
         }
     }

@@ -11,7 +11,12 @@ import java.util.Set;
 
 public class LampApi {
     private static final Logger LOG = LogManager.getLogger(LampApi.class.getSimpleName());
-    private Set<Lamp> lamps = new HashSet<>();
+
+    public Set<Lamp> getLamps() {
+        return lamps;
+    }
+
+    private final Set<Lamp> lamps;
 
     public LampApi(Set<Lamp> lamps) {
         this.lamps = lamps;
