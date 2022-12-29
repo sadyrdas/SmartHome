@@ -1,0 +1,81 @@
+First configuration:
+	Floor 1: 
+		Kitchen:
+			Devices:
+				Lamp
+				FeederForPet
+				AirConditioner
+			Sensors:
+				ElectricitySensor
+				SmokeSensor
+				TemperatureSensor
+			Windows: 1
+		WC:
+			Devices:
+				Lamp
+			Sensors:
+				ElectricitySensor
+				SmokeSensor
+				TemperatureSensor
+			Windows: 0
+		Living room:
+			Devices:
+				Fridge
+				Lamp
+				AirConditioner
+			Sensors:
+				ElectricitySensor
+				SmokeSensor
+				TemperatureSensor
+			Windows: 5
+	Floor 2: 
+		Twin bedroom:
+			Devices:
+				PC
+				MusicCenter
+				AirConditioner
+				PC
+				Lamp
+				TV
+				CoffeeMachine
+			Sensors:
+				ElectricitySensor
+				TemperatureSensor
+				SmokeSensor
+			Windows: 2
+		Double bedroom:
+			Devices:
+				MusicCenter
+				TV
+				Lamp
+				MusicCenter
+			Sensors:
+				ElectricitySensor
+				SmokeSensor
+				TemperatureSensor
+			Windows: 2
+		Bathroom:
+			Devices:
+				Lamp
+				Shower
+			Sensors:
+				ElectricitySensor
+				TemperatureSensor
+				SmokeSensor
+			Windows: 1
+Humans:
+	Thor - CHILD
+	Natasha - CHILD
+	Bruce - CHILD
+	Steve - CHILD
+	Kerol - ADULT
+	Tony - ADULT
+Pets:
+	Duke
+	Mary
+	Bob
+Transport:
+	Thunder
+	Toyota Camry 70
+	BMX2
+	BMX
