@@ -12,7 +12,6 @@ import cz.cvut.fel.omo.patterns.builder.PetBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.print.DocFlavor;
 import java.util.*;
 
 public class House {

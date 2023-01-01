@@ -11,6 +11,7 @@ public class Window implements Observer {
     private static final Logger LOGGER = LogManager.getLogger(TemperatureSensor.class.getName());
 
     private boolean isOpen;
+    private Blinds blinds;
 
     public Window(boolean isOpen) {
         this.isOpen = isOpen;
@@ -43,7 +44,20 @@ public class Window implements Observer {
                     LOGGER.info("Window is closed");
                 }
             }
+            case Day -> {
+                this.blinds.openBlinds();
+            }
+            case Night -> {
+                this.blinds.closeBlinds();
+            }
         }
+    }
 
+    public void setBlinds(Blinds blinds) {
+        this.blinds = blinds;
+    }
+
+    public Blinds getBlinds() {
+        return blinds;
     }
 }

@@ -12,7 +12,6 @@ import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
-import java.util.Objects;
 
 public class EventReport implements Reportable {
 

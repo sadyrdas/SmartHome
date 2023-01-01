@@ -1,8 +1,6 @@
 package cz.cvut.fel.omo.patterns.builder;
 
 import cz.cvut.fel.omo.model.user.Human;
-import cz.cvut.fel.omo.model.user.Pet;
-import cz.cvut.fel.omo.model.user.PetType;
 import cz.cvut.fel.omo.model.user.ResidentPermission;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

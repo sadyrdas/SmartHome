@@ -13,9 +13,6 @@ import cz.cvut.fel.omo.patterns.state.StoppedState;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Objects;
-import java.util.Set;
-
 public class FeederForPetApi {
     private static final Logger LOG = LogManager.getLogger(FeederForPetApi.class.getName());
     private final FeederForPet feederForPet;

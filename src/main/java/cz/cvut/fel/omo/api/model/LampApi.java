@@ -30,7 +30,6 @@ public class LampApi {
         Lamp lamp = getLampById(id);
         if (lamp == null) {
             LOG.error("Lamp is null. Cannot turn off lamp.");
-            return;
         } else {
             LOG.info("Lamp was turned off");
             lamp.setState(new StoppedState(lamp));

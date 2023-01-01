@@ -28,7 +28,6 @@ public class SmokeSensor extends Sensor {
 
     @Override
     public void notifySubscribers(EventsType eventsType, SimulationFacade simulationFacade) {
-        LOGGER.info("notify!");
         for(Observer observer : observers) {
             observer.update(eventsType, simulationFacade);
         }

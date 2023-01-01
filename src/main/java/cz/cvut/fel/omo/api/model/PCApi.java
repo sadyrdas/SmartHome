@@ -2,7 +2,6 @@ package cz.cvut.fel.omo.api.model;
 
 import cz.cvut.fel.omo.model.device.PC;
 import cz.cvut.fel.omo.model.events.EventsType;
-import cz.cvut.fel.omo.model.user.ActivityPet;
 import cz.cvut.fel.omo.model.user.ActivityUser;
 import cz.cvut.fel.omo.model.user.Human;
 import cz.cvut.fel.omo.patterns.facade.SimulationFacade;

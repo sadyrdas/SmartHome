@@ -1,7 +1,6 @@
 package cz.cvut.fel.omo.model.transport;
 
 import cz.cvut.fel.omo.model.user.Human;
-import cz.cvut.fel.omo.simulation.Simulation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,7 +12,7 @@ public class Transport {
     private String name;
     private int amount;
     private Human currentHuman;
-    private Queue<Human> queueForAccess = new LinkedList<>();
+    private final Queue<Human> queueForAccess = new LinkedList<>();
 
     private static final Logger LOG = LogManager.getLogger(Transport.class.getName());
 

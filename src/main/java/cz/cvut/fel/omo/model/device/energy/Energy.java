@@ -2,7 +2,7 @@ package cz.cvut.fel.omo.model.device.energy;
 
 public class Energy {
     private int power;
-    private EnergyType energyType;
+    private final EnergyType energyType;
 
     /**
      *  @param power power consumption per hour. Every device has its own

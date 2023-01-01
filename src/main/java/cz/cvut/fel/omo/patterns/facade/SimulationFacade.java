@@ -35,16 +35,16 @@ public class SimulationFacade {
     private static final String PATH = Objects.requireNonNull(Simulation.class.getResource("/")).getPath()
             + "configurations";
 
-    private House house;
+    private final House house;
 
-    private List<Map<Human, EventsType>> humanEventsTypeMap = new ArrayList<>();
-    private List<Map<Human, ActivityUser>> humanActivityUserMap = new ArrayList<>();
-    private List<Map<Pet, ActivityPet>> petActivityPetMap = new ArrayList<>();
-    private List<Map<Device, EventsType>> deviceEventsTypeMap = new ArrayList<>();
-    private List<Map<Sensor, EventsType>> sensorEventsTypeMap = new ArrayList<>();
+    private final List<Map<Human, EventsType>> humanEventsTypeMap = new ArrayList<>();
+    private final List<Map<Human, ActivityUser>> humanActivityUserMap = new ArrayList<>();
+    private final List<Map<Pet, ActivityPet>> petActivityPetMap = new ArrayList<>();
+    private final List<Map<Device, EventsType>> deviceEventsTypeMap = new ArrayList<>();
+    private final List<Map<Sensor, EventsType>> sensorEventsTypeMap = new ArrayList<>();
 
-    private Map<Device, Integer> devicesPowerConsumptions = new HashMap<>();
-    private Map<Shower, Integer> showerWaterConsumptions = new HashMap<>();
+    private final Map<Device, Integer> devicesPowerConsumptions = new HashMap<>();
+    private final Map<Shower, Integer> showerWaterConsumptions = new HashMap<>();
 
     public SimulationFacade(House house) {
         this.house = house;
@@ -207,7 +207,10 @@ public class SimulationFacade {
 
                 Set<Window> windows = new HashSet<>();
                 for (int i = 0; i < countWindows; i++) {
-                    windows.add(new Window(false));
+                    Window window = new Window(false);
+                    Blinds blinds = new Blinds(window);
+                    window.setBlinds(blinds);
+                    windows.add(window);
                 }
 
                 Room room = roomBuilder.setId((int) (long) roomJson.get("id"))
@@ -215,6 +218,7 @@ public class SimulationFacade {
                         .setWindowsCount(countWindows)
                         .addWindowsToRoom(windows)
                         .build();
+
                 floor.addRoom(room);
             }
             house.addFloor(floor);
@@ -295,10 +299,6 @@ public class SimulationFacade {
         }
     }
 
-
-    public List<Map<Human, EventsType>> getHumanEventsTypeMap() {
-        return humanEventsTypeMap;
-    }
 
     public List<Map<Human, ActivityUser>> getHumanActivityUserMap() {
         return humanActivityUserMap;
