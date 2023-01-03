@@ -222,6 +222,7 @@ public class SimulationFacade {
                         .setWindowsCount(countWindows)
                         .addWindowsToRoom(windows)
                         .build();
+
                 floor.addRoom(room);
             }
             house.addFloor(floor);

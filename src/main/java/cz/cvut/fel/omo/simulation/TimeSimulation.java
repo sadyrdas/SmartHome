@@ -4,16 +4,16 @@ import cz.cvut.fel.omo.model.device.Window;
 import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.house.House;
 import cz.cvut.fel.omo.model.room.Room;
-import cz.cvut.fel.omo.patterns.builder.TransportBuilder;
 import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
+import cz.cvut.fel.omo.patterns.observer.Observer;
+import cz.cvut.fel.omo.patterns.observer.Subject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
-/**
- * <p>This class describes simulation of time during simulation</p>
- */
 public class TimeSimulation {
     private static final Logger LOGGER = LogManager.getLogger(TimeSimulation.class.getName());
     private LocalDateTime dateTime;
@@ -49,8 +49,6 @@ public class TimeSimulation {
             }
         }
     }
-
-
     public LocalDateTime getDateTime() {
         return dateTime;
     }

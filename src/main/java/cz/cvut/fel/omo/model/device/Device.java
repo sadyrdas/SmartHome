@@ -88,6 +88,7 @@ public abstract class Device implements Observer {
     public void setState(State state) {
         Objects.requireNonNull(state);
         this.state = state;
+
         if (state instanceof ActiveState) {
             this.energy.setPower(baseEnergyConsumption);
         } else if (state instanceof IdleState) {
@@ -97,7 +98,6 @@ public abstract class Device implements Observer {
         } else {
             this.energy.setPower(0);
         }
-
     }
 
     public Energy getEnergy() {

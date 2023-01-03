@@ -1,5 +1,9 @@
 package cz.cvut.fel.omo.model.device;
 
+import cz.cvut.fel.omo.model.events.EventsType;
+import cz.cvut.fel.omo.model.room.Room;
+import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
+import cz.cvut.fel.omo.patterns.observer.Observer;
 
 import java.util.logging.Logger;
 
@@ -24,5 +28,11 @@ public class Blinds {
         this.isOpen = true;
     }
 
-
+    @Override
+    public void update(EventsType events_type, SimulationFacade simulationFacade) {
+        switch (events_type) {
+            case Day -> closeBlinds();
+            case Night -> openBlinds();
+        }
+    }
 }

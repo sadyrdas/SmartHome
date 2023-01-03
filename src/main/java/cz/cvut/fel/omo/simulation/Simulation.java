@@ -25,9 +25,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 
-/**
- * <p>This is the class of our simulation</p>
- */
+
 public class Simulation {
 
     private static final Logger LOGGER = LogManager.getLogger(Simulation.class.getName());
@@ -47,8 +45,8 @@ public class Simulation {
     private ShowerApi showerApi;
     private SimulationFacade simulationFacade;
 
-
     public Simulation() {
+
     }
 
     /**
@@ -150,13 +148,12 @@ public class Simulation {
         simulationFacade.loadManuals(nameConfig, house);
     }
 
-    /**
-     * Void for showing time during simulation
-     */
+
     private void run() {
         int tick = 0;
         TimeSimulation timeSimulation = new TimeSimulation(LocalDateTime.parse("2022-01-01T00:00:00"));
         timeSimulation.tick();
+
         while (!timeSimulation.getDateTime().isEqual(LocalDateTime.parse("2022-01-01T23:00:00"))) {
             timeSimulation.printCurrentTime();
             timeSimulation.updateBlindsStatusByCurrentTime(house, simulationFacade);
@@ -175,6 +172,7 @@ public class Simulation {
 
             simulationFacade.updatePowerConsumption(house.getDevices());
             simulationFacade.updateWaterConsumption(house.getAllShowers());
+
             timeSimulation.tick();
         }
     }
@@ -258,14 +256,14 @@ public class Simulation {
                 String song = musicCenterAPI.getAdultSongs().get(random.nextInt(musicCenterAPI.getAdultSongs().size()));
                 musicCenterAPI.playMusic(musicCenterAPI.getMusicCenters().stream()
                         .skip(new Random().nextInt(musicCenterAPI.getMusicCenters().size()))
-                                .findFirst().orElse(null), song, human, proxyAccess);
+                        .findFirst().orElse(null), song, human, proxyAccess);
             }
             case 7 -> {
                 LOGGER.info("Random User event started. Playing music in music center.");
                 String song = musicCenterAPI.getChildSongs().get(random.nextInt(musicCenterAPI.getChildSongs().size()));
                 musicCenterAPI.playMusic(musicCenterAPI.getMusicCenters().stream()
                                 .skip(new Random().nextInt(musicCenterAPI.getMusicCenters().size())).findFirst().orElse(null),
-                                song, human, proxyAccess);
+                        song, human, proxyAccess);
                 LOGGER.info("Started playing a song: " + song + " for Childs.");
             }
             case 8 -> {
@@ -316,7 +314,7 @@ public class Simulation {
                                 .skip(new Random().nextInt(lampApi.getLamps().size()))
                                 .findFirst().orElse(null))
                         .getId());
-                LOGGER.info(human.getName() + " turned off Lamp " );
+                LOGGER.info(human.getName() + " turned off Lamp ");
             }
             case 18 -> {
                 Device device = house.getDevices().stream()
@@ -375,6 +373,7 @@ public class Simulation {
     private void createHotTemperatureEvent() {
         LOGGER.info("So hot - open windows");
         windowApi.openWindow();
+        Random random = new Random();
         List<Sensor> temperatureSensors = house.getSensors().stream()
                 .filter(TemperatureSensor.class::isInstance).toList();
 

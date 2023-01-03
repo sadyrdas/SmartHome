@@ -3,79 +3,79 @@ First configuration:
 		Double bedroom:
 			Devices:
 				MusicCenter
-				Lamp
 				TV
 				MusicCenter
-			Sensors:
-				TemperatureSensor
-				SmokeSensor
-				ElectricitySensor
-			Windows: 2
-		Twin bedroom:
-			Devices:
-				CoffeeMachine
-				AirConditioner
 				Lamp
-				PC
-				MusicCenter
-				TV
-				PC
 			Sensors:
+				SmokeSensor
 				TemperatureSensor
 				ElectricitySensor
-				SmokeSensor
 			Windows: 2
 		Bathroom:
 			Devices:
 				Shower
 				Lamp
 			Sensors:
+				ElectricitySensor
 				TemperatureSensor
 				SmokeSensor
-				ElectricitySensor
 			Windows: 1
-	Floor 1: 
-		Living room:
+		Twin bedroom:
 			Devices:
+				CoffeeMachine
 				Lamp
-				Fridge
+				TV
+				PC
+				PC
+				MusicCenter
 				AirConditioner
 			Sensors:
-				SmokeSensor
 				TemperatureSensor
 				ElectricitySensor
-			Windows: 5
+				SmokeSensor
+			Windows: 2
+	Floor 1: 
 		WC:
 			Devices:
 				Lamp
 			Sensors:
+				TemperatureSensor
 				ElectricitySensor
 				SmokeSensor
-				TemperatureSensor
 			Windows: 0
-		Kitchen:
+		Living room:
 			Devices:
-				FeederForPet
+				Fridge
 				AirConditioner
 				Lamp
 			Sensors:
 				TemperatureSensor
-				SmokeSensor
 				ElectricitySensor
+				SmokeSensor
+			Windows: 5
+		Kitchen:
+			Devices:
+				AirConditioner
+				FeederForPet
+				Lamp
+			Sensors:
+				ElectricitySensor
+				SmokeSensor
+				TemperatureSensor
 			Windows: 1
 Humans:
-	Bruce - CHILD
-	Natasha - CHILD
-	Steve - CHILD
-	Thor - CHILD
 	Tony - ADULT
+	Bruce - CHILD
 	Kerol - ADULT
+	Natasha - CHILD
+	Thor - CHILD
+	Steve - CHILD
 Pets:
+	Mary
 	Duke
 	Bob
-	Mary
 Transport:
-	Thunder
-	BMX
 	BMX2
 	Toyota Camry 70
+	BMX
+	Thunder
