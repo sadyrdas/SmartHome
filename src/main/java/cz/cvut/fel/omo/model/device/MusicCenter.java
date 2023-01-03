@@ -11,6 +11,9 @@ import cz.cvut.fel.omo.patterns.state.StoppedState;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * <p>This class describes model MusicCenter</p>
+ */
 public class MusicCenter extends Device implements Subject{
 
     private final Set<Observer> observers = new HashSet<>();

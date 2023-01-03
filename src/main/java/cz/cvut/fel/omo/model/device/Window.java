@@ -7,10 +7,17 @@ import cz.cvut.fel.omo.patterns.observer.Observer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * <p>This class describes Window in house</p>
+ */
 public class Window implements Observer {
     private static final Logger LOGGER = LogManager.getLogger(TemperatureSensor.class.getName());
 
     private boolean isOpen;
+
+
+
+    private Blinds blinds;
 
     public Window(boolean isOpen) {
         this.isOpen = isOpen;
@@ -43,7 +50,21 @@ public class Window implements Observer {
                     LOGGER.info("Window is closed");
                 }
             }
+            case Day -> {
+                this.blinds.openBlinds();
+            }
+            case Night -> {
+                this.blinds.closeBlinds();
+            }
         }
+    }
 
+
+    public Blinds getBlinds() {
+        return blinds;
+    }
+
+    public void setBlinds(Blinds blinds) {
+        this.blinds = blinds;
     }
 }

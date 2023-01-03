@@ -11,6 +11,9 @@ import org.apache.logging.log4j.Logger;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * <p>Class implements type of Sensor - Smoke</p>
+ */
 public class SmokeSensor extends Sensor {
 
     private static final Logger LOGGER = LogManager.getLogger(SmokeSensor.class.getName());
@@ -28,7 +31,6 @@ public class SmokeSensor extends Sensor {
 
     @Override
     public void notifySubscribers(EventsType eventsType, SimulationFacade simulationFacade) {
-        LOGGER.info("notify!");
         for(Observer observer : observers) {
             observer.update(eventsType, simulationFacade);
         }

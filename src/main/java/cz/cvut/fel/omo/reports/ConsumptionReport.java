@@ -11,14 +11,12 @@ import java.util.Map;
 
 public class ConsumptionReport implements Reportable {
 
-    private final House house;
     private final int numberOfConfig;
     private final SimulationFacade simulationFacade;
 
 
 
-    public ConsumptionReport(House house, int numberOfConfig, SimulationFacade simulationFacade) {
-        this.house = house;
+    public ConsumptionReport(int numberOfConfig, SimulationFacade simulationFacade) {
         this.numberOfConfig = numberOfConfig;
         this.simulationFacade = simulationFacade;
     }
@@ -31,7 +29,10 @@ public class ConsumptionReport implements Reportable {
             writer.write(numberOfConfig == 1 ? "First configuration:\n" : "Second configuration:\n");
             writer.write("\tDevices usage for the whole simulation\n");
             for (Map.Entry<Device, Integer> entry: simulationFacade.getDevicesPowerConsumptions().entrySet()) {
-                writer.write("\t\t" + entry.getKey().getName() + " " + entry.getValue() + " W\n");
+                if (!(entry.getKey() instanceof Shower)) {
+                    writer.write("\t\t" + entry.getKey().getName() + " " + entry.getValue() + " W ~= "
+                            + String.format("%.2f", entry.getValue()  * 0.27) + " CZK\n");
+                }
             }
 
             writer.write("\tShowers usage for the whole simulation\n");

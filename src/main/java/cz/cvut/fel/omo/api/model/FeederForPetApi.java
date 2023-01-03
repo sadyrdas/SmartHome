@@ -13,14 +13,19 @@ import cz.cvut.fel.omo.patterns.state.StoppedState;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Objects;
-import java.util.Set;
-
+/**
+ * <p>Provides API for feeder for pet which includes access for feeder for pet in house.</p>
+ */
 public class FeederForPetApi {
     private static final Logger LOG = LogManager.getLogger(FeederForPetApi.class.getName());
     private final FeederForPet feederForPet;
     private final SimulationFacade simulationFacade;
 
+    /**
+     * Main constructor
+     * @param feederForPet - includes our feeder for pet in the house
+     * @param simulationFacade - Facade Design pattern to hide simulation complexity behind a simple class
+     */
     public FeederForPetApi(FeederForPet feederForPet, SimulationFacade simulationFacade){
         this.feederForPet = feederForPet;
         this.simulationFacade = simulationFacade;
@@ -34,6 +39,11 @@ public class FeederForPetApi {
         feederForPet.setCountOfFood(food);
     }
 
+
+    /**
+     * Makes a dinner for three our pets.
+     * @param pet - this action is happening for pets.
+     */
     public void timeForDinner(Pet pet){
         if (getFood() - 75 <= 0){
             LOG.warn("Food in feeder is below zero");
@@ -52,6 +62,10 @@ public class FeederForPetApi {
             pet.countDeviceUsage(feederForPet);
         }
     }
+
+    /**
+     * Fill the feeder.
+     */
 
     public void fillFeeder(){
         feederForPet.setCountOfFood(435);

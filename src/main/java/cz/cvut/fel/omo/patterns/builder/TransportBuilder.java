@@ -4,7 +4,10 @@ import cz.cvut.fel.omo.model.transport.CategoryTransport;
 import cz.cvut.fel.omo.model.transport.Transport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+/**
+ * <p>This class implements Design Patter Builder for our example for Transport
+ * https://refactoring.guru/design-patterns/builder</p>
+ */
 public class TransportBuilder {
     private static final Logger LOGGER = LogManager.getLogger(TransportBuilder.class.getName());
     private String name;

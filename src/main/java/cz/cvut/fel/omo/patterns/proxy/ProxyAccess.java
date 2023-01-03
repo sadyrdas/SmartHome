@@ -9,6 +9,9 @@ import cz.cvut.fel.omo.model.user.ResidentPermission;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * <p>This class describes Design Pattern Proxy</p>
+ */
 public class ProxyAccess {
 
     private static final Logger LOG = LogManager.getLogger(ProxyAccess.class.getName());

@@ -1,6 +1,5 @@
 package cz.cvut.fel.omo.model.user;
 
-import cz.cvut.fel.omo.api.model.FeederForPetApi;
 import cz.cvut.fel.omo.model.device.Device;
 import cz.cvut.fel.omo.model.device.FeederForPet;
 import cz.cvut.fel.omo.model.device.Fridge;
@@ -12,6 +11,9 @@ import org.apache.logging.log4j.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * <p>This class describe only Humans and extends Resident</p>
+ */
 public class Human extends Resident {
     private static final Logger LOG = LogManager.getLogger(Human.class.getName());
     private ActivityUser activityUser;

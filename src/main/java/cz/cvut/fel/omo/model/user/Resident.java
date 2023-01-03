@@ -8,6 +8,10 @@ import cz.cvut.fel.omo.patterns.observer.Observer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * <p>This abstract class describes base information about residents in house
+ * And this class implements Design Pattern Observer</p>
+ */
 public abstract class Resident implements Observer {
 
     private static final Logger LOG = LogManager.getLogger(Device.class.getSimpleName());
@@ -21,6 +25,11 @@ public abstract class Resident implements Observer {
         this.name = name;
     }
 
+    /**
+     * Main constructor
+     * @param name of resident
+     * @param residentPermission Adult or Pet
+     */
     public Resident (String name, ResidentPermission residentPermission) {
         this.name = name;
         this.permission = residentPermission;

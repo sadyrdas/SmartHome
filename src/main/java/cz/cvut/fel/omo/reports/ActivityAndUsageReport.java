@@ -10,15 +10,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ * <p>This is class for reports ActivityAndUsage</p>
+ */
 public class ActivityAndUsageReport implements Reportable {
     private final House house;
     private final int numberOfConfig;
-    private final SimulationFacade simulationFacade;
 
     public ActivityAndUsageReport(House house, int numberOfConfig, SimulationFacade simulationFacade) {
         this.house = house;
         this.numberOfConfig = numberOfConfig;
-        this.simulationFacade = simulationFacade;
     }
 
     @Override

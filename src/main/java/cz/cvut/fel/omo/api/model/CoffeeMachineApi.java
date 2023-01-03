@@ -11,10 +11,15 @@ import cz.cvut.fel.omo.patterns.state.StoppedState;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * <p>Provides API for coffee machine which includes access for coffee machine in house.</p>
+ */
+
 public class CoffeeMachineApi {
     private static final Logger LOG = LogManager.getLogger(CoffeeMachineApi.class.getName());
     private final CoffeeMachine coffeeMachine;
     private final SimulationFacade simulationFacade;
+
 
     public int getMlOfMilk() {
         return coffeeMachine.getMlOfMilk();
@@ -40,11 +45,20 @@ public class CoffeeMachineApi {
         coffeeMachine.setAmountOfBeans(amountOfBeans);
     }
 
+    /**
+     * Main constructor
+     * @param coffeeMachine - coffee machine in house
+     * @param simulationFacade - Facade Design pattern to hide simulation complexity behind a simple class
+     */
     public CoffeeMachineApi(CoffeeMachine coffeeMachine, SimulationFacade simulationFacade) {
         this.coffeeMachine = coffeeMachine;
         this.simulationFacade = simulationFacade;
     }
 
+    /**
+     * Make one cup of coffee for a human nad check if coffee machine's ingredients are below zero
+     * @param human - the one user who does the action
+     */
     public void makeCoffee (Human human) {
         if (coffeeMachine.getMlOfMilk() - 100 < 0 ||
                 coffeeMachine.getMlOfWater() - 150 < 0  ||
@@ -70,6 +84,10 @@ public class CoffeeMachineApi {
 
         }
     }
+
+    /**
+     * Action which fills the coffeeMachine when ingredients are below zero
+     */
 
     public void fillCoffeeMachine() {
         coffeeMachine.setAmountOfBeans(100);

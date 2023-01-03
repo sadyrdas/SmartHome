@@ -10,6 +10,9 @@ import cz.cvut.fel.omo.patterns.observer.Subject;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * <p>This class describes model Shower</p>
+ */
 public class Shower extends Device implements Subject {
     private final Set<Observer> observers = new HashSet<>();
 

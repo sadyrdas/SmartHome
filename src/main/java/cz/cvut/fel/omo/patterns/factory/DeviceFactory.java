@@ -1,15 +1,25 @@
 package cz.cvut.fel.omo.patterns.factory;
 
-import cz.cvut.fel.omo.api.model.FridgeAPI;
 import cz.cvut.fel.omo.model.device.*;import cz.cvut.fel.omo.model.room.Room;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * <p>This class implements Design Patter Factory in our example for device</p>
+ */
 public class DeviceFactory {
 
     private static final Logger LOG = LogManager.getLogger(Device.class.getSimpleName());
 
+    /**
+     * This class implements creating the devices
+     * @param id unique specific of device
+     * @param deviceName name of device
+     * @param baseEnergyConsumption base energy consumption
+     * @param room room where is device
+     * @return device as new object, depends on name
+     */
     public Device createDevice(int id, String deviceName, int baseEnergyConsumption, Room room) {
         if (deviceName.isEmpty() || baseEnergyConsumption < 0 ) {
             LOG.warn("Device name is empty or consumptionEnergy is bellow zero!");

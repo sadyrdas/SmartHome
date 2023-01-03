@@ -11,6 +11,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Set;
 
+/**
+ * <p>This class implements Design Patter Builder</p>
+ */
 public class RoomBuilder {
 
     private static final Logger LOGGER = LogManager.getLogger(RoomBuilder.class.getName());

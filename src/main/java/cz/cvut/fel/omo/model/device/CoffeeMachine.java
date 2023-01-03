@@ -12,6 +12,9 @@ import cz.cvut.fel.omo.patterns.state.StoppedState;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * <p>This class describes model CoffeeMachine</p>
+ */
 public class CoffeeMachine extends Device implements Subject {
 
     private int mlOfMilk = 1000;

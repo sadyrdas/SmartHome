@@ -1,22 +1,30 @@
 package cz.cvut.fel.omo.model.transport;
 
 import cz.cvut.fel.omo.model.user.Human;
-import cz.cvut.fel.omo.simulation.Simulation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * <p>This class describes transport as model</p>
+ */
 public class Transport {
     private CategoryTransport categoryTransport;
     private String name;
     private int amount;
     private Human currentHuman;
-    private Queue<Human> queueForAccess = new LinkedList<>();
+    private final Queue<Human> queueForAccess = new LinkedList<>();
 
     private static final Logger LOG = LogManager.getLogger(Transport.class.getName());
 
+    /**
+     * Main constructor
+     * @param categoryTransport - kind of transport(Car, Bycicle, Ski)
+     * @param name - name of transport
+     * @param amount - amount of transport in house
+     */
     public Transport(CategoryTransport categoryTransport, String name, int amount) {
         this.categoryTransport = categoryTransport;
         this.name = name;

@@ -14,16 +14,30 @@ import org.apache.logging.log4j.Logger;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * <p>Provides API for TV which includes access TVs in house.</p>
+ */
+
 public class TVApi {
     private static final Logger LOG = LogManager.getLogger(TVApi.class.getName());
     private final Set<TV> tvs;
     private final SimulationFacade simulationFacade;
 
-
+    /**
+     * Main constructor
+     * @param tvs - set of tv in house
+     * @param simulationFacade - Facade Design pattern to hide simulation complexity behind a simple class
+     */
     public TVApi(Set<TV> tvs, SimulationFacade simulationFacade) {
         this.tvs = tvs;
         this.simulationFacade = simulationFacade;
     }
+
+    /**
+     * Turn off - TV . Set state of device to Stopped.
+     * @param human the one user who does the action
+     * @param id unique id of one specific air conditioner
+     */
 
     public void turnOffTvById(Human human, Integer id) {
         TV tv = getTvById(id);
@@ -34,6 +48,12 @@ public class TVApi {
         simulationFacade.addDeviceEventsTypeToEventsHub(tv, EventsType.Turn_off_device);
         human.countDeviceUsage(tv);
     }
+
+    /**
+     * Turn on- TV . Set state of device to Active.
+     * @param human the one user who does the action
+     * @param id unique id of one specific air conditioner
+     */
 
     public void turnOnTvById(Human human, Integer id) {
         TV tv = getTvById(id);

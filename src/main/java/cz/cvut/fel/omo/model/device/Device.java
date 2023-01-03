@@ -14,6 +14,11 @@ import cz.cvut.fel.omo.patterns.state.StoppedState;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Objects;
+
+/**
+ * <p>This class describes (model) the abstract class of devices : Device and this class implements Design Pattern Observer</p>
+ */
 public abstract class Device implements Observer {
 
 
@@ -26,6 +31,14 @@ public abstract class Device implements Observer {
     private Energy energy;
     private int baseEnergyConsumption;
 
+    /**
+     * Main constructor
+     * @param id - unique specific of device
+     * @param name - name of device
+     * @param room - room, where is device
+     * @param baseEnergyConsumption - base energy consumption during day
+     * @param energyType - type of energy(Electricity, except Shower(Water)
+     */
     public Device(int id, String name, Room room, int baseEnergyConsumption, EnergyType energyType) {
         this.id = id;
         this.name = name;
@@ -35,7 +48,11 @@ public abstract class Device implements Observer {
         setState(new IdleState(this));
     }
 
-
+    /**
+     * Part of Design Patter Observer
+     * @param eventsType - type of event, which effect on the states of device
+     * @param simulationFacade - Facade Design pattern to hide simulation complexity behind a simple class
+     */
     @Override
     public void update(EventsType eventsType, SimulationFacade simulationFacade){
         switch (eventsType) {
@@ -69,7 +86,18 @@ public abstract class Device implements Observer {
     }
 
     public void setState(State state) {
+        Objects.requireNonNull(state);
         this.state = state;
+        if (state instanceof ActiveState) {
+            this.energy.setPower(baseEnergyConsumption);
+        } else if (state instanceof IdleState) {
+            if (!(this instanceof Fridge )) {
+                this.energy.setPower((int) (baseEnergyConsumption * 0.10));
+            }
+        } else {
+            this.energy.setPower(0);
+        }
+
     }
 
     public Energy getEnergy() {

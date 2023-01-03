@@ -13,6 +13,9 @@ import org.apache.logging.log4j.Logger;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * <p>This class describes model PC</p>
+ */
 public class PC extends Device implements Subject {
     private static final Logger LOG = LogManager.getLogger(Fridge.class.getSimpleName());
 

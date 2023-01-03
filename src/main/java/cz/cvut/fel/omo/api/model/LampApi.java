@@ -11,9 +11,13 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Set;
 
+/**
+ * <p>Provides API for lamp which includes access all lamps in house.</p>
+ */
 public class LampApi {
     private static final Logger LOG = LogManager.getLogger(LampApi.class.getSimpleName());
     private final SimulationFacade simulationFacade;
+
 
     public Set<Lamp> getLamps() {
         return lamps;
@@ -21,16 +25,26 @@ public class LampApi {
 
     private final Set<Lamp> lamps;
 
+    /**
+     * Main constructor
+     * @param simulationFacade - Facade Design pattern to hide simulation complexity behind a simple class
+     * @param lamps - set of all lamps in our house
+     */
     public LampApi(SimulationFacade simulationFacade, Set<Lamp> lamps) {
         this.simulationFacade = simulationFacade;
         this.lamps = lamps;
     }
 
+    /**
+     * Turn off - lamp. Set state of device to Stopped.
+     * @param human - the one user who does the action
+     * @param id unique id of one specific lamp
+     */
+
     public void turnOffLamp(Human human, Integer id) {
         Lamp lamp = getLampById(id);
         if (lamp == null) {
             LOG.error("Lamp is null. Cannot turn off lamp.");
-            return;
         } else {
             LOG.info("Lamp was turned off");
             lamp.setState(new StoppedState(lamp));
@@ -39,12 +53,17 @@ public class LampApi {
         }
     }
 
+    /**
+     * Turn on - lamp. Set state of device to Active
+     * @param human the one user who does the action
+     * @param id unique id of one specific lamp
+     */
+
     public void turnOnLamp(Human human, Integer id) {
         Lamp lamp = getLampById(id);
 
         if (lamp == null) {
             LOG.error("Lamp is null. Cannot turn on lamp.");
-            return;
         } else {
             LOG.info("Lamp was turned on");
             lamp.setState(new ActiveState(lamp));
@@ -52,6 +71,12 @@ public class LampApi {
             human.countDeviceUsage(lamp);
         }
     }
+
+    /**
+     * Get lamp
+     * @param id unique id of one specific lamp
+     * @return get lamp by id
+     */
 
     private Lamp getLampById(Integer id) {
         LOG.info("Trying to get Lamp by Id: " + id);

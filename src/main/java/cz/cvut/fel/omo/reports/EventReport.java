@@ -12,8 +12,9 @@ import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
-import java.util.Objects;
-
+/**
+ * <p>This is class for reports Events</p>
+ */
 public class EventReport implements Reportable {
 
     private final House house;

@@ -2,15 +2,15 @@ package cz.cvut.fel.omo.model.events;
 
 import java.time.LocalDateTime;
 
+/**
+ * <p>This is the main class of events in house</p>
+ */
 public class Event {
     private EventsType event_type;
-    private final LocalDateTime startTime;
-    private final LocalDateTime endTime;
 
-    public Event(EventsType event_type, LocalDateTime startTime, LocalDateTime endTime) {
+
+    public Event(EventsType event_type) {
         this.event_type = event_type;
-        this.startTime = startTime;
-        this.endTime = endTime;
     }
 
     public EventsType getEvent_type() {

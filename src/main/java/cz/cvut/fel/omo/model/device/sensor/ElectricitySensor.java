@@ -9,6 +9,9 @@ import cz.cvut.fel.omo.patterns.observer.Observer;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * <p>Class implements type of Sensor - Electricity</p>
+ */
 public class ElectricitySensor extends Sensor {
     private final Set<Observer> observers = new HashSet<>();
 

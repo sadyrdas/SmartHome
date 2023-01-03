@@ -4,7 +4,9 @@ import cz.cvut.fel.omo.model.device.Device;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+/**
+ * <p>Class implements StoppedState of sensors.</p>
+ */
 public class StoppedSensorState implements SensorState {
     private static final Logger LOG = LogManager.getLogger(Device.class.getSimpleName());
 

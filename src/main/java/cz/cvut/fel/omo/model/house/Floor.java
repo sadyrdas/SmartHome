@@ -7,6 +7,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
+/**
+ * <p>This class describes Floor in house</p>
+ */
 public class Floor {
 
     private static final Logger LOGGER = LogManager.getLogger(PetBuilder.class.getName());

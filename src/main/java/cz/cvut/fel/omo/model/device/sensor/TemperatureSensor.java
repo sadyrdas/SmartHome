@@ -10,7 +10,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.HashSet;
 import java.util.Set;
-
+/**
+ * <p>Class implements type of Sensor - Temperature</p>
+ */
 public class TemperatureSensor extends Sensor {
     private static final Logger LOGGER = LogManager.getLogger(TemperatureSensor.class.getName());
 

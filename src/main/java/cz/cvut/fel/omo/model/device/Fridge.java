@@ -16,7 +16,9 @@ import cz.cvut.fel.omo.patterns.state.StoppedState;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
+/**
+ * <p>This class describes model Fridge</p>
+ */
 public class Fridge extends Device implements Subject {
 
     private static final Logger LOG = LogManager.getLogger(Fridge.class.getSimpleName());

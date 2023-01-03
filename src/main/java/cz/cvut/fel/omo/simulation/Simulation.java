@@ -10,6 +10,8 @@ import cz.cvut.fel.omo.model.house.House;
 import cz.cvut.fel.omo.model.user.*;
 import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import cz.cvut.fel.omo.patterns.proxy.ProxyAccess;
+import cz.cvut.fel.omo.patterns.state.ActiveState;
+import cz.cvut.fel.omo.patterns.state.StoppedState;
 import cz.cvut.fel.omo.reports.ActivityAndUsageReport;
 import cz.cvut.fel.omo.reports.ConsumptionReport;
 import cz.cvut.fel.omo.reports.EventReport;
@@ -23,14 +25,13 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 
-
+/**
+ * <p>This is the class of our simulation</p>
+ */
 public class Simulation {
 
     private static final Logger LOGGER = LogManager.getLogger(Simulation.class.getName());
-    private static final String PATH = Objects.requireNonNull(Simulation.class.getResource("/")).getPath()
-            + "configurations";
 
-    private LocalDateTime startDateAndTime;
     private House house = House.getInstance();
     private AirConditionerApi airConditionerApi;
     private CoffeeMachineApi coffeeMachineApi;
@@ -46,15 +47,16 @@ public class Simulation {
     private ShowerApi showerApi;
     private SimulationFacade simulationFacade;
 
-    public Simulation(LocalDateTime startDateAndTime, House house) {
-        this.startDateAndTime = startDateAndTime;
-        this.house = house;
-    }
 
     public Simulation() {
-
     }
 
+    /**
+     * Start of Simulation
+     * @param numberOfConfig number of package of json files
+     * @throws IOException exception
+     * @throws ParseException exception
+     */
     public void startSimulation(int numberOfConfig) throws IOException, ParseException {
         simulationFacade = new SimulationFacade(house);
         loadFromConfigurationJson(numberOfConfig);
@@ -76,7 +78,7 @@ public class Simulation {
                 new HouseConfigurationReport(house, numberOfConfig);
 
         EventReport eventReport = new EventReport(house, numberOfConfig, simulationFacade);
-        ConsumptionReport consumptionReport = new ConsumptionReport(house, numberOfConfig, simulationFacade);
+        ConsumptionReport consumptionReport = new ConsumptionReport(numberOfConfig, simulationFacade);
         ActivityAndUsageReport activityAndUsageReport = new ActivityAndUsageReport(house, numberOfConfig, simulationFacade);
         houseConfigurationReport.generateReport();
         eventReport.generateReport();
@@ -84,6 +86,13 @@ public class Simulation {
         activityAndUsageReport.generateReport();
     }
 
+
+    /**
+     * Main class for loads of models
+     * @param numberConfig number of config(json files)
+     * @throws IOException exception
+     * @throws ParseException exception
+     */
     public void loadFromConfigurationJson(int numberConfig) throws IOException, ParseException {
         String configurationName = null;
 
@@ -141,38 +150,44 @@ public class Simulation {
         simulationFacade.loadManuals(nameConfig, house);
     }
 
-
+    /**
+     * Void for showing time during simulation
+     */
     private void run() {
         int tick = 0;
         TimeSimulation timeSimulation = new TimeSimulation(LocalDateTime.parse("2022-01-01T00:00:00"));
         timeSimulation.tick();
-        createFireEvent();
         while (!timeSimulation.getDateTime().isEqual(LocalDateTime.parse("2022-01-01T23:00:00"))) {
-            LOGGER.info("=====================================");
-            LOGGER.info("= Current time is: " + timeSimulation.getDateTime().toString() + " =");
-            LOGGER.info("=====================================");
+            timeSimulation.printCurrentTime();
+            timeSimulation.updateBlindsStatusByCurrentTime(house, simulationFacade);
             tick += 1;
 
-            if (tick == 3 || tick == 10 || tick == 20 || tick == 40) {
+            if (tick == 4 || tick == 11 || tick == 21 || tick == 41) {
                 createRandomEvents();
             }
+
             for (Human h : house.getHumans()) {
                 createRandomUserEvents(h);
             }
             for (Pet p : house.getPets()) {
                 createRandomPetEvents(p);
             }
+
             simulationFacade.updatePowerConsumption(house.getDevices());
             simulationFacade.updateWaterConsumption(house.getAllShowers());
             timeSimulation.tick();
         }
     }
 
-    // Reports. Events,
+    /**
+     * Create random Pet Events
+     * @param pet the one pet that does action
+     */
+
     private void createRandomPetEvents(Pet pet) {
         Random random = new Random();
-        int randnum = random.nextInt(4);
-        switch (randnum) {
+        int randNum = random.nextInt(4);
+        switch (randNum) {
             case 0 -> {
                 Human human = house.getHumanByPermission(ResidentPermission.ADULT);
                 human.setActivityUser(ActivityUser.NOT_AT_HOME);
@@ -198,9 +213,13 @@ public class Simulation {
         }
     }
 
+    /**
+     * Create random User Events
+     * @param human is the one user who does action
+     */
     private void createRandomUserEvents(Human human) {
         Random random = new Random();
-        int randNum = 18;
+        int randNum = random.nextInt(19);
         List<String> food = fridgeAPI.getAllFood().keySet().stream().toList();
         switch (randNum) {
             case 0 -> {
@@ -214,7 +233,7 @@ public class Simulation {
                         .getId());
             }
             case 2 -> {
-                airConditionerApi.turnOnAirConditionerById(human,Objects
+                airConditionerApi.turnOnAirConditionerById(human, Objects
                         .requireNonNull(airConditionerApi.getAirConditioners().stream()
                                 .skip(new Random().nextInt(airConditionerApi.getAirConditioners().size()))
                                 .findFirst().orElse(null)).getId());
@@ -245,8 +264,8 @@ public class Simulation {
                 LOGGER.info("Random User event started. Playing music in music center.");
                 String song = musicCenterAPI.getChildSongs().get(random.nextInt(musicCenterAPI.getChildSongs().size()));
                 musicCenterAPI.playMusic(musicCenterAPI.getMusicCenters().stream()
-                        .skip(new Random().nextInt(musicCenterAPI.getMusicCenters().size())).findFirst().orElse(null),
-                        song, human, proxyAccess);
+                                .skip(new Random().nextInt(musicCenterAPI.getMusicCenters().size())).findFirst().orElse(null),
+                                song, human, proxyAccess);
                 LOGGER.info("Started playing a song: " + song + " for Childs.");
             }
             case 8 -> {
@@ -270,7 +289,7 @@ public class Simulation {
                                 .skip(new Random().nextInt(lampApi.getLamps().size()))
                                 .findFirst().orElse(null))
                         .getId());
-                LOGGER.info(human.getName() + " turned on Lamp " );
+                LOGGER.info(human.getName() + " turned on Lamp ");
             }
             case 13 -> {
                 showerApi.turnOnShower(human);
@@ -300,15 +319,23 @@ public class Simulation {
                 LOGGER.info(human.getName() + " turned off Lamp " );
             }
             case 18 -> {
-                for (Device device : house.getDevices()){
-                LOGGER.info("Our device " + device.getName() + " is broken");
-                LOGGER.info("Human " + house.getHumanByPermission(ResidentPermission.ADULT).getName() + " read a Manual " + house.getManualByDevice(device));
+                Device device = house.getDevices().stream()
+                        .skip(new Random().nextInt(house.getDevices().size())).findFirst().orElse(null);
+                if (device != null) {
+                    device.setState(new StoppedState(device));
+                    LOGGER.info("Our device " + device.getName() + " is broken");
+                    LOGGER.info("Human " + house.getHumanByPermission(ResidentPermission.ADULT).getName() + " read a Manual " + house.getManualByDevice(device));
+                    LOGGER.info("Human repaired device: " + device.getName());
+                    device.setState(new ActiveState(device));
+                }
+
             }
         }
     }
-    }
 
-
+    /**
+     * Random events, which can't happen by weather
+     */
     private void createRandomEvents() {
         Random random = new Random();
         int randNum = random.nextInt(3);
@@ -346,19 +373,19 @@ public class Simulation {
     }
 
     private void createHotTemperatureEvent() {
-        LOGGER.info("So hot- open windows");
+        LOGGER.info("So hot - open windows");
         windowApi.openWindow();
-        Random random = new Random();
         List<Sensor> temperatureSensors = house.getSensors().stream()
                 .filter(TemperatureSensor.class::isInstance).toList();
 
-        TemperatureSensor temperatureSensor = (TemperatureSensor) temperatureSensors.get(random.nextInt(temperatureSensors.size()));
+        TemperatureSensor temperatureSensor = (TemperatureSensor) temperatureSensors.get(new Random()
+                .nextInt(temperatureSensors.size()));
         temperatureSensor.notifySubscribers(EventsType.Hot_temperature, simulationFacade);
     }
 
 
     private void addAllSubscribers() {
-        LOGGER.info("Adding all subscriber to Sensors!");
+        LOGGER.info("Adding subscribers for subjects. Observer pattern.");
         simulationFacade.addAllSubscribers(house);
     }
 }

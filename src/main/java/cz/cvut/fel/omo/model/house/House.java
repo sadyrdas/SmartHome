@@ -12,9 +12,12 @@ import cz.cvut.fel.omo.patterns.builder.PetBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.print.DocFlavor;
 import java.util.*;
 
+/**
+ * <p>This class describes our House. This class includes all devices, floor, residents(pets, humans), transport.
+ * And this class implements Design Pattern Singleton</p>
+ */
 public class House {
 
     public static House instance;
@@ -37,7 +40,10 @@ public class House {
     }
 
 
-    //Singleton
+    /***
+     * implementation of Design Patter Singleton
+     * @return instance of house, when we start simulation
+     */
     public static House getInstance(){
         if (instance == null){
             instance = new House();
@@ -45,6 +51,11 @@ public class House {
         return instance;
     }
 
+    /**
+     * Get only on device by name from json
+     * @param deviceName - name of device
+     * @return - return device as object
+     */
     public Device getOneDevice(String deviceName) {
         for (Device d: this.getDevices()) {
             if (Objects.equals(d.getName(), deviceName)) {
@@ -54,6 +65,11 @@ public class House {
         return null;
     }
 
+    /**
+     * Get manual for device
+     * @param device - is the one device, which manual we want
+     * @return content from manuals.json as String
+     */
     public String getManualByDevice(Device device) {
         for (Manual manual : getManuals()){
             if (device.getId() == manual.getDeviceId()){
@@ -105,6 +121,11 @@ public class House {
         return rooms;
     }
 
+    /**
+     * Get room by id
+     * @param id is unique specific of room
+     * @return room
+     */
     public Room getRoomById(int id) {
         for (Floor f : getFloors()) {
             for (Room r : f.getRooms()) {
@@ -120,6 +141,11 @@ public class House {
         return devices;
     }
 
+    /**
+     * Get human by Permission
+     * @param residentPermission like Adult or Child(ENUM)
+     * @return human
+     */
     public Human getHumanByPermission(ResidentPermission residentPermission){
         for (Human h : getHumans()){
             if (h.getPermissions() == residentPermission) {

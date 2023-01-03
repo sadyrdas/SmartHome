@@ -11,7 +11,9 @@ import cz.cvut.fel.omo.model.user.Pet;
 
 import java.io.FileWriter;
 import java.io.IOException;
-
+/**
+ * <p>This is class for reports for configuration of House</p>
+ */
 public class HouseConfigurationReport implements Reportable{
 
     private final House house;

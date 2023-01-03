@@ -8,6 +8,9 @@ import cz.cvut.fel.omo.patterns.observer.Subject;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * <p>This class describes Manuals, which user is using when he needs to repair broken device</p>
+ */
 public class Manual implements Subject {
     private String content;
     private Integer deviceId;

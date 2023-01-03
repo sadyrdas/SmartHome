@@ -13,6 +13,9 @@ import cz.cvut.fel.omo.patterns.state.StoppedState;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * <p>This class describes model Feeder for pet</p>
+ */
 public class FeederForPet extends Device implements Subject {
     private int countOfFood = 450;
     private FeederForPetApi feederForPetApi;

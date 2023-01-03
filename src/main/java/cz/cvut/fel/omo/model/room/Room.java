@@ -11,6 +11,9 @@ import java.util.Set;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * <p>This class describes room in our house</p>
+ */
 public class Room {
     private static final Logger LOG = LogManager.getLogger(Room.class.getSimpleName());
     private String roomName;
@@ -23,6 +26,14 @@ public class Room {
     private Set<Pet> pets;
     private Set<Sensor> sensors;
 
+    /**
+     * Main constructor
+     * @param roomName - name of Room
+     * @param devices - devices in one room
+     * @param users - users in one room
+     * @param windows - windows in one room
+     * @param sensors - sensors in one room
+     */
     public Room(String roomName, Set<Device> devices, Set<Human> users, Set<Window> windows, Set<Sensor> sensors) {
         this.roomName = roomName;
         this.devices = devices;

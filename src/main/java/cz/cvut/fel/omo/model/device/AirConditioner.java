@@ -12,6 +12,9 @@ import cz.cvut.fel.omo.patterns.state.StoppedState;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * <p>This class describes model AirConditioner and extends Device and implements Pattern (Observer and Subject)</p>
+ */
 public class AirConditioner extends Device implements Observer, Subject {
 
     private final Set<Observer> observers = new HashSet<>();

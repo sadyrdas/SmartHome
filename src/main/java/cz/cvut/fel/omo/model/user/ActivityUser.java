@@ -1,5 +1,8 @@
 package cz.cvut.fel.omo.model.user;
 
+/**
+ * <p>This enum class includes all user's activities</p>
+ */
 public enum ActivityUser {
     SLEEP,
     IDLE,
