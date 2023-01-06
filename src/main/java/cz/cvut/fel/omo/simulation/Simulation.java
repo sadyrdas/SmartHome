@@ -30,7 +30,7 @@ public class Simulation {
 
     private static final Logger LOGGER = LogManager.getLogger(Simulation.class.getName());
 
-    private House house = House.getInstance();
+    private final House house = House.getInstance();
     private AirConditionerApi airConditionerApi;
     private CoffeeMachineApi coffeeMachineApi;
     private FridgeAPI fridgeAPI;
@@ -75,9 +75,9 @@ public class Simulation {
         HouseConfigurationReport houseConfigurationReport =
                 new HouseConfigurationReport(house, numberOfConfig);
 
-        EventReport eventReport = new EventReport(house, numberOfConfig, simulationFacade);
+        EventReport eventReport = new EventReport(numberOfConfig, simulationFacade);
         ConsumptionReport consumptionReport = new ConsumptionReport(numberOfConfig, simulationFacade);
-        ActivityAndUsageReport activityAndUsageReport = new ActivityAndUsageReport(house, numberOfConfig, simulationFacade);
+        ActivityAndUsageReport activityAndUsageReport = new ActivityAndUsageReport(house, numberOfConfig);
         houseConfigurationReport.generateReport();
         eventReport.generateReport();
         consumptionReport.generateReport();
@@ -99,12 +99,8 @@ public class Simulation {
         } else if (numberConfig == 2) {
             configurationName = "/secondConfiguration";
         } else {
-            LOGGER.warn("Configuration with this number " + numberConfig + " doesn't exist!");
-        }
-
-        if (configurationName == null) {
-            LOGGER.warn("Could not load configuration. Configuration name is null!");
-            return;
+            LOGGER.warn("Configuration with this number " + numberConfig + " doesn't exist! Try use 1 or 2.");
+            System.exit(1);
         }
 
         loadPets(configurationName);
@@ -264,7 +260,7 @@ public class Simulation {
                 musicCenterAPI.playMusic(musicCenterAPI.getMusicCenters().stream()
                                 .skip(new Random().nextInt(musicCenterAPI.getMusicCenters().size())).findFirst().orElse(null),
                         song, human, proxyAccess);
-                LOGGER.info("Started playing a song: " + song + " for Childs.");
+                LOGGER.info("Started playing a song: " + song + " for Children.");
             }
             case 8 -> {
                 LOGGER.info("Random accessing Car Transport event was started: with human name " + human.getName());
@@ -373,7 +369,6 @@ public class Simulation {
     private void createHotTemperatureEvent() {
         LOGGER.info("So hot - open windows");
         windowApi.openWindow();
-        Random random = new Random();
         List<Sensor> temperatureSensors = house.getSensors().stream()
                 .filter(TemperatureSensor.class::isInstance).toList();
 

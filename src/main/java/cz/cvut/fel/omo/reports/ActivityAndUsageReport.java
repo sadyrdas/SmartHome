@@ -4,7 +4,6 @@ import cz.cvut.fel.omo.model.device.Device;
 import cz.cvut.fel.omo.model.house.House;
 import cz.cvut.fel.omo.model.user.Human;
 import cz.cvut.fel.omo.model.user.Pet;
-import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,7 +16,7 @@ public class ActivityAndUsageReport implements Reportable {
     private final House house;
     private final int numberOfConfig;
 
-    public ActivityAndUsageReport(House house, int numberOfConfig, SimulationFacade simulationFacade) {
+    public ActivityAndUsageReport(House house, int numberOfConfig) {
         this.house = house;
         this.numberOfConfig = numberOfConfig;
     }

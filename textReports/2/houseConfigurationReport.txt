@@ -1,81 +1,81 @@
 Second configuration:
 	Floor 2: 
-		Twin Bedroom:
+		WC:
 			Devices:
-				PC
-				MusicCenter
-				AirConditioner
-				Lamp
-				Lamp
 			Sensors:
+				ElectricitySensor
 				TemperatureSensor
 				SmokeSensor
+			Windows: 1
+		Twin Bedroom:
+			Devices:
+				MusicCenter
+				Lamp
+				PC
+				Lamp
+				AirConditioner
+			Sensors:
+				SmokeSensor
+				TemperatureSensor
 				ElectricitySensor
 			Windows: 3
 		Double bedroom:
 			Devices:
-				AirConditioner
-				MusicCenter
 				TV
 				TV
-				PC
 				Lamp
+				PC
+				MusicCenter
+				AirConditioner
 			Sensors:
 				TemperatureSensor
 				ElectricitySensor
 				SmokeSensor
-			Windows: 1
-		WC:
-			Devices:
-			Sensors:
-				TemperatureSensor
-				SmokeSensor
-				ElectricitySensor
 			Windows: 1
 	Floor 1: 
-		Kitchen:
-			Devices:
-				Lamp
-				Fridge
-				FeederForPet
-			Sensors:
-				SmokeSensor
-				TemperatureSensor
-				ElectricitySensor
-			Windows: 2
 		Bathroom:
 			Devices:
 				Shower
 				Lamp
 			Sensors:
+				TemperatureSensor
 				ElectricitySensor
 				SmokeSensor
-				TemperatureSensor
 			Windows: 0
-		LivingRoom:
+		Kitchen:
 			Devices:
+				Fridge
 				Lamp
-				MusicCenter
-				CoffeeMachine
-				AirConditioner
+				FeederForPet
 			Sensors:
 				TemperatureSensor
-				SmokeSensor
 				ElectricitySensor
+				SmokeSensor
+			Windows: 2
+		LivingRoom:
+			Devices:
+				MusicCenter
+				AirConditioner
+				CoffeeMachine
+				Lamp
+			Sensors:
+				ElectricitySensor
+				SmokeSensor
+				TemperatureSensor
 			Windows: 4
 Humans:
-	Norman - CHILD
-	Felicia - CHILD
-	Harry - CHILD
-	Osborn - CHILD
 	Peter - ADULT
+	Norman - CHILD
 	MJ - ADULT
+	Felicia - CHILD
+	Osborn - CHILD
+	Harry - CHILD
 Pets:
+	Igni
 	Fenrir
 	Dok
-	Igni
 Transport:
-	Thunder
-	BMX
 	Lexus 350S
 	Toyota Camry 70
+	BMX
+	Thunder
