@@ -36,10 +36,6 @@ public class Fridge extends Device implements Subject {
         return foodInFridge;
     }
 
-    public void setFoodInFridge(Map<String, Integer> foodInFridge) {
-        this.foodInFridge = foodInFridge;
-    }
-
     public void addFoodToFridge(){
         foodInFridge.put("Meat", 3);
         foodInFridge.put("Bread", 1);
@@ -52,8 +48,8 @@ public class Fridge extends Device implements Subject {
 
     @Override
     public void update(EventsType events_type, SimulationFacade simulationFacade) {
-        switch (events_type){
-            case Smoky -> setState(new StoppedState(this));
+        if (events_type == EventsType.Smoky) {
+            setState(new StoppedState(this));
         }
     }
 

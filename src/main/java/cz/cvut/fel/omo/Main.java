@@ -16,12 +16,19 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ParseException {
         LOG.info("Trying to create simulation from file...");
-        System.out.println("File name?");
-        int name = Integer.parseInt(scan.nextLine());
+        System.out.println("You have two types of configurations. Type 1 to console to choose first. " +
+                "2 to choose second.");
+        // By default, we load always first configuration
+        int name = 1;
+        try {
+            name = Integer.parseInt(scan.nextLine());
+        } catch (NumberFormatException ex) {
+            LOG.error("You can only choose 1 or 2 configuration.");
+            System.exit(1);
+        }
+
         Simulation simulation = new Simulation();
-        LOG.info("Simulation is created from prepared data set.");
         simulation.startSimulation(name);
     }
-
 
 }

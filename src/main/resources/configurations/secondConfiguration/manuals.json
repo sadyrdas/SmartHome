@@ -1,81 +1,82 @@
-[ {
-  "deviceId" : 1,
-  "content" : "Documentation for Fridge"
-},
+[
   {
-    "deviceId" : 2,
-    "content" : "Documentation for TV"
+    "deviceId": 1,
+    "content": "Documentation for Fridge"
   },
   {
-    "deviceId" : 3,
-    "content" : "Documentation for AirConditioner"
+    "deviceId": 2,
+    "content": "Documentation for TV"
   },
   {
-    "deviceId" : 4,
-    "content" : "Documentation for CoffeeMachine"
+    "deviceId": 3,
+    "content": "Documentation for AirConditioner"
   },
   {
-    "deviceId" : 5,
-    "content" : "Documentation for MusicCenter"
+    "deviceId": 4,
+    "content": "Documentation for CoffeeMachine"
   },
   {
-    "deviceId" : 6,
-    "content" : "Documentation for PC"
+    "deviceId": 5,
+    "content": "Documentation for MusicCenter"
   },
   {
-    "deviceId" : 7,
-    "content" : "Documentation for FeederForPet"
+    "deviceId": 6,
+    "content": "Documentation for PC"
   },
   {
-    "deviceId" : 8,
-    "content" : "Documentation for Lamp"
+    "deviceId": 7,
+    "content": "Documentation for FeederForPet"
   },
   {
-    "deviceId" : 9,
-    "content" : "Documentation for Shower"
+    "deviceId": 8,
+    "content": "Documentation for Lamp"
   },
   {
-    "deviceId" : 10,
-    "content" : "Documentation for Lamp"
+    "deviceId": 9,
+    "content": "Documentation for Shower"
   },
   {
-    "deviceId" : 11,
-    "content" : "Documentation for Lamp"
+    "deviceId": 10,
+    "content": "Documentation for Lamp"
   },
   {
-    "deviceId" : 12,
-    "content" : "Documentation for Lamp"
+    "deviceId": 11,
+    "content": "Documentation for Lamp"
   },
   {
-    "deviceId" : 13,
-    "content" : "Documentation for Lamp"
+    "deviceId": 12,
+    "content": "Documentation for Lamp"
   },
   {
-    "deviceId" : 14,
-    "content" : "Documentation for Lamp"
+    "deviceId": 13,
+    "content": "Documentation for Lamp"
   },
   {
-    "deviceId" : 15,
-    "content" : "Documentation for PC"
+    "deviceId": 14,
+    "content": "Documentation for Lamp"
   },
   {
-    "deviceId" : 16,
-    "content" : "Documentation for MusicCenter"
+    "deviceId": 15,
+    "content": "Documentation for PC"
   },
   {
-    "deviceId" : 17,
-    "content" : "Documentation for TV"
+    "deviceId": 16,
+    "content": "Documentation for MusicCenter"
   },
   {
-    "deviceId" : 18,
-    "content" : "Documentation for AirConditioner"
+    "deviceId": 17,
+    "content": "Documentation for TV"
   },
   {
-    "deviceId" : 19,
-    "content" : "Documentation for AirConditioner"
+    "deviceId": 18,
+    "content": "Documentation for AirConditioner"
   },
   {
-    "deviceId" : 20,
-    "content" : "Documentation for MusicCenter"
+    "deviceId": 19,
+    "content": "Documentation for AirConditioner"
+  },
+  {
+    "deviceId": 20,
+    "content": "Documentation for MusicCenter"
   }
 ]

@@ -1,7 +1,5 @@
 package cz.cvut.fel.omo.model.events;
 
-import java.time.LocalDateTime;
-
 /**
  * <p>This is the main class of events in house</p>
  */

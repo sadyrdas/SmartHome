@@ -1,10 +1,5 @@
 package cz.cvut.fel.omo.model.device;
 
-import cz.cvut.fel.omo.model.events.EventsType;
-import cz.cvut.fel.omo.model.room.Room;
-import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
-import cz.cvut.fel.omo.patterns.observer.Observer;
-
 import java.util.logging.Logger;
 
 /**
@@ -22,11 +17,19 @@ public class Blinds {
 
     public void closeBlinds() {
         this.isOpen = false;
+        LOG.info("Blinds closed");
     }
 
     public void openBlinds() {
         this.isOpen = true;
+        LOG.info("Blinds opened");
     }
 
+    public Boolean getOpen() {
+        return isOpen;
+    }
 
+    public Window getWindow() {
+        return window;
+    }
 }

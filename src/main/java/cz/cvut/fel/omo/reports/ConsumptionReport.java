@@ -2,7 +2,6 @@ package cz.cvut.fel.omo.reports;
 
 import cz.cvut.fel.omo.model.device.Device;
 import cz.cvut.fel.omo.model.device.Shower;
-import cz.cvut.fel.omo.model.house.House;
 import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 
 import java.io.FileWriter;

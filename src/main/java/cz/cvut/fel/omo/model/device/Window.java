@@ -16,9 +16,6 @@ public class Window implements Observer {
     private boolean isOpen;
     private Blinds blinds;
 
-
-
-
     public Window(boolean isOpen) {
         this.isOpen = isOpen;
     }

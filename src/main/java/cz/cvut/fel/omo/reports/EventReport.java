@@ -2,7 +2,6 @@ package cz.cvut.fel.omo.reports;
 
 import cz.cvut.fel.omo.model.device.Device;
 import cz.cvut.fel.omo.model.events.EventsType;
-import cz.cvut.fel.omo.model.house.House;
 import cz.cvut.fel.omo.model.user.ActivityPet;
 import cz.cvut.fel.omo.model.user.ActivityUser;
 import cz.cvut.fel.omo.model.user.Human;
@@ -17,12 +16,10 @@ import java.util.Map;
  */
 public class EventReport implements Reportable {
 
-    private final House house;
     private final int numberOfConfig;
     private final SimulationFacade simulationFacade;
 
-    public EventReport(House house, int numberOfConfig, SimulationFacade simulationFacade) {
-        this.house = house;
+    public EventReport(int numberOfConfig, SimulationFacade simulationFacade) {
         this.numberOfConfig = numberOfConfig;
         this.simulationFacade = simulationFacade;
     }

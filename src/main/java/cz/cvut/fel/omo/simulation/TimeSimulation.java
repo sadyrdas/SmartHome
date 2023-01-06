@@ -5,14 +5,10 @@ import cz.cvut.fel.omo.model.events.EventsType;
 import cz.cvut.fel.omo.model.house.House;
 import cz.cvut.fel.omo.model.room.Room;
 import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
-import cz.cvut.fel.omo.patterns.observer.Observer;
-import cz.cvut.fel.omo.patterns.observer.Subject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 public class TimeSimulation {
     private static final Logger LOGGER = LogManager.getLogger(TimeSimulation.class.getName());
@@ -53,7 +49,4 @@ public class TimeSimulation {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
-    }
 }
