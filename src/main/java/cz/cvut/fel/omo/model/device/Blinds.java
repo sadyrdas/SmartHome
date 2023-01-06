@@ -28,11 +28,5 @@ public class Blinds {
         this.isOpen = true;
     }
 
-    @Override
-    public void update(EventsType events_type, SimulationFacade simulationFacade) {
-        switch (events_type) {
-            case Day -> closeBlinds();
-            case Night -> openBlinds();
-        }
-    }
+
 }

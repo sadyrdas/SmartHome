@@ -1,0 +1,462 @@
+First configuration:
+	 Users events:
+		Type of Event: LISTEN_TO_MUSIC
+		Target: Tony
+
+		Type of Event: LISTEN_TO_MUSIC
+		Target: Bruce
+
+		Type of Event: EAT
+		Target: Natasha
+
+		Type of Event: PLAYING_PC
+		Target: Thor
+
+		Type of Event: WATCH_TV
+		Target: Kerol
+
+		Type of Event: LISTEN_TO_MUSIC
+		Target: Tony
+
+		Type of Event: PLAYING_PC
+		Target: Natasha
+
+		Type of Event: DRINK_COFFEE
+		Target: Thor
+
+		Type of Event: PLAYING_PC
+		Target: Kerol
+
+		Type of Event: DRINK_COFFEE
+		Target: Steve
+
+		Type of Event: LISTEN_TO_MUSIC
+		Target: Steve
+
+		Type of Event: LISTEN_TO_MUSIC
+		Target: Kerol
+
+		Type of Event: OFF_TRANSPORT
+		Target: Tony
+
+		Type of Event: EAT
+		Target: Natasha
+
+		Type of Event: DRINK_COFFEE
+		Target: Thor
+
+		Type of Event: WATCH_TV
+		Target: Tony
+
+		Type of Event: OFF_TRANSPORT
+		Target: Bruce
+
+		Type of Event: DRINK_COFFEE
+		Target: Natasha
+
+		Type of Event: WATCH_TV
+		Target: Thor
+
+		Type of Event: USE_TRANSPORT
+		Target: Kerol
+
+		Type of Event: WATCH_TV
+		Target: Bruce
+
+		Type of Event: FILL_FEEDER
+		Target: Tony
+
+		Type of Event: USE_TRANSPORT
+		Target: Tony
+
+		Type of Event: OFF_TRANSPORT
+		Target: Bruce
+
+		Type of Event: LISTEN_TO_MUSIC
+		Target: Natasha
+
+		Type of Event: OFF_TRANSPORT
+		Target: Steve
+
+		Type of Event: EAT
+		Target: Thor
+
+		Type of Event: EAT
+		Target: Natasha
+
+		Type of Event: PLAYING_PC
+		Target: Thor
+
+		Type of Event: LISTEN_TO_MUSIC
+		Target: Kerol
+
+		Type of Event: EAT
+		Target: Thor
+
+		Type of Event: DRINK_COFFEE
+		Target: Kerol
+
+		Type of Event: PLAYING_PC
+		Target: Tony
+
+		Type of Event: EAT
+		Target: Natasha
+
+		Type of Event: PLAYING_PC
+		Target: Thor
+
+		Type of Event: PLAYING_PC
+		Target: Tony
+
+		Type of Event: PLAYING_PC
+		Target: Thor
+
+		Type of Event: WATCH_TV
+		Target: Bruce
+
+		Type of Event: DRINK_COFFEE
+		Target: Natasha
+
+		Type of Event: DRINK_COFFEE
+		Target: Thor
+
+		Type of Event: USE_TRANSPORT
+		Target: Kerol
+
+		Type of Event: FILL_FEEDER
+		Target: Tony
+
+		Type of Event: LISTEN_TO_MUSIC
+		Target: Tony
+
+		Type of Event: LISTEN_TO_MUSIC
+		Target: Natasha
+
+		Type of Event: OFF_TRANSPORT
+		Target: Thor
+
+		Type of Event: LISTEN_TO_MUSIC
+		Target: Bruce
+
+		Type of Event: WATCH_TV
+		Target: Steve
+
+		Type of Event: OFF_TRANSPORT
+		Target: Kerol
+
+		Type of Event: EAT
+		Target: Natasha
+
+		Type of Event: USE_TRANSPORT
+		Target: Kerol
+
+		Type of Event: PLAYING_PC
+		Target: Thor
+
+		Type of Event: FILL_FEEDER
+		Target: Tony
+
+		Type of Event: DRINK_COFFEE
+		Target: Thor
+
+		Type of Event: EAT
+		Target: Kerol
+
+		Type of Event: OFF_TRANSPORT
+		Target: Tony
+
+		Type of Event: OFF_TRANSPORT
+		Target: Natasha
+
+		Type of Event: DRINK_COFFEE
+		Target: Steve
+
+		Type of Event: LISTEN_TO_MUSIC
+		Target: Bruce
+
+		Type of Event: WATCH_TV
+		Target: Natasha
+
+		Type of Event: LISTEN_TO_MUSIC
+		Target: Thor
+
+		Type of Event: USE_TRANSPORT
+		Target: Tony
+
+		Type of Event: WATCH_TV
+		Target: Bruce
+
+================================================================
+	 Device events:
+		Type of Event: Turn_off_device
+		Target: TV
+
+		Type of Event: Turn_on_device
+		Target: PC
+
+		Type of Event: Turn_on_device
+		Target: TV
+
+		Type of Event: Turn_on_device
+		Target: PC
+
+		Type of Event: Turn_off_device
+		Target: TV
+
+		Type of Event: Turn_on_device
+		Target: CoffeeMachine
+
+		Type of Event: Turn_on_device
+		Target: PC
+
+		Type of Event: Turn_on_device
+		Target: FeederForPet
+
+		Type of Event: Turn_on_device
+		Target: Lamp
+
+		Type of Event: Turn_on_device
+		Target: AirConditioner
+
+		Type of Event: Turn_on_device
+		Target: CoffeeMachine
+
+		Type of Event: Turn_off_device
+		Target: Lamp
+
+		Type of Event: Turn_on_device
+		Target: FeederForPet
+
+		Type of Event: Turn_on_device
+		Target: AirConditioner
+
+		Type of Event: Turn_off_device
+		Target: AirConditioner
+
+		Type of Event: Turn_off_device
+		Target: MusicCenter
+
+		Type of Event: Turn_on_device
+		Target: FeederForPet
+
+		Type of Event: Turn_off_device
+		Target: PC
+
+		Type of Event: Turn_off_device
+		Target: AirConditioner
+
+		Type of Event: Turn_on_device
+		Target: CoffeeMachine
+
+		Type of Event: Turn_on_device
+		Target: TV
+
+		Type of Event: Turn_on_device
+		Target: CoffeeMachine
+
+		Type of Event: Turn_on_device
+		Target: Lamp
+
+		Type of Event: Turn_on_device
+		Target: TV
+
+		Type of Event: Turn_on_device
+		Target: TV
+
+		Type of Event: Turn_off_device
+		Target: TV
+
+		Type of Event: Turn_off_device
+		Target: PC
+
+		Type of Event: Turn_on_device
+		Target: Lamp
+
+		Type of Event: Turn_on_device
+		Target: FeederForPet
+
+		Type of Event: Turn_on_device
+		Target: FeederForPet
+
+		Type of Event: Turn_off_device
+		Target: Lamp
+
+		Type of Event: Turn_on_device
+		Target: PC
+
+		Type of Event: Turn_off_device
+		Target: AirConditioner
+
+		Type of Event: Turn_off_device
+		Target: MusicCenter
+
+		Type of Event: Turn_off_device
+		Target: TV
+
+		Type of Event: Turn_on_device
+		Target: CoffeeMachine
+
+		Type of Event: Turn_on_device
+		Target: FeederForPet
+
+		Type of Event: Turn_on_device
+		Target: PC
+
+		Type of Event: Turn_off_device
+		Target: MusicCenter
+
+		Type of Event: Turn_on_device
+		Target: Lamp
+
+		Type of Event: Turn_on_device
+		Target: PC
+
+		Type of Event: Turn_on_device
+		Target: PC
+
+		Type of Event: Turn_off_device
+		Target: MusicCenter
+
+		Type of Event: Turn_off_device
+		Target: Lamp
+
+		Type of Event: Turn_on_device
+		Target: PC
+
+		Type of Event: Turn_off_device
+		Target: PC
+
+		Type of Event: Turn_off_device
+		Target: MusicCenter
+
+		Type of Event: Turn_on_device
+		Target: TV
+
+		Type of Event: Turn_on_device
+		Target: CoffeeMachine
+
+		Type of Event: Turn_on_device
+		Target: CoffeeMachine
+
+		Type of Event: Turn_off_device
+		Target: MusicCenter
+
+		Type of Event: Turn_on_device
+		Target: Lamp
+
+		Type of Event: Turn_on_device
+		Target: AirConditioner
+
+		Type of Event: Turn_on_device
+		Target: TV
+
+		Type of Event: Turn_off_device
+		Target: TV
+
+		Type of Event: Turn_on_device
+		Target: FeederForPet
+
+		Type of Event: Turn_off_device
+		Target: PC
+
+		Type of Event: Turn_on_device
+		Target: Lamp
+
+		Type of Event: Empty_fridge
+		Target: Fridge
+
+		Type of Event: Turn_off_device
+		Target: TV
+
+		Type of Event: Turn_on_device
+		Target: FeederForPet
+
+		Type of Event: Turn_on_device
+		Target: FeederForPet
+
+		Type of Event: Turn_on_device
+		Target: Lamp
+
+		Type of Event: Turn_on_device
+		Target: PC
+
+		Type of Event: Turn_off_device
+		Target: Lamp
+
+		Type of Event: Turn_off_device
+		Target: Lamp
+
+		Type of Event: Turn_on_device
+		Target: AirConditioner
+
+		Type of Event: Turn_off_device
+		Target: AirConditioner
+
+		Type of Event: Turn_on_device
+		Target: CoffeeMachine
+
+		Type of Event: Turn_on_device
+		Target: FeederForPet
+
+		Type of Event: Turn_on_device
+		Target: CoffeeMachine
+
+		Type of Event: Turn_off_device
+		Target: TV
+
+		Type of Event: Turn_off_device
+		Target: TV
+
+		Type of Event: Turn_off_device
+		Target: Lamp
+
+		Type of Event: Turn_on_device
+		Target: TV
+
+		Type of Event: Turn_off_device
+		Target: PC
+
+		Type of Event: Turn_on_device
+		Target: FeederForPet
+
+		Type of Event: Turn_on_device
+		Target: TV
+
+		Type of Event: Turn_off_device
+		Target: TV
+
+=================================================================
+	 Pet events:
+		Type of Event: EAT
+		Target: Mary
+
+		Type of Event: EAT
+		Target: Mary
+
+		Type of Event: EAT
+		Target: Mary
+
+		Type of Event: EAT
+		Target: Duke
+
+		Type of Event: EAT
+		Target: Mary
+
+		Type of Event: EAT
+		Target: Bob
+
+		Type of Event: EAT
+		Target: Duke
+
+		Type of Event: EAT
+		Target: Mary
+
+		Type of Event: EAT
+		Target: Duke
+
+		Type of Event: EAT
+		Target: Duke
+
+		Type of Event: EAT
+		Target: Bob
+
