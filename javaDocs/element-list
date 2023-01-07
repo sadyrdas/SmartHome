@@ -1,0 +1,19 @@
+unnamed package
+cz.cvut.fel.omo
+cz.cvut.fel.omo.api.model
+cz.cvut.fel.omo.model.device
+cz.cvut.fel.omo.model.device.energy
+cz.cvut.fel.omo.model.device.sensor
+cz.cvut.fel.omo.model.events
+cz.cvut.fel.omo.model.house
+cz.cvut.fel.omo.model.room
+cz.cvut.fel.omo.model.transport
+cz.cvut.fel.omo.model.user
+cz.cvut.fel.omo.patterns.builder
+cz.cvut.fel.omo.patterns.facade
+cz.cvut.fel.omo.patterns.factory
+cz.cvut.fel.omo.patterns.observer
+cz.cvut.fel.omo.patterns.proxy
+cz.cvut.fel.omo.patterns.state
+cz.cvut.fel.omo.reports
+cz.cvut.fel.omo.simulation
