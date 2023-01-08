@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * <p>Class implements type of Sensor - Smoke</p>
+ * <p>Class implements type of Sensor - Smoke.</p>
  */
 public class SmokeSensor extends Sensor {
 
@@ -31,7 +31,7 @@ public class SmokeSensor extends Sensor {
 
     @Override
     public void notifySubscribers(EventsType eventsType, SimulationFacade simulationFacade) {
-        for(Observer observer : observers) {
+        for (Observer observer : observers) {
             observer.update(eventsType, simulationFacade);
         }
     }

@@ -13,12 +13,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.*;
+
 /**
  * <p>Provides API for music center which includes access all music centers in house.</p>
  */
 public class MusicCenterAPI {
     private final Set<MusicCenter> musicCenters;
-    private List<String> adultSongs = new ArrayList<>(List.of("Nirvana","Eminem", "Jackson", "IceCube", "Coulio"));
+    private List<String> adultSongs = new ArrayList<>(List.of("Nirvana", "Eminem", "Jackson", "IceCube", "Coulio"));
     private List<String> childSongs = new ArrayList<>(List.of("SpangeBob", "LittleDucks", "HappyMonkey", "BlueTractor"));
     private static final Logger LOG = LogManager.getLogger(Simulation.class.getName());
 
@@ -26,7 +27,8 @@ public class MusicCenterAPI {
 
     /**
      * Main constructor
-     * @param musicCenters - set of all music centers in house
+     *
+     * @param musicCenters     - set of all music centers in house
      * @param simulationFacade - Facade Design pattern to hide simulation complexity behind a simple class
      */
     public MusicCenterAPI(Set<MusicCenter> musicCenters, SimulationFacade simulationFacade) {
@@ -36,12 +38,13 @@ public class MusicCenterAPI {
 
     /**
      * Main action
+     *
      * @param musicCenter - the one music center, which is working
-     * @param song - name and type of song
-     * @param human - the one user who does an action
+     * @param song        - name and type of song
+     * @param human       - the one user who does an action
      * @param proxyAccess - pattern, which determines which type of user wants to use the music center.
      */
-    public void playMusic(MusicCenter musicCenter, String song, Human human,  ProxyAccess proxyAccess) {
+    public void playMusic(MusicCenter musicCenter, String song, Human human, ProxyAccess proxyAccess) {
 
         Boolean ret = proxyAccess.playSong(song, human, this);
         if (ret) {
@@ -60,6 +63,7 @@ public class MusicCenterAPI {
 
     /**
      * Turn off- music center by id, set State to Stopped
+     *
      * @param id - unique id of one specific music Center
      */
 
@@ -72,6 +76,7 @@ public class MusicCenterAPI {
 
     /**
      * Turn on- music center by id, set State to Active
+     *
      * @param id - unique id of one specific music Center
      */
 
@@ -82,7 +87,7 @@ public class MusicCenterAPI {
         musicCenter.setState(new ActiveState(musicCenter));
     }
 
-    private MusicCenter getMusicCenterById(Integer id){
+    private MusicCenter getMusicCenterById(Integer id) {
         for (MusicCenter ms : musicCenters) {
             if (ms.getId() == id) {
                 return ms;

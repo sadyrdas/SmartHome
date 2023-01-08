@@ -4,8 +4,10 @@ import cz.cvut.fel.omo.model.device.Window;
 import cz.cvut.fel.omo.model.room.Room;
 
 import java.util.Set;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 /**
  * <p>Provides API for Window which includes access Windows in house.</p>
  */
@@ -15,6 +17,7 @@ public class WindowApi {
 
     /**
      * Main constructor
+     *
      * @param rooms - set of rooms, in which windows
      */
     public WindowApi(Set<Room> rooms) {

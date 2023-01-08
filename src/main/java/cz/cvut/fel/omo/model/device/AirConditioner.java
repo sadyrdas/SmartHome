@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * <p>This class describes model AirConditioner and extends Device and implements Pattern (Observer and Subject)</p>
+ * <p>This class describes model AirConditioner and extends Device and implements Pattern (Observer and Subject).</p>
  */
 public class AirConditioner extends Device implements Observer, Subject {
 
@@ -24,12 +24,11 @@ public class AirConditioner extends Device implements Observer, Subject {
     }
 
 
-
     @Override
     public void update(EventsType events_type, SimulationFacade simulationFacade) {
         switch (events_type) {
-            case Hot_temperature, Turn_on_device-> this.setState(new ActiveState(this));
-            case Cold_temperature, Smoky, Turn_off_device  -> this.setState(new StoppedState(this));
+            case Hot_temperature, Turn_on_device -> this.setState(new ActiveState(this));
+            case Cold_temperature, Smoky, Turn_off_device -> this.setState(new StoppedState(this));
         }
     }
 

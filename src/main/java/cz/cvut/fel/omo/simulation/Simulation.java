@@ -51,8 +51,9 @@ public class Simulation {
 
     /**
      * Start of Simulation
+     *
      * @param numberOfConfig number of package of json files
-     * @throws IOException exception
+     * @throws IOException    exception
      * @throws ParseException exception
      */
     public void startSimulation(int numberOfConfig) throws IOException, ParseException {
@@ -87,8 +88,9 @@ public class Simulation {
 
     /**
      * Main class for loads of models
+     *
      * @param numberConfig number of config(json files)
-     * @throws IOException exception
+     * @throws IOException    exception
      * @throws ParseException exception
      */
     public void loadFromConfigurationJson(int numberConfig) throws IOException, ParseException {
@@ -140,7 +142,7 @@ public class Simulation {
         simulationFacade.loadTransport(nameConfig, house);
     }
 
-    private void loadManuals(String nameConfig) throws IOException, ParseException{
+    private void loadManuals(String nameConfig) throws IOException, ParseException {
         simulationFacade.loadManuals(nameConfig, house);
     }
 
@@ -175,6 +177,7 @@ public class Simulation {
 
     /**
      * Create random Pet Events
+     *
      * @param pet the one pet that does action
      */
 
@@ -209,6 +212,7 @@ public class Simulation {
 
     /**
      * Create random User Events
+     *
      * @param human is the one user who does action
      */
     private void createRandomUserEvents(Human human) {

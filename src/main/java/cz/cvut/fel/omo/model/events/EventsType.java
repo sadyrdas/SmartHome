@@ -1,7 +1,7 @@
 package cz.cvut.fel.omo.model.events;
 
 /**
- * <p>This enum class includes all types of Events</p>
+ * <p>This enum class includes all types of Events.</p>
  */
 public enum EventsType {
     Cold_temperature,

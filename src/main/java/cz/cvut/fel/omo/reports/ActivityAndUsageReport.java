@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * <p>This is class for reports ActivityAndUsage</p>
+ * <p>This is class for reports ActivityAndUsage.</p>
  */
 public class ActivityAndUsageReport implements Reportable {
     private final House house;
@@ -31,7 +31,7 @@ public class ActivityAndUsageReport implements Reportable {
             for (Human h : house.getHumans()) {
                 writer.write("\t\t" + h.getName() + ":\n");
                 for (Map.Entry<Device, Integer> entry : h.getDeviceUsageCount().entrySet()) {
-                    writer.write("\t\t\t" + entry.getKey().getName() + ": " + entry.getValue() +"\n");
+                    writer.write("\t\t\t" + entry.getKey().getName() + ": " + entry.getValue() + "\n");
                 }
             }
 
@@ -39,7 +39,7 @@ public class ActivityAndUsageReport implements Reportable {
             for (Pet p : house.getPets()) {
                 writer.write("\t\t" + p.getName() + ":\n");
                 for (Map.Entry<Device, Integer> entry : p.getDeviceUsageCount().entrySet()) {
-                    writer.write("\t\t\t" + entry.getKey().getName() + ": " + entry.getValue() +"\n");
+                    writer.write("\t\t\t" + entry.getKey().getName() + ": " + entry.getValue() + "\n");
                 }
             }
             writer.flush();

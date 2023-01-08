@@ -1,7 +1,7 @@
 package cz.cvut.fel.omo.model.user;
 
 /**
- * <p>This enum class includes all pet's activities</p>
+ * <p>This enum class includes all pet's activities.</p>
  */
 public enum ActivityPet {
     PLAY,

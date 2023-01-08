@@ -12,16 +12,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * <p>This class describes model MusicCenter</p>
+ * <p>This class describes model MusicCenter.</p>
  */
-public class MusicCenter extends Device implements Subject{
+public class MusicCenter extends Device implements Subject {
 
     private final Set<Observer> observers = new HashSet<>();
 
     public MusicCenter(int id, String name, Room room, int baseEnergyConsumption) {
         super(id, name, room, baseEnergyConsumption, EnergyType.Electricity);
     }
-
 
 
     @Override
@@ -38,6 +37,6 @@ public class MusicCenter extends Device implements Subject{
 
     @Override
     public void notifySubscribers(EventsType eventsType, SimulationFacade simulationFacade) {
-        for (Observer observer : observers) observer.update(eventsType,simulationFacade );
+        for (Observer observer : observers) observer.update(eventsType, simulationFacade);
     }
 }

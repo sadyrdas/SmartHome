@@ -8,11 +8,12 @@ import cz.cvut.fel.omo.model.user.Pet;
 
 import java.util.Objects;
 import java.util.Set;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * <p>This class describes room in our house</p>
+ * <p>This class describes room in our house.</p>
  */
 public class Room {
     private static final Logger LOG = LogManager.getLogger(Room.class.getSimpleName());
@@ -28,11 +29,12 @@ public class Room {
 
     /**
      * Main constructor
+     *
      * @param roomName - name of Room
-     * @param devices - devices in one room
-     * @param users - users in one room
-     * @param windows - windows in one room
-     * @param sensors - sensors in one room
+     * @param devices  - devices in one room
+     * @param users    - users in one room
+     * @param windows  - windows in one room
+     * @param sensors  - sensors in one room
      */
     public Room(String roomName, Set<Device> devices, Set<Human> users, Set<Window> windows, Set<Sensor> sensors) {
         this.roomName = roomName;
@@ -49,11 +51,11 @@ public class Room {
         this.windows = windows;
     }
 
-    public Room(int id){
-        this.id= id;
+    public Room(int id) {
+        this.id = id;
     }
 
-    
+
     public void addUser(Human user) {
         Objects.requireNonNull(user, "Cannot add user to room. User is null!");
 

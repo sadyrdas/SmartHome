@@ -10,6 +10,7 @@ import cz.cvut.fel.omo.patterns.state.StoppedState;
 
 import java.util.Objects;
 import java.util.Set;
+
 /**
  * <p>Provides API for PC which includes access all PC in house.</p>
  */
@@ -19,7 +20,8 @@ public class PCApi {
 
     /**
      * Main constructor
-     * @param pcs set of pcs in house
+     *
+     * @param pcs              set of pcs in house
      * @param simulationFacade Facade Design pattern to hide simulation complexity behind a simple class
      */
     public PCApi(Set<PC> pcs, SimulationFacade simulationFacade) {
@@ -29,8 +31,9 @@ public class PCApi {
 
     /**
      * Turn off PC. Set state of device to Stopped.
+     *
      * @param human the one user who does the action
-     * @param id unique id of one specific PC
+     * @param id    unique id of one specific PC
      */
 
     public void turnOffPCById(Human human, Integer id) {
@@ -44,8 +47,9 @@ public class PCApi {
 
     /**
      * Turn on PC. Set state of device to Active.
+     *
      * @param human the one user who does the action
-     * @param id unique id of one specific PC
+     * @param id    unique id of one specific PC
      */
 
     public void turnOnPCById(Human human, Integer id) {

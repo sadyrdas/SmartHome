@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * <p>Class implements type of Sensor - Electricity</p>
+ * <p>Class implements type of Sensor - Electricity.</p>
  */
 public class ElectricitySensor extends Sensor {
     private final Set<Observer> observers = new HashSet<>();
@@ -26,7 +26,7 @@ public class ElectricitySensor extends Sensor {
 
     @Override
     public void notifySubscribers(EventsType eventsType, SimulationFacade simulationFacade) {
-        for(Observer observer: observers) {
+        for (Observer observer : observers) {
             observer.update(eventsType, simulationFacade);
         }
     }

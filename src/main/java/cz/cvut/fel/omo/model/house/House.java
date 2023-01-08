@@ -16,7 +16,7 @@ import java.util.*;
 
 /**
  * <p>This class describes our House. This class includes all devices, floor, residents(pets, humans), transport.
- * And this class implements Design Pattern Singleton</p>
+ * And this class implements Design Pattern Singleton.</p>
  */
 public class House {
 
@@ -32,7 +32,6 @@ public class House {
     private final Set<Transport> transports = new HashSet<>();
 
 
-
     private final Set<Manual> manuals = new HashSet<>();
 
     private House() {
@@ -44,8 +43,8 @@ public class House {
      * implementation of Design Patter Singleton
      * @return instance of house, when we start simulation
      */
-    public static House getInstance(){
-        if (instance == null){
+    public static House getInstance() {
+        if (instance == null) {
             instance = new House();
         }
         return instance;
@@ -53,11 +52,12 @@ public class House {
 
     /**
      * Get only on device by name from json
+     *
      * @param deviceName - name of device
      * @return - return device as object
      */
     public Device getOneDevice(String deviceName) {
-        for (Device d: this.getDevices()) {
+        for (Device d : this.getDevices()) {
             if (Objects.equals(d.getName(), deviceName)) {
                 return d;
             }
@@ -67,12 +67,13 @@ public class House {
 
     /**
      * Get manual for device
+     *
      * @param device - is the one device, which manual we want
      * @return content from manuals.json as String
      */
     public String getManualByDevice(Device device) {
-        for (Manual manual : getManuals()){
-            if (device.getId() == manual.getDeviceId()){
+        for (Manual manual : getManuals()) {
+            if (device.getId() == manual.getDeviceId()) {
                 return manual.getContent();
             }
         }
@@ -82,9 +83,11 @@ public class House {
     public void addRoom(Room room) {
         rooms.add(room);
     }
+
     public void addManuals(Manual manual) {
         manuals.add(manual);
     }
+
     public void addDevice(Device device) {
         devices.add(device);
     }
@@ -93,7 +96,7 @@ public class House {
         humans.add(human);
     }
 
-    public void addTransport(Transport transport){
+    public void addTransport(Transport transport) {
         transports.add(transport);
     }
 
@@ -123,6 +126,7 @@ public class House {
 
     /**
      * Get room by id
+     *
      * @param id is unique specific of room
      * @return room
      */
@@ -143,11 +147,12 @@ public class House {
 
     /**
      * Get human by Permission
+     *
      * @param residentPermission like Adult or Child(ENUM)
      * @return human
      */
-    public Human getHumanByPermission(ResidentPermission residentPermission){
-        for (Human h : getHumans()){
+    public Human getHumanByPermission(ResidentPermission residentPermission) {
+        for (Human h : getHumans()) {
             if (h.getPermissions() == residentPermission) {
                 return h;
             }
@@ -243,6 +248,7 @@ public class House {
     public Set<Device> getSetOfSpecificDevicesByName(String deviceName) {
         return new HashSet<>(getDevices().stream().filter(d -> Objects.equals(d.getName(), deviceName)).toList());
     }
+
     public Set<Human> getHumans() {
         return humans;
     }
@@ -266,6 +272,7 @@ public class House {
     public Set<Transport> getTransports() {
         return transports;
     }
+
     public Set<Manual> getManuals() {
         return manuals;
     }

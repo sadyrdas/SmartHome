@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * <p>This class describes transport as model</p>
+ * <p>This class describes transport as model.</p>
  */
 public class Transport {
     private CategoryTransport categoryTransport;
@@ -21,9 +21,10 @@ public class Transport {
 
     /**
      * Main constructor
+     *
      * @param categoryTransport - kind of transport(Car, Bycicle, Ski)
-     * @param name - name of transport
-     * @param amount - amount of transport in house
+     * @param name              - name of transport
+     * @param amount            - amount of transport in house
      */
     public Transport(CategoryTransport categoryTransport, String name, int amount) {
         this.categoryTransport = categoryTransport;

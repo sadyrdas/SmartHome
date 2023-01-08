@@ -18,6 +18,7 @@ public class TransportApi {
 
     /**
      * Main constructor
+     *
      * @param simulationFacade - Facade Design pattern to hide simulation complexity behind a simple class
      */
     public TransportApi(SimulationFacade simulationFacade) {
@@ -27,8 +28,9 @@ public class TransportApi {
 
     /**
      * Remove human from transport
+     *
      * @param transport - is the one transport
-     * @param human - is the one user, who we remove from transport
+     * @param human     - is the one user, who we remove from transport
      */
 
     public void removeHuman(Transport transport, Human human) {
@@ -40,8 +42,9 @@ public class TransportApi {
 
     /**
      * Add human to transport
-     * @param human - is the one user who uses transport
-     * @param transport - is the one transport, which is used by human
+     *
+     * @param human       - is the one user who uses transport
+     * @param transport   - is the one transport, which is used by human
      * @param proxyAccess - pattern, which determines what is the User Permission, every logic is working in SimulationFacade.java
      */
 

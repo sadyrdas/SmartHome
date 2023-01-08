@@ -10,8 +10,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.HashSet;
 import java.util.Set;
+
 /**
- * <p>Class implements type of Sensor - Temperature</p>
+ * <p>Class implements type of Sensor - Temperature.</p>
  */
 public class TemperatureSensor extends Sensor {
     private static final Logger LOGGER = LogManager.getLogger(TemperatureSensor.class.getName());
@@ -20,7 +21,7 @@ public class TemperatureSensor extends Sensor {
     private int baseRoomTemperature = 21;
 
 
-    public TemperatureSensor(int id ,String sensorName, int baseEnergyConsumption, Room room) {
+    public TemperatureSensor(int id, String sensorName, int baseEnergyConsumption, Room room) {
         super(id, sensorName, baseEnergyConsumption, room, EnergyType.Electricity);
     }
 
@@ -34,8 +35,8 @@ public class TemperatureSensor extends Sensor {
     public void notifySubscribers(EventsType eventsType, SimulationFacade simulationFacade) {
         LOGGER.info("Notifying all subscribers");
         LOGGER.info(observers.size());
-        for(Observer observer : observers) {
-            observer.update(eventsType,simulationFacade );
+        for (Observer observer : observers) {
+            observer.update(eventsType, simulationFacade);
 //            LOGGER.debug();
         }
 

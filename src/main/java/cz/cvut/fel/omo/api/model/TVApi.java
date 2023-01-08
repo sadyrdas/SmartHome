@@ -25,7 +25,8 @@ public class TVApi {
 
     /**
      * Main constructor
-     * @param tvs - set of tv in house
+     *
+     * @param tvs              - set of tv in house
      * @param simulationFacade - Facade Design pattern to hide simulation complexity behind a simple class
      */
     public TVApi(Set<TV> tvs, SimulationFacade simulationFacade) {
@@ -35,8 +36,9 @@ public class TVApi {
 
     /**
      * Turn off - TV . Set state of device to Stopped.
+     *
      * @param human the one user who does the action
-     * @param id unique id of one specific air conditioner
+     * @param id    unique id of one specific air conditioner
      */
 
     public void turnOffTvById(Human human, Integer id) {
@@ -51,8 +53,9 @@ public class TVApi {
 
     /**
      * Turn on- TV . Set state of device to Active.
+     *
      * @param human the one user who does the action
-     * @param id unique id of one specific air conditioner
+     * @param id    unique id of one specific air conditioner
      */
 
     public void turnOnTvById(Human human, Integer id) {

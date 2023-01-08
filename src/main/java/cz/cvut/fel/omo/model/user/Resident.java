@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * <p>This abstract class describes base information about residents in house
- * And this class implements Design Pattern Observer</p>
+ * And this class implements Design Pattern Observer.</p>
  */
 public abstract class Resident implements Observer {
 
@@ -21,28 +21,29 @@ public abstract class Resident implements Observer {
     private ResidentPermission permission;
     private ActivityUser activityUser;
 
-    public Resident(String name){
+    public Resident(String name) {
         this.name = name;
     }
 
     /**
      * Main constructor
-     * @param name of resident
+     *
+     * @param name               of resident
      * @param residentPermission Adult or Pet
      */
-    public Resident (String name, ResidentPermission residentPermission) {
+    public Resident(String name, ResidentPermission residentPermission) {
         this.name = name;
         this.permission = residentPermission;
     }
 
     @Override
-    public void update(EventsType eventsType, SimulationFacade simulationFacade){
+    public void update(EventsType eventsType, SimulationFacade simulationFacade) {
         switch (eventsType) {
             case Smoky -> {
                 setActivityUser(ActivityUser.RUN);
                 LOG.info("WE ARE ON FIRE-RUN");
             }
-            case Cold_temperature ->{
+            case Cold_temperature -> {
                 setActivityUser(ActivityUser.CLOSE_WINDOW);
                 LOG.info("It is so cold- CLOSE WINDOWS");
             }

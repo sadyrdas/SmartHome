@@ -17,7 +17,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Objects;
 
 /**
- * <p>This class describes (model) the abstract class of devices : Device and this class implements Design Pattern Observer</p>
+ * <p>This class describes (model) the abstract class of devices : Device and this class implements Design Pattern Observer.</p>
  */
 public abstract class Device implements Observer {
 
@@ -33,11 +33,12 @@ public abstract class Device implements Observer {
 
     /**
      * Main constructor
-     * @param id - unique specific of device
-     * @param name - name of device
-     * @param room - room, where is device
+     *
+     * @param id                    - unique specific of device
+     * @param name                  - name of device
+     * @param room                  - room, where is device
      * @param baseEnergyConsumption - base energy consumption during day
-     * @param energyType - type of energy(Electricity, except Shower(Water)
+     * @param energyType            - type of energy(Electricity, except Shower(Water)
      */
     public Device(int id, String name, Room room, int baseEnergyConsumption, EnergyType energyType) {
         this.id = id;
@@ -50,18 +51,20 @@ public abstract class Device implements Observer {
 
     /**
      * Part of Design Patter Observer
-     * @param eventsType - type of event, which effect on the states of device
+     *
+     * @param eventsType       - type of event, which effect on the states of device
      * @param simulationFacade - Facade Design pattern to hide simulation complexity behind a simple class
      */
     @Override
-    public void update(EventsType eventsType, SimulationFacade simulationFacade){
+    public void update(EventsType eventsType, SimulationFacade simulationFacade) {
         switch (eventsType) {
             case Smoky, Turn_off_device -> {
                 setState(new StoppedState(this));
             }
             case Turn_on_device -> {
                 setState(new ActiveState(this));
-                LOG.info("Device was turned on");}
+                LOG.info("Device was turned on");
+            }
         }
     }
 
@@ -92,7 +95,7 @@ public abstract class Device implements Observer {
         if (state instanceof ActiveState) {
             this.energy.setPower(baseEnergyConsumption);
         } else if (state instanceof IdleState) {
-            if (!(this instanceof Fridge )) {
+            if (!(this instanceof Fridge)) {
                 this.energy.setPower((int) (baseEnergyConsumption * 0.10));
             }
         } else {

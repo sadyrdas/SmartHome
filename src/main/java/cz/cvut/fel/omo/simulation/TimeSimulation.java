@@ -10,6 +10,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDateTime;
 
+/**
+ * <p>This class describes Time Simulation.</p>
+ */
 public class TimeSimulation {
     private static final Logger LOGGER = LogManager.getLogger(TimeSimulation.class.getName());
     private LocalDateTime dateTime;
@@ -17,7 +20,8 @@ public class TimeSimulation {
     public TimeSimulation(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
-    public void tick(){
+
+    public void tick() {
 
         dateTime = dateTime.plusHours(1);
     }
@@ -45,6 +49,7 @@ public class TimeSimulation {
             }
         }
     }
+
     public LocalDateTime getDateTime() {
         return dateTime;
     }

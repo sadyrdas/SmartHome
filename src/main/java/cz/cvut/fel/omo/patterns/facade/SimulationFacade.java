@@ -30,8 +30,7 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * <p>This class describes design pattern Facade</p>
- *
+ * <p>This class describes design pattern Facade.</p>
  */
 public class SimulationFacade {
 
@@ -167,8 +166,8 @@ public class SimulationFacade {
                 ((TV) TV).addSubscriber(h);
             }
         }
-        for (Manual manual: house.getManuals()) {
-            for (Human h : house.getAllAdults()){
+        for (Manual manual : house.getManuals()) {
+            for (Human h : house.getAllAdults()) {
                 manual.addSubscriber(h);
             }
         }
@@ -291,14 +290,15 @@ public class SimulationFacade {
             LOGGER.info("Created transports " + t.getName());
         }
     }
-    public void loadManuals(String nameConfig, House house) throws IOException, ParseException{
+
+    public void loadManuals(String nameConfig, House house) throws IOException, ParseException {
         JSONArray array = load(nameConfig, "/manuals.json");
-        for (Object o : array){
+        for (Object o : array) {
             JSONObject manualsJson = (JSONObject) o;
-            house.addManuals(new Manual((String) manualsJson.get("content"), (int)(long) manualsJson.get("deviceId") ));
+            house.addManuals(new Manual((String) manualsJson.get("content"), (int) (long) manualsJson.get("deviceId")));
 
         }
-        for (Manual manual: house.getManuals()){
+        for (Manual manual : house.getManuals()) {
             LOGGER.info("Created manuals " + manual.getContent());
         }
     }

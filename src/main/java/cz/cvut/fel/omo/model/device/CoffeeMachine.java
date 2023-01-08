@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * <p>This class describes model CoffeeMachine</p>
+ * <p>This class describes model CoffeeMachine.</p>
  */
 public class CoffeeMachine extends Device implements Subject {
 
@@ -28,10 +28,9 @@ public class CoffeeMachine extends Device implements Subject {
     }
 
 
-
     @Override
     public void update(EventsType events_type, SimulationFacade simulationFacade) {
-        switch (events_type){
+        switch (events_type) {
             case Smoky, Turn_off_device -> this.setState(new StoppedState(this));
             case Turn_on_device -> this.setState(new ActiveState(this));
         }

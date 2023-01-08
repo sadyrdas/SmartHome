@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.*;
 
 /**
- * <p>This class describes Floor in house</p>
+ * <p>This class describes Floor in house.</p>
  */
 public class Floor {
 
@@ -17,7 +17,7 @@ public class Floor {
     private int number;
     private Set<Room> rooms;
 
-    public Floor(int id){
+    public Floor(int id) {
         this.id = id;
     }
 

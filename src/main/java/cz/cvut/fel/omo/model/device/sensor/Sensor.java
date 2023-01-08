@@ -9,7 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * <p>This abstract class describes Sensor in house</p>
+ * <p>This abstract class describes Sensor in house.</p>
  */
 public abstract class Sensor implements Subject {
     private static final Logger LOGGER = LogManager.getLogger(PetBuilder.class.getName());
@@ -22,11 +22,12 @@ public abstract class Sensor implements Subject {
 
     /**
      * Main Constructor
-     * @param id - unique specific of sensor
-     * @param sensorName - name of sensor
+     *
+     * @param id                    - unique specific of sensor
+     * @param sensorName            - name of sensor
      * @param baseEnergyConsumption - base energy consumption during actions for day.
-     * @param room - room, where this state
-     * @param energyType - type of Energy - Electricity
+     * @param room                  - room, where this state
+     * @param energyType            - type of Energy - Electricity
      */
     public Sensor(int id, String sensorName, int baseEnergyConsumption, Room room, EnergyType energyType) {
         this.id = id;

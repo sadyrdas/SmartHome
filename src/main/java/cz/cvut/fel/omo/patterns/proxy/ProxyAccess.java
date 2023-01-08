@@ -10,7 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * <p>This class describes Design Pattern Proxy</p>
+ * <p>This class describes Design Pattern Proxy.</p>
  */
 public class ProxyAccess {
 

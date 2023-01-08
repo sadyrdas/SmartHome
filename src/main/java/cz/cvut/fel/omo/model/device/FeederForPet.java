@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * <p>This class describes model Feeder for pet</p>
+ * <p>This class describes model Feeder for pet.</p>
  */
 public class FeederForPet extends Device implements Subject {
     private int countOfFood = 450;
@@ -29,7 +29,7 @@ public class FeederForPet extends Device implements Subject {
 
     @Override
     public void update(EventsType events_type, SimulationFacade simulationFacade) {
-        switch (events_type){
+        switch (events_type) {
             case Smoky, Turn_off_device -> this.setState(new StoppedState(this));
             case Turn_on_device -> this.setState(new ActiveState(this));
         }
@@ -54,7 +54,7 @@ public class FeederForPet extends Device implements Subject {
         for (Observer observer : observers) observer.update(eventsType, simulationFacade);
     }
 
-    public void fillFeeder(){
+    public void fillFeeder() {
         setCountOfFood(435);
     }
 

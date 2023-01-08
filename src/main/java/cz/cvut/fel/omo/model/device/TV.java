@@ -12,14 +12,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * <p>This class describes model TV</p>
+ * <p>This class describes model TV.</p>
  */
 public class TV extends Device implements Subject {
 
     private final Set<Observer> observers = new HashSet<>();
 
-    public TV(int id ,String name, Room room, int baseEnergyConsumption) {
-        super(id,name, room, baseEnergyConsumption, EnergyType.Electricity);
+    public TV(int id, String name, Room room, int baseEnergyConsumption) {
+        super(id, name, room, baseEnergyConsumption, EnergyType.Electricity);
     }
 
 

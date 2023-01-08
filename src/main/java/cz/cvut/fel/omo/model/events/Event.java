@@ -1,7 +1,7 @@
 package cz.cvut.fel.omo.model.events;
 
 /**
- * <p>This is the main class of events in house</p>
+ * <p>This is the main class of events in house.</p>
  */
 public class Event {
     private EventsType event_type;

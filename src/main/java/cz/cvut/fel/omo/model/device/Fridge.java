@@ -17,7 +17,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * <p>This class describes model Fridge</p>
+ * <p>This class describes model Fridge.</p>
  */
 public class Fridge extends Device implements Subject {
 
@@ -31,16 +31,15 @@ public class Fridge extends Device implements Subject {
     }
 
 
-
     public Map<String, Integer> getFoodInFridge() {
         return foodInFridge;
     }
 
-    public void addFoodToFridge(){
+    public void addFoodToFridge() {
         foodInFridge.put("Meat", 3);
         foodInFridge.put("Bread", 1);
         foodInFridge.put("Milk", 1);
-        foodInFridge.put("Fish",2);
+        foodInFridge.put("Fish", 2);
         foodInFridge.put("Cheese", 3);
         foodInFridge.put("Beer", 3);
         LOG.info("Food was added" + foodInFridge);

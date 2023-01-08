@@ -11,10 +11,11 @@ import cz.cvut.fel.omo.model.user.Pet;
 
 import java.io.FileWriter;
 import java.io.IOException;
+
 /**
- * <p>This is class for reports for configuration of House</p>
+ * <p>This is class for reports for configuration of House.</p>
  */
-public class HouseConfigurationReport implements Reportable{
+public class HouseConfigurationReport implements Reportable {
 
     private final House house;
     private final int numberOfConfig;
@@ -49,12 +50,12 @@ public class HouseConfigurationReport implements Reportable{
                 }
             }
             writer.write("Humans:\n");
-            for(Human h : house.getHumans()) {
+            for (Human h : house.getHumans()) {
                 writer.write("\t" + h.getName() + " - " + h.getPermissions() + "\n");
             }
 
             writer.write("Pets:\n");
-            for(Pet p : house.getPets()) {
+            for (Pet p : house.getPets()) {
                 writer.write("\t" + p.getName() + "\n");
 
             }

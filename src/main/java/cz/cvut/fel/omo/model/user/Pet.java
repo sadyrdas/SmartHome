@@ -7,9 +7,9 @@ import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import java.util.*;
 
 /**
- * <p>This class describes Pets and extends Resident</p>
+ * <p>This class describes Pets and extends Resident.</p>
  */
-public class Pet extends Resident{
+public class Pet extends Resident {
 
     private final ResidentPermission permission = ResidentPermission.PET;
     private PetType petType;
@@ -29,6 +29,7 @@ public class Pet extends Resident{
     public ResidentPermission getPermission() {
         return permission;
     }
+
     @Override
     public void update(EventsType events_type, SimulationFacade simulationFacade) {
 

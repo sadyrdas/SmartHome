@@ -6,9 +6,10 @@ import cz.cvut.fel.omo.model.user.ResidentPermission;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 /**
  * <p>This class implements Design Patter Builder for our example for Pet
- * https://refactoring.guru/design-patterns/builder</p>
+ * https://refactoring.guru/design-patterns/builder.</p>
  */
 public class PetBuilder {
 
@@ -29,7 +30,7 @@ public class PetBuilder {
         return this;
     }
 
-    private ResidentPermission getPermissions(String permissions){
+    private ResidentPermission getPermissions(String permissions) {
         return ResidentPermission.valueOf(permissions);
     }
 

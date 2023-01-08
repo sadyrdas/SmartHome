@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Set;
 
 /**
- * <p>This class implements Design Patter Builder</p>
+ * <p>This class implements Design Patter Builder.</p>
  */
 public class RoomBuilder {
 
@@ -43,10 +43,12 @@ public class RoomBuilder {
         this.humans = humans;
         return this;
     }
+
     public RoomBuilder addWindowsToRoom(Set<Window> windows) {
         this.windows = windows;
         return this;
     }
+
     public RoomBuilder addPetsToRoom(Set<Pet> pets) {
         this.pets = pets;
         return this;
@@ -73,6 +75,6 @@ public class RoomBuilder {
             LOGGER.error("Room can not be created without name!");
         }
 
-        return new Room(this.roomName,  this.id, this.windowsCount, this.windows);
+        return new Room(this.roomName, this.id, this.windowsCount, this.windows);
     }
 }

@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * <p>This class describes Manuals, which user is using when he needs to repair broken device</p>
+ * <p>This class describes Manuals, which user is using when he needs to repair broken device.</p>
  */
 public class Manual implements Subject {
     private String content;
@@ -26,10 +26,9 @@ public class Manual implements Subject {
         isRead = read;
     }
 
-    public void readManual(){
+    public void readManual() {
         setRead(true);
     }
-
 
 
     public Manual(String content, Integer deviceId) {

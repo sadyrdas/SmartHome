@@ -8,7 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * <p>This class describes Window in house</p>
+ * <p>This class describes Window in house.</p>
  */
 public class Window implements Observer {
     private static final Logger LOGGER = LogManager.getLogger(TemperatureSensor.class.getName());

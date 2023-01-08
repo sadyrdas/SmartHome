@@ -11,8 +11,9 @@ import cz.cvut.fel.omo.patterns.facade.SimulationFacade;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
+
 /**
- * <p>This is class for reports Events</p>
+ * <p>This is class for reports Events.</p>
  */
 public class EventReport implements Reportable {
 
@@ -59,7 +60,7 @@ public class EventReport implements Reportable {
 
             writer.flush();
             writer.close();
-        }  catch (IOException ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }

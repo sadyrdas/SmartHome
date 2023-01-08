@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * <p>This class describes model PC</p>
+ * <p>This class describes model PC.</p>
  */
 public class PC extends Device implements Subject {
     private static final Logger LOG = LogManager.getLogger(Fridge.class.getSimpleName());
@@ -24,7 +24,6 @@ public class PC extends Device implements Subject {
     public PC(int id, String name, Room room, int baseEnergyConsumption) {
         super(id, name, room, baseEnergyConsumption, EnergyType.Electricity);
     }
-
 
 
     @Override
@@ -41,10 +40,10 @@ public class PC extends Device implements Subject {
 
     @Override
     public void update(EventsType events_type, SimulationFacade simulationFacade) {
-        switch (events_type){
+        switch (events_type) {
             case Repair_device -> {
                 setState(new StoppedState(this));
-                notifySubscribers(EventsType.Repair_device,simulationFacade );
+                notifySubscribers(EventsType.Repair_device, simulationFacade);
                 LOG.info("PC is under repairment!");
             }
             case Smoky -> setState(new StoppedState(this));

@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * <p>This class implements Design Patter Builder for our example for Human
- * https://refactoring.guru/design-patterns/builder</p>
+ * https://refactoring.guru/design-patterns/builder.</p>
  */
 
 public class HumanBuilder {
@@ -27,10 +27,9 @@ public class HumanBuilder {
         return this;
     }
 
-    private ResidentPermission getPermissions(String permissions){
+    private ResidentPermission getPermissions(String permissions) {
         return ResidentPermission.valueOf(permissions);
     }
-
 
 
     public Human build() {

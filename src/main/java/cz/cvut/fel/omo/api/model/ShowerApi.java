@@ -14,6 +14,7 @@ public class ShowerApi {
 
     /**
      * Main constructor
+     *
      * @param shower is the shower in house
      */
     public ShowerApi(Shower shower) {
@@ -22,6 +23,7 @@ public class ShowerApi {
 
     /**
      * Turn off Shower. Set state of device to Stopped.
+     *
      * @param human - is the one user who does the action
      */
 
@@ -32,6 +34,7 @@ public class ShowerApi {
 
     /**
      * Turn on Shower. Set state of device to Active
+     *
      * @param human - is the one user who does the action
      */
 

@@ -12,12 +12,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <p>This class describe only Humans and extends Resident</p>
+ * <p>This class describe only Humans and extends Resident.</p>
  */
 public class Human extends Resident {
     private static final Logger LOG = LogManager.getLogger(Human.class.getName());
     private ActivityUser activityUser;
     private final Map<Device, Integer> deviceUsageCount = new HashMap<>();
+
     public Human(String name) {
         super(name);
     }
@@ -37,9 +38,9 @@ public class Human extends Resident {
             case Cold_temperature -> setActivityUser(ActivityUser.OPEN_WINDOW);
             case Repair_device -> setActivityUser(ActivityUser.REPAIR);
             case Empty_fridge -> ((Fridge) simulationFacade.getHouse().getOneDevice("Fridge")).addFoodToFridge();
-            case Empty_FeederForFood ->{
+            case Empty_FeederForFood -> {
                 ((FeederForPet) simulationFacade.getHouse().getOneDevice("FeederForPet")).fillFeeder();
-                LOG.info("Human "+ getName() + " filled feeder");
+                LOG.info("Human " + getName() + " filled feeder");
             }
             case Broken_device -> setActivityUser(ActivityUser.READ_MANUAL);
         }

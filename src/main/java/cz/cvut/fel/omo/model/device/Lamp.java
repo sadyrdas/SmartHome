@@ -12,15 +12,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * <p>This class describes model Lamp</p>
+ * <p>This class describes model Lamp.</p>
  */
 public class Lamp extends Device implements Subject {
 
     private final Set<Observer> observers = new HashSet<>();
+
     public Lamp(int id, String name, Room room, int baseEnergyConsumption) {
         super(id, name, room, baseEnergyConsumption, EnergyType.Electricity);
     }
-
 
 
     @Override

@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * <p>This class describes model Shower</p>
+ * <p>This class describes model Shower.</p>
  */
 public class Shower extends Device implements Subject {
     private final Set<Observer> observers = new HashSet<>();
@@ -19,7 +19,6 @@ public class Shower extends Device implements Subject {
     public Shower(int id, String name, Room room, int baseEnergyConsumption) {
         super(id, name, room, baseEnergyConsumption, EnergyType.Water);
     }
-
 
 
     @Override
@@ -30,7 +29,7 @@ public class Shower extends Device implements Subject {
     @Override
     public void notifySubscribers(EventsType eventsType, SimulationFacade simulationFacade) {
         for (Observer observer : observers) {
-            observer.update(eventsType,simulationFacade );
+            observer.update(eventsType, simulationFacade);
         }
     }
 }
