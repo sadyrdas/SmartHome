@@ -1,0 +1,23 @@
+Second configuration:
+	Devices usage for the whole simulation
+		Lamp 900 W ~= 243,00 CZK
+		MusicCenter 1030 W ~= 278,10 CZK
+		FeederForPet 800 W ~= 216,00 CZK
+		Lamp 970 W ~= 261,90 CZK
+		AirConditioner 2840 W ~= 766,80 CZK
+		Lamp 50 W ~= 13,50 CZK
+		MusicCenter 3300 W ~= 891,00 CZK
+		Lamp 530 W ~= 143,10 CZK
+		Lamp 50 W ~= 13,50 CZK
+		Lamp 630 W ~= 170,10 CZK
+		PC 2275 W ~= 614,25 CZK
+		AirConditioner 2920 W ~= 788,40 CZK
+		CoffeeMachine 15 W ~= 4,05 CZK
+		AirConditioner 3320 W ~= 896,40 CZK
+		TV 3300 W ~= 891,00 CZK
+		MusicCenter 1950 W ~= 526,50 CZK
+		Fridge 3000 W ~= 810,00 CZK
+		TV 7100 W ~= 1917,00 CZK
+		PC 4230 W ~= 1142,10 CZK
+	Showers usage for the whole simulation
+		Shower 1215 l

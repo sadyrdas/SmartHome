@@ -1,0 +1,66 @@
+Second configuration:
+	Humans:
+		Peter:
+			PC: 3
+			Lamp: 1
+			AirConditioner: 1
+			Lamp: 1
+			TV: 4
+			MusicCenter: 1
+			TV: 2
+			Fridge: 1
+			PC: 1
+		Norman:
+			Lamp: 1
+			PC: 2
+			AirConditioner: 1
+			MusicCenter: 2
+			TV: 3
+			AirConditioner: 1
+			MusicCenter: 1
+			MusicCenter: 1
+			Shower: 1
+			TV: 1
+			Lamp: 1
+		Felicia:
+			Lamp: 1
+			AirConditioner: 2
+			MusicCenter: 1
+			MusicCenter: 1
+			Shower: 2
+			TV: 1
+			Lamp: 3
+		Harry:
+			Lamp: 1
+			CoffeeMachine: 1
+			MusicCenter: 1
+			AirConditioner: 1
+			Shower: 6
+			TV: 1
+			PC: 1
+		Osborn:
+			PC: 1
+			Lamp: 1
+			CoffeeMachine: 2
+			AirConditioner: 2
+			TV: 1
+			Shower: 3
+			Fridge: 1
+			TV: 4
+			PC: 4
+		MJ:
+			Lamp: 1
+			PC: 1
+			AirConditioner: 3
+			TV: 1
+			MusicCenter: 1
+			Shower: 5
+			Fridge: 2
+			PC: 2
+	Pets:
+		Igni:
+			FeederForPet: 2
+		Fenrir:
+			FeederForPet: 5
+		Dok:
+			FeederForPet: 5

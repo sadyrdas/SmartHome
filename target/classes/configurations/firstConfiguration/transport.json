@@ -1,0 +1,22 @@
+[
+  {
+    "name" : "Toyota Camry 70",
+    "amount" : 2,
+    "categoryTransport": "Car"
+  },
+  {
+    "name" : "BMX",
+    "amount" : 1,
+    "categoryTransport": "Bike"
+  },
+  {
+    "name" : "Thunder",
+    "amount" : 1,
+    "categoryTransport": "Ski"
+  },
+  {
+    "name" : "BMX2",
+    "amount" : 1,
+    "categoryTransport": "Bike"
+  }
+]

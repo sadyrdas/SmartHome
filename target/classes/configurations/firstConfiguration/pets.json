@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Duke",
+    "permission": "PET",
+    "petType" : "Dog"
+  },
+  {
+    "name": "Mary",
+    "permission": "PET",
+    "petType" : "Cat"
+  },
+  {
+    "name": "Bob",
+    "permission": "PET",
+    "petType": "Parrot"
+  }
+]

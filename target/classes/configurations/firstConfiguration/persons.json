@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Tony",
+    "permission": "ADULT"
+  },
+  {
+    "name": "Kerol",
+    "permission": "ADULT"
+  },
+  {
+    "name": "Steve",
+    "permission": "CHILD"
+  },
+  {
+    "name": "Thor",
+    "permission": "CHILD"
+  },
+  {
+    "name": "Natasha",
+    "permission": "CHILD"
+  },
+  {
+    "name": "Bruce",
+    "permission": "CHILD"
+  }
+]

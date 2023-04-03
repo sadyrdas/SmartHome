@@ -1,0 +1,122 @@
+[
+  {
+    "id" : 1,
+    "name": "Fridge",
+    "baseEnergyConsumption" : 500,
+    "idRoom" : 2
+  },
+  {
+    "id" : 2,
+    "name": "TV",
+    "baseEnergyConsumption" : 500,
+    "idRoom" : 4
+  },
+  {
+    "id" : 3,
+    "name" : "AirConditioner",
+    "baseEnergyConsumption" : 400,
+    "idRoom" : 1
+  },
+  {
+    "id" : 4,
+    "name" : "CoffeeMachine",
+    "baseEnergyConsumption" : 200,
+    "idRoom": 5
+  },
+  {
+    "id": 5,
+    "name": "MusicCenter",
+    "baseEnergyConsumption" : 300,
+    "idRoom": 4
+  },
+  {
+    "id": 6,
+    "name": "PC",
+    "baseEnergyConsumption" : 300,
+    "idRoom" : 5
+  },
+  {
+    "id" : 7,
+    "name" : "FeederForPet",
+    "baseEnergyConsumption" : 150,
+    "idRoom" : 1
+  },
+  {
+    "id" : 8,
+    "name" : "Lamp",
+    "baseEnergyConsumption" : 50,
+    "idRoom" : 6
+  },
+  {
+    "id" : 9,
+    "name" : "Shower",
+    "baseEnergyConsumption" : 100,
+    "idRoom" : 6
+  },
+  {
+    "id" : 10,
+    "name" : "Lamp",
+    "baseEnergyConsumption" : 50,
+    "idRoom" : 1
+  },
+  {
+    "id" : 11,
+    "name" : "Lamp",
+    "baseEnergyConsumption" : 50,
+    "idRoom" : 4
+  },
+  {
+    "id" : 12,
+    "name" : "Lamp",
+    "baseEnergyConsumption" : 50,
+    "idRoom" : 5
+  },
+  {
+    "id" : 13,
+    "name" : "Lamp",
+    "baseEnergyConsumption" : 50,
+    "idRoom" : 2
+  },
+  {
+    "id" : 14,
+    "name" : "Lamp",
+    "baseEnergyConsumption" : 50,
+    "idRoom" : 3
+  },
+  {
+    "id": 15,
+    "name": "PC",
+    "baseEnergyConsumption" : 300,
+    "idRoom" : 5
+  },
+  {
+    "id": 16,
+    "name": "MusicCenter",
+    "baseEnergyConsumption" : 300,
+    "idRoom": 4
+  },
+  {
+    "id" : 17,
+    "name": "TV",
+    "baseEnergyConsumption" : 500,
+    "idRoom" : 5
+  },
+  {
+    "id" : 18,
+    "name" : "AirConditioner",
+    "baseEnergyConsumption" : 400,
+    "idRoom" : 2
+  },
+  {
+    "id" : 19,
+    "name" : "AirConditioner",
+    "baseEnergyConsumption" : 400,
+    "idRoom" : 5
+  },
+  {
+    "id": 20,
+    "name": "MusicCenter",
+    "baseEnergyConsumption" : 300,
+    "idRoom": 5
+  }
+]

@@ -1,82 +1,55 @@
 Second configuration:
 	 Users events:
-		Type of Event: EAT
-		Target: Peter
-
-		Type of Event: DRINK_COFFEE
-		Target: Norman
-
 		Type of Event: WATCH_TV
 		Target: Peter
-
-		Type of Event: PLAYING_PC
-		Target: MJ
-
-		Type of Event: WATCH_TV
-		Target: Osborn
-
-		Type of Event: DRINK_COFFEE
-		Target: Osborn
 
 		Type of Event: LISTEN_TO_MUSIC
-		Target: Peter
-
-		Type of Event: WATCH_TV
 		Target: Norman
-
-		Type of Event: PLAYING_PC
-		Target: Felicia
-
-		Type of Event: WATCH_TV
-		Target: Osborn
-
-		Type of Event: FILL_FEEDER
-		Target: Peter
-
-		Type of Event: DRINK_COFFEE
-		Target: MJ
-
-		Type of Event: DRINK_COFFEE
-		Target: Osborn
 
 		Type of Event: USE_TRANSPORT
 		Target: Peter
 
-		Type of Event: LISTEN_TO_MUSIC
-		Target: Norman
+		Type of Event: DRINK_COFFEE
+		Target: Harry
 
-		Type of Event: WATCH_TV
-		Target: MJ
-
-		Type of Event: WATCH_TV
+		Type of Event: PLAYING_PC
 		Target: Osborn
 
 		Type of Event: EAT
 		Target: Peter
 
-		Type of Event: EAT
-		Target: Felicia
-
-		Type of Event: PLAYING_PC
-		Target: Peter
-
 		Type of Event: OFF_TRANSPORT
 		Target: Felicia
-
-		Type of Event: PLAYING_PC
-		Target: Osborn
-
-		Type of Event: OFF_TRANSPORT
-		Target: Harry
-
-		Type of Event: WATCH_TV
-		Target: Norman
-
-		Type of Event: PLAYING_PC
-		Target: Harry
 
 		Type of Event: FILL_FEEDER
 		Target: Peter
+
+		Type of Event: LISTEN_TO_MUSIC
+		Target: Norman
+
+		Type of Event: EAT
+		Target: Osborn
+
+		Type of Event: WATCH_TV
+		Target: Osborn
+
+		Type of Event: PLAYING_PC
+		Target: MJ
+
+		Type of Event: PLAYING_PC
+		Target: Peter
+
+		Type of Event: LISTEN_TO_MUSIC
+		Target: Norman
+
+		Type of Event: LISTEN_TO_MUSIC
+		Target: Felicia
+
+		Type of Event: USE_TRANSPORT
+		Target: Peter
+
+		Type of Event: WATCH_TV
+		Target: Harry
 
 		Type of Event: DRINK_COFFEE
 		Target: Osborn
@@ -84,26 +57,23 @@ Second configuration:
 		Type of Event: EAT
 		Target: MJ
 
-		Type of Event: OFF_TRANSPORT
-		Target: Norman
-
-		Type of Event: OFF_TRANSPORT
-		Target: MJ
-
-		Type of Event: OFF_TRANSPORT
-		Target: MJ
-
-		Type of Event: PLAYING_PC
-		Target: Felicia
-
 		Type of Event: FILL_FEEDER
 		Target: Peter
 
-		Type of Event: OFF_TRANSPORT
-		Target: Norman
+		Type of Event: LISTEN_TO_MUSIC
+		Target: Harry
 
-		Type of Event: OFF_TRANSPORT
+		Type of Event: WATCH_TV
+		Target: Osborn
+
+		Type of Event: WATCH_TV
 		Target: MJ
+
+		Type of Event: LISTEN_TO_MUSIC
+		Target: Peter
+
+		Type of Event: PLAYING_PC
+		Target: Osborn
 
 		Type of Event: USE_TRANSPORT
 		Target: Peter
@@ -111,94 +81,73 @@ Second configuration:
 		Type of Event: OFF_TRANSPORT
 		Target: MJ
 
-		Type of Event: WATCH_TV
-		Target: Harry
-
-		Type of Event: PLAYING_PC
-		Target: Norman
-
 		Type of Event: DRINK_COFFEE
-		Target: Felicia
-
-		Type of Event: WATCH_TV
 		Target: Osborn
 
-		Type of Event: EAT
-		Target: Norman
-
 		Type of Event: WATCH_TV
-		Target: Felicia
+		Target: Peter
+
+		Type of Event: FILL_FEEDER
+		Target: Peter
+
+		Type of Event: USE_TRANSPORT
+		Target: Peter
 
 		Type of Event: PLAYING_PC
-		Target: Osborn
-
-		Type of Event: EAT
-		Target: Harry
+		Target: Norman
 
 		Type of Event: OFF_TRANSPORT
 		Target: Felicia
 
-		Type of Event: DRINK_COFFEE
+		Type of Event: PLAYING_PC
+		Target: Osborn
+
+		Type of Event: EAT
+		Target: MJ
+
+		Type of Event: WATCH_TV
 		Target: Peter
+
+		Type of Event: LISTEN_TO_MUSIC
+		Target: Norman
+
+		Type of Event: WATCH_TV
+		Target: Peter
+
+		Type of Event: WATCH_TV
+		Target: Norman
+
+		Type of Event: OFF_TRANSPORT
+		Target: Felicia
+
+		Type of Event: PLAYING_PC
+		Target: Osborn
+
+		Type of Event: LISTEN_TO_MUSIC
+		Target: MJ
 
 		Type of Event: LISTEN_TO_MUSIC
 		Target: Felicia
 
-		Type of Event: FILL_FEEDER
-		Target: Peter
+		Type of Event: WATCH_TV
+		Target: Osborn
+
+		Type of Event: PLAYING_PC
+		Target: Harry
+
+		Type of Event: PLAYING_PC
+		Target: Osborn
 
 ================================================================
 	 Device events:
 		Type of Event: Turn_on_device
-		Target: CoffeeMachine
-
-		Type of Event: Turn_on_device
-		Target: FeederForPet
-
-		Type of Event: Turn_on_device
 		Target: TV
-
-		Type of Event: Turn_on_device
-		Target: PC
-
-		Type of Event: Turn_on_device
-		Target: TV
-
-		Type of Event: Turn_off_device
-		Target: MusicCenter
-
-		Type of Event: Turn_on_device
-		Target: FeederForPet
-
-		Type of Event: Turn_off_device
-		Target: AirConditioner
 
 		Type of Event: Turn_off_device
 		Target: Lamp
 
 		Type of Event: Turn_on_device
-		Target: CoffeeMachine
-
-		Type of Event: Turn_off_device
-		Target: AirConditioner
-
-		Type of Event: Turn_on_device
 		Target: FeederForPet
-
-		Type of Event: Turn_on_device
-		Target: TV
-
-		Type of Event: Turn_on_device
-		Target: PC
-
-		Type of Event: Turn_on_device
-		Target: TV
-
-		Type of Event: Turn_off_device
-		Target: AirConditioner
-
-		Type of Event: Turn_on_device
-		Target: AirConditioner
 
 		Type of Event: Turn_off_device
 		Target: AirConditioner
@@ -207,120 +156,12 @@ Second configuration:
 		Target: CoffeeMachine
 
 		Type of Event: Turn_on_device
-		Target: CoffeeMachine
-
-		Type of Event: Turn_on_device
-		Target: TV
-
-		Type of Event: Turn_off_device
-		Target: TV
-
-		Type of Event: Turn_on_device
-		Target: TV
-
-		Type of Event: Turn_off_device
-		Target: Lamp
-
-		Type of Event: Turn_off_device
-		Target: PC
-
-		Type of Event: Turn_off_device
-		Target: TV
-
-		Type of Event: Turn_off_device
-		Target: AirConditioner
-
-		Type of Event: Turn_on_device
-		Target: FeederForPet
-
-		Type of Event: Turn_on_device
-		Target: PC
-
-		Type of Event: Turn_on_device
-		Target: Lamp
-
-		Type of Event: Turn_off_device
-		Target: Lamp
-
-		Type of Event: Turn_on_device
-		Target: PC
-
-		Type of Event: Turn_on_device
-		Target: FeederForPet
-
-		Type of Event: Turn_on_device
-		Target: Lamp
-
-		Type of Event: Turn_on_device
-		Target: TV
-
-		Type of Event: Turn_off_device
-		Target: MusicCenter
-
-		Type of Event: Turn_off_device
-		Target: AirConditioner
-
-		Type of Event: Turn_on_device
-		Target: AirConditioner
-
-		Type of Event: Turn_on_device
 		Target: PC
 
 		Type of Event: Turn_on_device
 		Target: FeederForPet
 
 		Type of Event: Turn_off_device
-		Target: TV
-
-		Type of Event: Turn_off_device
-		Target: PC
-
-		Type of Event: Turn_on_device
-		Target: FeederForPet
-
-		Type of Event: Turn_on_device
-		Target: AirConditioner
-
-		Type of Event: Turn_on_device
-		Target: AirConditioner
-
-		Type of Event: Turn_off_device
-		Target: PC
-
-		Type of Event: Turn_on_device
-		Target: AirConditioner
-
-		Type of Event: Turn_on_device
-		Target: CoffeeMachine
-
-		Type of Event: Turn_off_device
-		Target: Lamp
-
-		Type of Event: Turn_off_device
-		Target: PC
-
-		Type of Event: Turn_on_device
-		Target: Lamp
-
-		Type of Event: Turn_off_device
-		Target: AirConditioner
-
-		Type of Event: Turn_off_device
-		Target: AirConditioner
-
-		Type of Event: Turn_on_device
-		Target: FeederForPet
-
-		Type of Event: Turn_off_device
-		Target: TV
-
-		Type of Event: Turn_on_device
-		Target: FeederForPet
-
-		Type of Event: Turn_off_device
-		Target: PC
-
-		Type of Event: Turn_on_device
 		Target: PC
 
 		Type of Event: Turn_off_device
@@ -328,6 +169,9 @@ Second configuration:
 
 		Type of Event: Turn_on_device
 		Target: Lamp
+
+		Type of Event: Turn_off_device
+		Target: TV
 
 		Type of Event: Turn_off_device
 		Target: MusicCenter
@@ -338,47 +182,14 @@ Second configuration:
 		Type of Event: Turn_on_device
 		Target: FeederForPet
 
-		Type of Event: Turn_on_device
+		Type of Event: Turn_off_device
+		Target: TV
+
+		Type of Event: Turn_off_device
 		Target: AirConditioner
 
-		Type of Event: Turn_on_device
-		Target: TV
-
-		Type of Event: Turn_on_device
-		Target: PC
-
-		Type of Event: Turn_on_device
-		Target: Lamp
-
-		Type of Event: Turn_off_device
-		Target: TV
-
 		Type of Event: Turn_off_device
 		Target: Lamp
-
-		Type of Event: Turn_on_device
-		Target: CoffeeMachine
-
-		Type of Event: Turn_on_device
-		Target: TV
-
-		Type of Event: Turn_on_device
-		Target: Lamp
-
-		Type of Event: Turn_on_device
-		Target: FeederForPet
-
-		Type of Event: Turn_off_device
-		Target: Lamp
-
-		Type of Event: Turn_off_device
-		Target: Lamp
-
-		Type of Event: Turn_on_device
-		Target: TV
-
-		Type of Event: Turn_on_device
-		Target: PC
 
 		Type of Event: Turn_off_device
 		Target: MusicCenter
@@ -386,6 +197,159 @@ Second configuration:
 		Type of Event: Turn_off_device
 		Target: PC
 
+		Type of Event: Turn_on_device
+		Target: Lamp
+
+		Type of Event: Turn_on_device
+		Target: AirConditioner
+
+		Type of Event: Turn_on_device
+		Target: FeederForPet
+
+		Type of Event: Turn_off_device
+		Target: Lamp
+
+		Type of Event: Turn_on_device
+		Target: TV
+
+		Type of Event: Turn_on_device
+		Target: PC
+
+		Type of Event: Turn_on_device
+		Target: PC
+
+		Type of Event: Turn_off_device
+		Target: PC
+
+		Type of Event: Turn_on_device
+		Target: FeederForPet
+
+		Type of Event: Turn_off_device
+		Target: AirConditioner
+
+		Type of Event: Turn_on_device
+		Target: Lamp
+
+		Type of Event: Turn_on_device
+		Target: TV
+
+		Type of Event: Turn_on_device
+		Target: CoffeeMachine
+
+		Type of Event: Turn_on_device
+		Target: FeederForPet
+
+		Type of Event: Turn_on_device
+		Target: FeederForPet
+
+		Type of Event: Turn_off_device
+		Target: PC
+
+		Type of Event: Turn_off_device
+		Target: MusicCenter
+
+		Type of Event: Turn_off_device
+		Target: AirConditioner
+
+		Type of Event: Turn_on_device
+		Target: TV
+
+		Type of Event: Turn_on_device
+		Target: Lamp
+
+		Type of Event: Turn_off_device
+		Target: AirConditioner
+
+		Type of Event: Turn_off_device
+		Target: Lamp
+
+		Type of Event: Turn_on_device
+		Target: TV
+
+		Type of Event: Turn_off_device
+		Target: MusicCenter
+
+		Type of Event: Turn_on_device
+		Target: PC
+
+		Type of Event: Turn_off_device
+		Target: MusicCenter
+
+		Type of Event: Turn_on_device
+		Target: AirConditioner
+
+		Type of Event: Turn_on_device
+		Target: Lamp
+
+		Type of Event: Turn_on_device
+		Target: FeederForPet
+
+		Type of Event: Turn_off_device
+		Target: TV
+
+		Type of Event: Turn_off_device
+		Target: TV
+
+		Type of Event: Turn_on_device
+		Target: Lamp
+
+		Type of Event: Turn_on_device
+		Target: CoffeeMachine
+
+		Type of Event: Turn_off_device
+		Target: PC
+
+		Type of Event: Turn_on_device
+		Target: FeederForPet
+
+		Type of Event: Turn_off_device
+		Target: PC
+
+		Type of Event: Turn_off_device
+		Target: TV
+
+		Type of Event: Turn_off_device
+		Target: MusicCenter
+
+		Type of Event: Turn_on_device
+		Target: TV
+
+		Type of Event: Turn_on_device
+		Target: PC
+
+		Type of Event: Turn_on_device
+		Target: PC
+
+		Type of Event: Turn_on_device
+		Target: FeederForPet
+
+		Type of Event: Turn_on_device
+		Target: TV
+
+		Type of Event: Turn_on_device
+		Target: Lamp
+
+		Type of Event: Turn_off_device
+		Target: TV
+
+		Type of Event: Turn_on_device
+		Target: AirConditioner
+
+		Type of Event: Turn_on_device
+		Target: FeederForPet
+
+		Type of Event: Turn_on_device
+		Target: TV
+
+		Type of Event: Turn_on_device
+		Target: TV
+
+		Type of Event: Turn_on_device
+		Target: PC
+
+		Type of Event: Turn_on_device
+		Target: FeederForPet
+
 		Type of Event: Turn_off_device
 		Target: TV
 
@@ -393,30 +357,45 @@ Second configuration:
 		Target: AirConditioner
 
 		Type of Event: Turn_on_device
-		Target: FeederForPet
-
-		Type of Event: Turn_on_device
-		Target: CoffeeMachine
+		Target: TV
 
 		Type of Event: Turn_off_device
-		Target: Lamp
+		Target: MusicCenter
+
+		Type of Event: Turn_off_device
+		Target: MusicCenter
 
 		Type of Event: Turn_on_device
-		Target: Lamp
+		Target: PC
 
 		Type of Event: Turn_on_device
-		Target: FeederForPet
+		Target: PC
+
+		Type of Event: Turn_on_device
+		Target: AirConditioner
 
 =================================================================
 	 Pet events:
 		Type of Event: EAT
-		Target: Fenrir
+		Target: Igni
+
+		Type of Event: EAT
+		Target: Dok
 
 		Type of Event: EAT
 		Target: Fenrir
 
 		Type of Event: EAT
 		Target: Fenrir
+
+		Type of Event: EAT
+		Target: Dok
+
+		Type of Event: EAT
+		Target: Igni
+
+		Type of Event: EAT
+		Target: Dok
 
 		Type of Event: EAT
 		Target: Fenrir
@@ -429,21 +408,6 @@ Second configuration:
 
 		Type of Event: EAT
 		Target: Dok
-
-		Type of Event: EAT
-		Target: Dok
-
-		Type of Event: EAT
-		Target: Fenrir
-
-		Type of Event: EAT
-		Target: Igni
-
-		Type of Event: EAT
-		Target: Igni
-
-		Type of Event: EAT
-		Target: Igni
 
 		Type of Event: EAT
 		Target: Dok

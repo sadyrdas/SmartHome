@@ -1,0 +1,72 @@
+First configuration:
+	Humans:
+		Tony:
+			Lamp: 1
+			CoffeeMachine: 1
+			TV: 1
+			AirConditioner: 1
+			PC: 1
+			Shower: 2
+			AirConditioner: 1
+			MusicCenter: 2
+			TV: 2
+			AirConditioner: 1
+			PC: 2
+		Bruce:
+			Lamp: 1
+			Fridge: 2
+			PC: 1
+			Shower: 4
+			AirConditioner: 1
+			Lamp: 2
+			TV: 2
+			AirConditioner: 1
+			PC: 3
+		Natasha:
+			CoffeeMachine: 1
+			Lamp: 1
+			MusicCenter: 1
+			TV: 1
+			AirConditioner: 1
+			Fridge: 2
+			AirConditioner: 1
+			MusicCenter: 1
+			Lamp: 2
+			TV: 2
+			PC: 2
+		Steve:
+			CoffeeMachine: 1
+			MusicCenter: 4
+			PC: 1
+			Shower: 1
+			Fridge: 1
+			Lamp: 3
+			Lamp: 1
+			AirConditioner: 1
+			Lamp: 1
+			PC: 1
+		Thor:
+			CoffeeMachine: 1
+			TV: 2
+			AirConditioner: 1
+			Shower: 1
+			AirConditioner: 1
+			MusicCenter: 1
+			Lamp: 1
+			PC: 2
+		Kerol:
+			CoffeeMachine: 1
+			TV: 2
+			AirConditioner: 1
+			Shower: 1
+			PC: 3
+			Fridge: 3
+			AirConditioner: 3
+			Lamp: 1
+	Pets:
+		Mary:
+			FeederForPet: 4
+		Duke:
+			FeederForPet: 6
+		Bob:
+			FeederForPet: 4
